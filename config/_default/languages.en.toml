@@ -14,9 +14,9 @@ title = "Late Star"
   dateFormat = "2 January 2006"
 
 [params.author]
-  name = "Your name here"
+  name = "Vincent Lu"
   image = "img/blowfish_logo.png"
-  headline = "I'm only human"
+  headline = "Shine bright like a diamond."
   bio = "A little bit about you"
   # links = [
   #   { email = "mailto:hello@your_domain.com" },
