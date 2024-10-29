@@ -20,7 +20,5 @@ contentDir = 'content/en'
   headline = "This is my very simple profile website with my links"
   bio = "A little bit about you"
    links = [
-     { link = "https://nunocoracao.github.io/blowfish/" },
-     { github = "https://github.com/nunocoracao/blowfish" },
-     { x-twitter = "https://twitter.com/burufugu" }
+     { github = "https://github.com/vincentluting/vincentluting.github.io" },
    ]
