@@ -16,8 +16,8 @@
   weight = 10
 
 [[main]]
-  name = "商业战略"
-  pageRef = "商业战略"
+  name = "商业"
+  pageRef = "商业"
   weight = 10
 
 [[main]]
