@@ -16,7 +16,7 @@ mainSections = ["posts"]
 # robots = ""
 
 [header]
-  layout = "fixed-fill-blur" # valid options: basic, fixed
+  layout = "basic" # valid options: basic, fixed
 
 [footer]
  # showMenu = true
