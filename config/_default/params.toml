@@ -38,8 +38,8 @@ enableCodeCopy = true
 
 [article]
   showDate = true
-  #showViews = true
-  #showLikes = true
+  #showViews = false
+  #showLikes = false
   showDateUpdated = false
   showAuthor = true
   showHero = true
