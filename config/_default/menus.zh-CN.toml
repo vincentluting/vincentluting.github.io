@@ -16,16 +16,16 @@
   weight = 10
 
 # [[main]]
-  identifier = "web"
-  pre = "link"
-  url = "https://nunocoracao.github.io/blowfish/"
-  weight = 40
+#  identifier = "web"
+#  pre = "link"
+#  url = "https://nunocoracao.github.io/blowfish/"
+#  weight = 40
 
 # [[main]]
-  identifier = "twitter"
-  pre = "twitter"
-  url = "https://twitter.com/burufugu"
-  weight = 60
+#  identifier = "twitter"
+#  pre = "twitter"
+#  url = "https://twitter.com/burufugu"
+#  weight = 60
 
 
 # -- Footer Menu --
