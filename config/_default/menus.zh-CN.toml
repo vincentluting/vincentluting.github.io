@@ -15,13 +15,13 @@
   pageRef = "posts"
   weight = 10
 
-[[main]]
+# [[main]]
   identifier = "web"
   pre = "link"
   url = "https://nunocoracao.github.io/blowfish/"
   weight = 40
 
-[[main]]
+# [[main]]
   identifier = "twitter"
   pre = "twitter"
   url = "https://twitter.com/burufugu"
