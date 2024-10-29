@@ -15,12 +15,10 @@ contentDir = 'content/en'
   dateFormat = "2 January 2006"
 
 [params.author]
-  name = "Gray Blowfish"
+  name = "Vincent Lu"
   image = "img/avatar.png"
-  headline = "This is my very simple profile website with my links"
+  headline = "Shiner later, but brighter."
   bio = "A little bit about you"
    links = [
-     { link = "https://nunocoracao.github.io/blowfish/" },
-     { github = "https://github.com/nunocoracao/blowfish" },
-     { x-twitter = "https://twitter.com/burufugu" }
+     { github = "https://github.com/vincentluting/vincentluting.github.io" },
    ]
