@@ -65,10 +65,10 @@ mainSections = ["posts"]
   showBreadcrumbs = false
   showSummary = true
   showTableOfContents = true
-  showCards = false
+  showCards = true
   groupByYear = true
-  cardView = false
-  cardViewScreenWidth = false
+  cardView = true
+  cardViewScreenWidth = true
   constrainItemsWidth = true
 
 [sitemap]
