@@ -13,17 +13,17 @@
 [[main]]
   name = "AI"
   pageRef = "AI"
-  weight = 10
+  weight = 20
 
 [[main]]
   name = "Business"
   pageRef = "Business"
-  weight = 10
+  weight = 20
 
 [[main]]
   name = "Marketing"
   pageRef = "Marketing"
-  weight = 10
+  weight = 20
 
 [[main]]
   name = "Life"
