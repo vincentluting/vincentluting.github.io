@@ -1,13 +1,13 @@
-languageCode = "pt-PT"
-languageName = "Portuguese"
+languageCode = "cn-CN"
+languageName = "中文"
 weight = 2
 title = "Gray Blowfish"
 contentDir = 'content/pt'
 
 
 [params]
-  displayName = "PT"
-  isoCode = "pt-PT"
+  displayName = "CN"
+  isoCode = "cn-CN"
   rtl = false
   # logo = "img/logo.png"
   description = "O meu website awesome"
@@ -16,9 +16,9 @@ contentDir = 'content/pt'
 dateFormat = "2 January 2006"
 
 [params.author]
-  name = "Gray Blowfish"
+  name = "Vincent Lu"
   image = "img/avatar.png"
-  headline = "Um perfil simples com os meus links"
+  headline = "更晚的星星会照亮更广阔的夜空。"
   bio = "A little bit about you"
    links = [
      { link = "https://nunocoracao.github.io/blowfish/" },
