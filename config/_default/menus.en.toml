@@ -17,17 +17,17 @@
 
 [[main]]
   name = "Business"
-  pageRef = "Business"
+  pageRef = "Posts"
   weight = 10
 
 [[main]]
   name = "Marketing"
-  pageRef = "Marketing"
+  pageRef = "Posts"
   weight = 10
 
 [[main]]
   name = "Growth"
-  pageRef = "Growth"
+  pageRef = "Posts"
   weight = 20
 
 # [[main]]
