@@ -16,7 +16,12 @@
   weight = 10
 
 [[main]]
-  name = "商业"
+  name = "技术"
+  pageRef = "Posts"
+  weight = 10
+
+[[main]]
+  name = "商业和管理"
   pageRef = "Posts"
   weight = 10
 
