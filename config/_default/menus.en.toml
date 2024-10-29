@@ -22,7 +22,7 @@
   weight = 40
 
 
-[[main]]
+# [[main]]
   identifier = "twitter"
   pre = "twitter"
   url = "https://twitter.com/burufugu"
