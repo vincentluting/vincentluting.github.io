@@ -33,7 +33,7 @@ mainSections = ["posts"]
   showMoreLink = true
   showMoreLinkDest = "/blowfish_lite/posts"
   cardView = true
-  cardViewScreenWidth = true
+  cardViewScreenWidth = false
   layoutBackgroundBlur = true # only used when layout equals background
 
 [article]
@@ -67,8 +67,8 @@ mainSections = ["posts"]
   showTableOfContents = true
   showCards = true
   groupByYear = true
-  cardView = true
-  cardViewScreenWidth = true
+  cardView = false
+  cardViewScreenWidth = false
   constrainItemsWidth = true
 
 [sitemap]
