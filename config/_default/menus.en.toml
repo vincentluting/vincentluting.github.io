@@ -11,8 +11,23 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "Blog"
-  pageRef = "posts"
+  name = "AI"
+  pageRef = "AI"
+  weight = 10
+
+[[main]]
+  name = "Business"
+  pageRef = "Business"
+  weight = 10
+
+[[main]]
+  name = "Marketing"
+  pageRef = "Marketing"
+  weight = 10
+
+[[main]]
+  name = "Life"
+  pageRef = "Life"
   weight = 10
 
 # [[main]]
