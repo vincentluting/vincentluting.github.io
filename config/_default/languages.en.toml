@@ -21,4 +21,5 @@ contentDir = 'content/en'
   bio = "What do you think?"
    links = [
      { github = "https://github.com/vincentluting/vincentluting.github.io" },
+     { linkedin = "www.linkedin.com/in/ting-lu-vincent" },
    ]
