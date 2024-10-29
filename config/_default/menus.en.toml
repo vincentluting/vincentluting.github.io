@@ -26,8 +26,8 @@
   weight = 20
 
 [[main]]
-  name = "Life"
-  pageRef = "Life"
+  name = "Growth"
+  pageRef = "Growth"
   weight = 10
 
 # [[main]]
