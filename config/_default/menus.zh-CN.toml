@@ -13,22 +13,22 @@
 [[main]]
   name = "AI"
   pageRef = "AI"
-  weight = 20
+  weight = 10
 
 [[main]]
   name = "商业战略"
   pageRef = "商业战略"
-  weight = 20
+  weight = 10
 
 [[main]]
   name = "营销"
   pageRef = "营销"
-  weight = 20
+  weight = 10
 
 [[main]]
   name = "成长"
   pageRef = "成长"
-  weight = 10
+  weight = 20
 
 # [[main]]
 #  identifier = "web"

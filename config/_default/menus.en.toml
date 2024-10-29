@@ -13,22 +13,22 @@
 [[main]]
   name = "AI"
   pageRef = "AI"
-  weight = 20
+  weight = 10
 
 [[main]]
   name = "Business"
   pageRef = "Business"
-  weight = 20
+  weight = 10
 
 [[main]]
   name = "Marketing"
   pageRef = "Marketing"
-  weight = 20
+  weight = 10
 
 [[main]]
   name = "Growth"
   pageRef = "Growth"
-  weight = 10
+  weight = 20
 
 # [[main]]
 #  identifier = "web"
