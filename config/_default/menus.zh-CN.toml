@@ -16,26 +16,6 @@
   weight = 10
 
 # [[main]]
-#   name = "技术"
-#   pageRef = "Posts"
-#   weight = 10
-
-# [[main]]
-#   name = "商业和管理"
-#   pageRef = "Posts"
-#   weight = 10
-
-# [[main]]
-#   name = "营销"
-#   pageRef = "Posts"
-#   weight = 10
-
-# [[main]]
-#   name = "成长"
-#   pageRef = "Posts"
-#   weight = 20
-
-# [[main]]
 #  identifier = "web"
 #  pre = "link"
 #  url = "https://nunocoracao.github.io/blowfish/"
