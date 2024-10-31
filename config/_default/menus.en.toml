@@ -12,7 +12,7 @@
 
 [[main]]
   name = "Blog"
-  pageRef = "Posts"
+  pageRef = "posts"
   weight = 10
 
 [[main]]
@@ -22,18 +22,6 @@
   # url = "/about"
   weight = 20
 
-# [[main]]
-#  identifier = "web"
-#  pre = "link"
-#  url = "https://nunocoracao.github.io/blowfish/"
-#  weight = 40
-
-
-# [[main]]
-#  identifier = "twitter"
-#  pre = "twitter"
-#  url = "https://twitter.com/burufugu"
-#  weight = 60
 
 
 # -- Footer Menu --
