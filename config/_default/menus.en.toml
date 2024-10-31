@@ -15,6 +15,13 @@
   pageRef = "Posts"
   weight = 10
 
+[[main]]
+  # pre = "circle-info"
+  name = "About"
+  pageRef = "about"
+  # url = "/about"
+  weight = 20
+
 # [[main]]
 #  identifier = "web"
 #  pre = "link"
