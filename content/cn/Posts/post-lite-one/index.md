@@ -1,5 +1,5 @@
 ---
-title: "ChatGPT和计量经济学的关系"
+title: "为什么ChatGPT和计量经济学放在了一起？"
 summary: "理解chatGPT的本质以及和计量经济学之间的关系"
 categories: ["Post","Blog",]
 tags: ["post","lorem","ipsum"]
