@@ -1,6 +1,6 @@
 ---
 title: "ChatGPT和计量经济学的关系"
-summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in eleifend justo, vestibulum congue lacus. Quisque est libero, lacinia sed placerat ac, interdum id urna."
+summary: "理解chatGPT的本质以及和计量经济学之间的关系"
 categories: ["Post","Blog",]
 tags: ["post","lorem","ipsum"]
 #externalUrl: ""
