@@ -27,4 +27,4 @@ Thus, ChatGPT’s essence is that of a highly complex “pattern recognizer” a
 
 With these insights, we can use ChatGPT more accurately, enjoying its powerful language generation abilities without being misled by its language patterns. ChatGPT’s future may continue to improve, but its core characteristics of pattern recognition and probability-based generation will persist, providing a distinct form of “intelligence” that remains uniquely different from human cognition.
 
-(This article is translated from the Chinese version by AI)
+(This article is translated from the Chinese version)
