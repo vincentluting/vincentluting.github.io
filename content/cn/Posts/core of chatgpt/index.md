@@ -5,7 +5,7 @@ categories: ["Post","Blog",]
 tags: ["post","lorem","ipsum"]
 #externalUrl: ""
 #showSummary: true
-date: 2024-9-29
+date: 2024-09-29
 draft: false
 ---
 
