@@ -11,8 +11,8 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "博客"
-  pageRef = "posts"
+  name = "AI"
+  pageRef = "ai"
   weight = 10
 
 [[main]]
