@@ -18,5 +18,3 @@ I have plenty of hobbies. Some of these are:
 {{< keyword >}} Enjoying a good movie/series {{< /keyword >}}
 {{< /keywordList >}}
 
-I dipped my toes in programming when I was 16. I took on Harvard's introductory course to computer science called [CS50](https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science?webview=false&campaign=CS50%27s+Introduction+to+Computer+Science&source=edx&product_category=course&placement_url=https%3A%2F%2Fwww.edx.org%2Fcs50).
-Since then, I have really been attached to programming, computers, and game design.
