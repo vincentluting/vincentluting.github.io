@@ -2,7 +2,7 @@
 title: "ChatGPT的本质是什么？"
 summary: "理解chatGPT的本质"
 categories: ["Post","Blog",]
-tags: ["post","lorem","ipsum"]
+tags: ["ai"]
 #externalUrl: ""
 #showSummary: true
 date: 2024-09-29
