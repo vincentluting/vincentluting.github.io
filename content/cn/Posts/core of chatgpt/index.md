@@ -1,11 +1,11 @@
 ---
-title: "探索ChatGPT和计量经济学的联系"
-summary: "理解chatGPT的本质以及和计量经济学之间的关系"
+title: "ChatGPT的本质是什么？"
+summary: "理解chatGPT的本质"
 categories: ["Post","Blog",]
 tags: ["post","lorem","ipsum"]
 #externalUrl: ""
 #showSummary: true
-date: 2024-10-31
+date: 2024-9-29
 draft: false
 ---
 
