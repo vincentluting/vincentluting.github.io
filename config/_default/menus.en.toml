@@ -16,6 +16,13 @@
   weight = 10
 
 [[main]]
+  # pre = "list"
+  name = "Blog"
+  pageRef = "posts"
+  # url = "/posts"
+  weight = 15
+
+[[main]]
   # pre = "circle-info"
   name = "About"
   pageRef = "about"
