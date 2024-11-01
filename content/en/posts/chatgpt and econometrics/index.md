@@ -2,7 +2,7 @@
 title: "The Deep Connection Between ChatGPT and Econometrics: Data, Models, and the Fusion of Intelligence"
 summary: "Exploring the relationship between ChatGPT & Econometrics"
 categories: ["Post","Blog",]
-tags: ["post","lorem","ipsum"]
+tags: ["ai"]
 #externalUrl: ""
 #showSummary: true
 date: 2024-10-31

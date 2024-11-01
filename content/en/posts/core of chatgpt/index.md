@@ -2,7 +2,7 @@
 title: "What is the essence of ChatGPT"
 summary: "Understanding the things behind the ChatGPT"
 categories: ["Post","Blog",]
-tags: ["post","lorem","ipsum"]
+tags: ["ai"]
 #externalUrl: ""
 #showSummary: true
 date: 2024-09-29
