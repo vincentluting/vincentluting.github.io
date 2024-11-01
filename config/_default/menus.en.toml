@@ -15,7 +15,7 @@
   name = "Blog"
   pageRef = "posts"
   # url = "/posts"
-  weight = 15
+  weight = 10
 
 [[main]]
   # pre = "circle-info"
