@@ -12,7 +12,7 @@
 
 [[main]]
   name = "AI"
-  pageRef = "ai"
+  pageRef = "ai 博客"
   weight = 10
 
 [[main]]
