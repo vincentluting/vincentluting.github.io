@@ -22,7 +22,7 @@
   name = "About"
   pageRef = "about"
   # url = "/about"
-  weight = 20
+  weight = 50
 
 
 
