@@ -11,11 +11,6 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "AI"
-  pageRef = "ai 博客"
-  weight = 10
-
-[[main]]
   # pre = "list"
   name = "Blog"
   pageRef = "posts"
