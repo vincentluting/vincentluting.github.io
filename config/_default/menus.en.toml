@@ -24,6 +24,12 @@
   # url = "/about"
   weight = 50
 
+# [[main]]
+  # pre = "circle-info"
+  # name = "Notes"
+  # pageRef = "Notes"
+  # url = "/about"
+  # weight = 50
 
 
 # -- Footer Menu --
