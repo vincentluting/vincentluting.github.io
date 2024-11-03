@@ -27,7 +27,7 @@ mainSections = ["posts"]
 
 [homepage]
   layout = "background" # valid options: page, profile, hero, card, background, custom
-  homepageImage = "assets/img/background.jpg" # used in: hero, and card
+  homepageImage = "background.jpg" # used in: hero, and card
   showRecent = true
   showRecentItems = 8
   showMoreLink = true
