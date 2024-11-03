@@ -10,6 +10,8 @@ showHero = false
 
 Hey there 👋. I’m Ting, you can also call me Vincent. 
 
+Pragmatic by day, idealistic by night.
+
 My interest areas are:
 
 {{< keywordList >}}
