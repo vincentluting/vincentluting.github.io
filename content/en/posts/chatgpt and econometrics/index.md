@@ -1,5 +1,5 @@
 ---
-title: "The Deep Connection Between ChatGPT and Econometrics: Data, Models, and the Fusion of Intelligence"
+title: "The Connection Between ChatGPT and Econometrics: Data, Models, and the Fusion of Intelligence"
 summary: "Exploring the relationship between ChatGPT & Econometrics"
 categories: ["Post","Blog",]
 tags: ["ai"]
