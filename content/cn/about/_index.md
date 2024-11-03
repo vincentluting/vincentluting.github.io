@@ -9,11 +9,10 @@ showHero = false
 
 Hey there 👋. I’m Ting, you can also call me Vincent. 
 
-I have plenty of hobbies. Some of these are:
+My interest areas are:
 
 {{< keywordList >}}
-{{< keyword >}} Game {{< /keyword >}}
 {{< keyword >}} Self-growth {{< /keyword >}}
-{{< keyword >}} Enjoying a good movie/series {{< /keyword >}}
+{{< keyword >}} AI {{< /keyword >}}
 {{< /keywordList >}}
 
