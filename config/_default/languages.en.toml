@@ -10,9 +10,9 @@ contentDir = 'content/en'
   isoCode = "en"
   rtl = false
   logo = "img/logo.png"
-  description = "My awesome website"
+  description = "Late Star"
   # copyright = "Copy, _right?_ :thinking_face:"
-  dateFormat = "2 January 2006"
+  dateFormat = "January 2 2006"
 
 [params.author]
   name = "Vincent Lu"
