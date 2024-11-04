@@ -15,4 +15,3 @@ Assuming you want to add showcase a new Coding Club project:
 
 1. Create 'project-name.md' in `content/projects`
 2. Add metadata at the top of the file as shown in 'sample.md'
-3. If your local server is running, saving should automatically update the site. You'll find your new webpage inside Projects.
