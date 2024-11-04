@@ -18,7 +18,7 @@ Throughout this journey, I am also enthusiastic about becoming a career coach fo
 
 Here, I’ll share my reflections on emotional intelligence, AI, marketing, and cross-cultural communication. I hope these thoughts provide inspiration, allowing us to support each other and walk this path of growth together.
 
-My areas of interest include:
+My hobbies:
 
 {{< keywordList >}}
 {{< keyword >}} Hiking {{< /keyword >}}
@@ -32,6 +32,13 @@ My areas of interest include:
 {{< keyword >}} Imagine Dragons {{< /keyword >}}
 {{< keyword >}} Black Pink {{< /keyword >}}
 {{< keyword >}} Piano music {{< /keyword >}}
+{{< /keywordList >}}
+
+
+
+My interest areas:
+
+{{< keywordList >}}
 {{< keyword >}} Personal growth {{< /keyword >}}
 {{< keyword >}} Career growth {{< /keyword >}}
 {{< keyword >}} Strategy role-playing games {{< /keyword >}}
