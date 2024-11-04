@@ -1,5 +1,5 @@
 ---
-title: "Welcome to the Georgian Code Club"
+title: "Welcome, dream chasers."
 description: "Homepage"
 ---
 
