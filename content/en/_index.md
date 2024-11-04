@@ -4,7 +4,6 @@ description: "Homepage"
 ---
 
 {{< typeit 
-  tag=h4
   speed=200
   breakLines=false
   loop=false
