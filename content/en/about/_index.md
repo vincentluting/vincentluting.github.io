@@ -8,7 +8,7 @@ showHero = false
 +++
 
 
-Hello, I’m Vincent Lu, currently living in the Netherlands. These years in a multicultural environment have deepened my understanding of the importance of emotional connection and communication. I truly believe that technology is more than just a tool—it can be a warm, guiding force that helps us move toward a more complete self.
+Hello, I’m Vincent Lu, currently living in the Netherlands for almost 10 years. These years in a multicultural environment have deepened my understanding of the importance of emotional connection and communication. I truly believe that technology is more than just a tool—it can be a warm, guiding force that helps us move toward a more complete self.
 
 My vision is to create an AI platform focused on emotional intelligence, dedicated to mental healing and career guidance. I hope this platform can offer gentle support and companionship to users in their busy lives, helping them understand themselves better, find their career paths, and lead more meaningful lives. With the help of technology, I believe healing and growth can be within reach for everyone.
 
