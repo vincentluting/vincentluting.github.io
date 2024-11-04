@@ -4,7 +4,7 @@ description: "Homepage"
 ---
 
 {{< typeit 
-  speed=30
+  speed=40
   breakLines=false
   loop=false
 >}}
