@@ -41,4 +41,5 @@ My areas of interest include:
 {{< keyword >}} Psychology {{< /keyword >}}
 {{< keyword >}} Brand communication {{< /keyword >}}
 {{< keyword >}} Internet business {{< /keyword >}}
+{{< keyword >}} Career Planning {{< /keyword >}}
 {{< /keywordList >}}
