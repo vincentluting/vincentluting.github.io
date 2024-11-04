@@ -18,7 +18,7 @@ dateFormat = "2 January 2006"
 [params.author]
   name = "Vincent Lu"
   image = "img/avatar.png"
-  headline = "迟迟闪耀，愈晚愈明。"
+  headline = "迟然而至，微光不负。"
   bio = "在滚滚科技浪潮中觅得一隅安放灵魂的岛屿。"
    links = [
      { github = "https://github.com/vincentluting/vincentluting.github.io" },
