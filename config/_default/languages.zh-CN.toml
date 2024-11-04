@@ -22,4 +22,5 @@ dateFormat = "January 2 2006"
   bio = "在滚滚科技浪潮中觅得一隅安放灵魂的岛屿。"
    links = [
      { linkedin = "https://www.linkedin.com/in/ting-lu-vincent/" },
+     { email = "mailto:vincentluting@gmail.com" },
    ]
