@@ -8,15 +8,15 @@ showHero = false
 +++
 
 
-Hello, I’m Vincent Lu, currently living in the Netherlands for almost 10 years. These years in a multicultural environment have deepened my understanding of the importance of emotional connection and communication. I truly believe that technology is more than just a tool—it can be a warm, guiding force that helps us move toward a more complete self.
+Hello, I’m Vincent Lu, and I’ve been living in the Netherlands for almost ten years. These years in a multicultural environment have deepened my understanding of the importance of emotional connection and communication. I truly believe that technology is more than just a tool—it can be a warm, guiding force that helps us move toward a more complete sense of self.
 
-My vision is to create an AI platform focused on emotional intelligence, dedicated to mental healing and career guidance. I hope this platform can offer gentle support and companionship to users in their busy lives, helping them understand themselves better, find their career paths, and lead more meaningful lives. With the help of technology, I believe healing and growth can be within reach for everyone.
+My vision is to create an AI platform centered on emotional intelligence, dedicated to mental healing and career guidance. I hope this platform can offer gentle support and companionship to each user in their busy lives, helping them understand themselves better, find their career paths, and live with greater meaning. I am convinced that with the help of technology, healing and growth can become experiences within everyone’s reach.
 
-At the same time, I aspire to use the power of marketing to build emotional bridges between brands and their users, supporting Chinese companies in expanding internationally, or helping European and American businesses enter the Chinese market. Effective marketing doesn’t just convey information; it brings brands into the hearts of their users, creating genuine resonance. My goal is to leverage emotional intelligence technology to help businesses become trusted partners in people’s lives across diverse cultural environments.
+At the same time, I hope to use the power of marketing to build emotional bridges between brands and users, helping Chinese companies expand internationally or providing cultural support for European and American companies entering the Chinese market. Effective marketing doesn’t just convey information; it brings brands into the hearts of users, creating genuine resonance. My goal is to leverage the advantages of emotional intelligence technology to help businesses become trusted partners in people’s lives across diverse cultural environments.
 
-Along this journey, I’m also enthusiastic about being a guide and supporter for those around me, listening to their stories and helping them find their own directions. I know each person is on their unique path toward meaning and growth, and if I can offer some support or encouragement along the way, that would be my greatest reward.
+Throughout this journey, I am also enthusiastic about becoming a career coach for some people, listening to their stories, offering encouragement, and helping them find their own direction. I know that everyone is moving forward on their unique path to meaning and growth, and if I can offer a bit of support and encouragement along the way, that would be my greatest reward.
 
-Here, I’ll be sharing my thoughts on emotional intelligence, AI, marketing, and cross-cultural communication. I hope these reflections bring some inspiration, allowing us to support each other and walk this path of growth together.
+Here, I’ll share my reflections on emotional intelligence, AI, marketing, and cross-cultural communication. I hope these thoughts provide inspiration, allowing us to support each other and walk this path of growth together.
 
 My areas of interest include:
 
