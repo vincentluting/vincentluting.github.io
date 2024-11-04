@@ -19,7 +19,7 @@
 
 [[main]]
   # pre = "circle-info"
-  name = "自我介绍"
+  name = "自述"
   pageRef = "about"
   # url = "/about"
   weight = 50
