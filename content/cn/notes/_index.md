@@ -4,7 +4,7 @@ description: "我的笔记"
 ---
 
 {{< lead >}}
-Stay up to date with club activities. :calendar:
+这是分享我所有笔记的地方 :calendar:
 {{< /lead >}}
 
 ---

@@ -4,7 +4,7 @@ description: "For all my notes."
 ---
 
 {{< lead >}}
-Stay up to date with club activities. :calendar:
+This is where I share all my notes. :calendar:
 {{< /lead >}}
 
 ---
