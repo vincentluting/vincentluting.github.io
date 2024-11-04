@@ -1,6 +1,6 @@
 ---
-title: "Announcements"
-description: "Stay up to date with club activities."
+title: "Notes"
+description: "For all my notes."
 ---
 
 {{< lead >}}

@@ -1,6 +1,6 @@
 ---
-title: "Announcements"
-description: "Stay up to date with club activities."
+title: "笔记"
+description: "我的笔记"
 ---
 
 {{< lead >}}
