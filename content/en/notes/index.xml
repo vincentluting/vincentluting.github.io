@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes on Ohdmire</title>
-    <link>https://ohdmire.github.io/notes/</link>
-    <description>Recent content in Notes on Ohdmire</description>
+    <title>Notes on Vincent Lu </title>
+    <link>https://vincentluting.github.io/notes/</link>
+    <description>Recent content in Notes on Vincent Lu </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>© 2024 Ohdmire</copyright>
+    <copyright>© 2024 Vincent Lu </copyright>
     <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://ohdmire.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
