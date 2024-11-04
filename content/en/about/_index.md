@@ -27,7 +27,7 @@ My hobbies:
 {{< keyword >}} Japanese cuisine and culture {{< /keyword >}}
 {{< keyword >}} Traveling {{< /keyword >}}
 {{< keyword >}} Fantasy novels {{< /keyword >}}
-{{< keyword >}} Non-fiction and self-improvement books {{< /keyword >}}
+{{< keyword >}} Non-fiction books {{< /keyword >}}
 {{< keyword >}} Ed Sheeran {{< /keyword >}}
 {{< keyword >}} Imagine Dragons {{< /keyword >}}
 {{< keyword >}} Black Pink {{< /keyword >}}
