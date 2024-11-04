@@ -1,6 +1,6 @@
 ---
 title: "Notes"
-description: "For all my notes."
+description: "For my notes."
 ---
 
 {{< lead >}}
