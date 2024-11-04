@@ -17,29 +17,34 @@ showHero = false
 
 在这里，我将分享我对情感智能、AI、市场推广以及跨文化沟通的思考，希望这些内容能够带来启发，让我们在成长之路上彼此支持，携手并进。
 
-我的兴趣领域是：
+我的爱好：
 
 {{< keywordList >}}
 {{< keyword >}} 徒步 {{< /keyword >}}
 {{< keyword >}} 游泳 {{< /keyword >}}
 {{< keyword >}} 滑雪 {{< /keyword >}}
 {{< keyword >}} 日本美食和文化 {{< /keyword >}}
-{{< keyword >}} 旅行 {{< /keyword >}}         
+{{< keyword >}} 旅行 {{< /keyword >}}
 {{< keyword >}} 幻想小说 {{< /keyword >}}
-{{< keyword >}} 非小说实用书籍 {{< /keyword >}}
-{{< keyword >}} Ed Sheeran {{< /keyword >}}
-{{< keyword >}} Imagine Dragons {{< /keyword >}}
+{{< keyword >}} 非虚构书籍 {{< /keyword >}}
+{{< keyword >}} 艾德·希兰 (Ed Sheeran) {{< /keyword >}}
+{{< keyword >}} 想象龙乐队 (Imagine Dragons) {{< /keyword >}}
 {{< keyword >}} Black Pink {{< /keyword >}}
-{{< keyword >}} 钢琴曲 {{< /keyword >}}
-{{< keyword >}} 自我成长 {{< /keyword >}}
-{{< keyword >}} 职场成长 {{< /keyword >}}
-{{< keyword >}} 角色扮演战略游戏 {{< /keyword >}}
+{{< keyword >}} 钢琴音乐 {{< /keyword >}}
+{{< keyword >}} 策略角色扮演游戏 {{< /keyword >}}
 {{< keyword >}} 桌游 {{< /keyword >}}
+{{< /keywordList >}}
+
+我的兴趣领域：
+
+{{< keywordList >}}
+{{< keyword >}} 自我成长 {{< /keyword >}}
+{{< keyword >}} 职业成长 {{< /keyword >}}
+{{< keyword >}} 职业规划 {{< /keyword >}}
 {{< keyword >}} 人工智能 {{< /keyword >}}
 {{< keyword >}} 科技 {{< /keyword >}}
 {{< keyword >}} 心理学 {{< /keyword >}}
-{{< keyword >}} 品牌传播 {{< /keyword >}}
-{{< keyword >}} 互联网商业 {{< /keyword >}}
-{{< keyword >}} 职业规划 {{< /keyword >}}
+{{< keyword >}} 市场营销 {{< /keyword >}}
+{{< keyword >}} 商业 {{< /keyword >}}
 {{< /keywordList >}}
 
