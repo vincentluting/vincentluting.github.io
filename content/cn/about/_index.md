@@ -7,12 +7,38 @@ showTableOfContents = false
 showHero = false
 +++
 
-Hey there 👋. I’m Ting, you can also call me Vincent. 
+大家好，我是Vicnent Lu，生活在荷兰。在多元文化中生活的这些年，让我对情感、沟通与连接的意义有了更深刻的体悟。我始终相信，科技不仅仅是工具，它可以成为一股温暖的力量，陪伴我们走向更完整的自我。
 
-My interest areas are:
+我的愿景是通过情感智能，打造一个专注于心理治愈和职业指引的AI平台。希望这个平台能够在繁忙的日常中，为每一位用户带来温柔的支持和陪伴，帮助他们更好地了解自己，找到职业的方向，活出更具意义的生活。我始终相信，在科技的帮助下，治愈与成长可以成为一种触手可及的体验。
+
+与此同时，我也希望通过市场推广的力量，为品牌和用户之间架起情感的桥梁，帮助中国企业更顺利地走向国际，同时为欧洲和美国的公司提供进入中国市场的文化支持。好的市场推广，不只是传达信息，而是让品牌走进用户的内心，与他们产生真正的共鸣。我期望通过情感智能的技术优势，帮助企业在多元的文化环境中，成为用户生活中可信赖的伙伴。
+
+在这个过程中，我也乐于成为一些人的引导者和支持者，倾听他们的故事，帮助他们找到属于自己的方向。我深知每个人都在寻找意义和成长的道路上前行，而如果我能在这条路上提供些许支持和鼓励，那将是我最大的收获。
+
+在这里，我将分享我对情感智能、AI、市场推广以及跨文化沟通的思考，希望这些内容能够带来启发，让我们在成长之路上彼此支持，携手并进。
+
+我的兴趣领域是：
 
 {{< keywordList >}}
-{{< keyword >}} Self-growth {{< /keyword >}}
-{{< keyword >}} AI {{< /keyword >}}
+{{< keyword >}} 徒步 {{< /keyword >}}
+{{< keyword >}} 游泳 {{< /keyword >}}
+{{< keyword >}} 滑雪 {{< /keyword >}}
+{{< keyword >}} 日本美食和文化 {{< /keyword >}}
+{{< keyword >}} 旅行 {{< /keyword >}}         
+{{< keyword >}} 幻想小说 {{< /keyword >}}
+{{< keyword >}} 非小说实用书籍 {{< /keyword >}}
+{{< keyword >}} Ed Sheeran {{< /keyword >}}
+{{< keyword >}} Imagine Dragons {{< /keyword >}}
+{{< keyword >}} Black Pink {{< /keyword >}}
+{{< keyword >}} 钢琴曲 {{< /keyword >}}
+{{< keyword >}} 自我成长 {{< /keyword >}}
+{{< keyword >}} 职场成长 {{< /keyword >}}
+{{< keyword >}} 角色扮演战略游戏 {{< /keyword >}}
+{{< keyword >}} 桌游 {{< /keyword >}}
+{{< keyword >}} 人工智能 {{< /keyword >}}
+{{< keyword >}} 科技 {{< /keyword >}}
+{{< keyword >}} 心理学 {{< /keyword >}}
+{{< keyword >}} 品牌传播 {{< /keyword >}}
+{{< keyword >}} 互联网商业 {{< /keyword >}}
 {{< /keywordList >}}
 
