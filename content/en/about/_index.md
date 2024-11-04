@@ -32,8 +32,9 @@ My hobbies:
 {{< keyword >}} Imagine Dragons {{< /keyword >}}
 {{< keyword >}} Black Pink {{< /keyword >}}
 {{< keyword >}} Piano music {{< /keyword >}}
+{{< keyword >}} Strategy role-playing games {{< /keyword >}}
+{{< keyword >}} Board games {{< /keyword >}}
 {{< /keywordList >}}
-
 
 
 My interest areas:
@@ -41,12 +42,10 @@ My interest areas:
 {{< keywordList >}}
 {{< keyword >}} Personal growth {{< /keyword >}}
 {{< keyword >}} Career growth {{< /keyword >}}
-{{< keyword >}} Strategy role-playing games {{< /keyword >}}
-{{< keyword >}} Board games {{< /keyword >}}
+{{< keyword >}} Career Planning {{< /keyword >}}
 {{< keyword >}} Artificial intelligence {{< /keyword >}}
 {{< keyword >}} Technology {{< /keyword >}}
 {{< keyword >}} Psychology {{< /keyword >}}
-{{< keyword >}} Brand communication {{< /keyword >}}
-{{< keyword >}} Internet business {{< /keyword >}}
-{{< keyword >}} Career Planning {{< /keyword >}}
+{{< keyword >}} Marketing {{< /keyword >}}
+{{< keyword >}} Business {{< /keyword >}}
 {{< /keywordList >}}
