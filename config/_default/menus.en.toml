@@ -24,6 +24,13 @@
   # url = "/about"
   weight = 50
 
+[[main]]
+  # pre = "circle-info"
+  name = "Notes"
+  pageRef = "notes"
+  # url = "/about"
+  weight = 15
+
 # [[main]]
   # pre = "circle-info"
   # name = "Notes"
