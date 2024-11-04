@@ -20,6 +20,5 @@ contentDir = 'content/en'
   headline = "Late in its coming, yet steadfast in its glow."
   bio = "Finding an island to anchor in the waves of technology."
    links = [
-     { github = "https://github.com/vincentluting/vincentluting.github.io" },
      { linkedin = "https://www.linkedin.com/in/ting-lu-vincent/" },
    ]

@@ -21,6 +21,5 @@ dateFormat = "2 January 2006"
   headline = "迟然而至，微光不负。"
   bio = "在滚滚科技浪潮中觅得一隅安放灵魂的岛屿。"
    links = [
-     { github = "https://github.com/vincentluting/vincentluting.github.io" },
      { linkedin = "https://www.linkedin.com/in/ting-lu-vincent/" },
    ]
