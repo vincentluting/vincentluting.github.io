@@ -17,7 +17,7 @@ contentDir = 'content/en'
 [params.author]
   name = "Vincent Lu"
   image = "img/avatar.png"
-  headline = "Arriving late, yet its soft glow never falters."
+  headline = "Late in its coming, yet steadfast in its glow."
   bio = "Finding an island to anchor in the waves of technology."
    links = [
      { github = "https://github.com/vincentluting/vincentluting.github.io" },
