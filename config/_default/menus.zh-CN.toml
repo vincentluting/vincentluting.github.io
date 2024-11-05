@@ -13,7 +13,7 @@
 [[main]]
   # pre = "list"
   name = "AI"
-  pageRef = "AI博客"
+  pageRef = "AI"
   weight = 10
 
 [[main]]
