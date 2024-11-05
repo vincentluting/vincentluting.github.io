@@ -1,4 +1,4 @@
 ---
-title: "A place for some of my notes"
+title: "A place fo sharing some of my notes"
 description: "Notes"
 ---
