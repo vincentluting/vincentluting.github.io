@@ -12,8 +12,8 @@
 
 [[main]]
   # pre = "list"
-  name = "AI"
-  pageRef = "AI"
+  name = "Blog"
+  pageRef = "posts"
   weight = 10
 
 [[main]]
