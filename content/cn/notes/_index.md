@@ -1,4 +1,4 @@
 ---
-title: "This is a place to share my notes."
+title: "我的笔记和心得"
 description: "Notes"
 ---
