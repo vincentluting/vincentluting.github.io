@@ -14,7 +14,6 @@
   # pre = "list"
   name = "AI"
   pageRef = "AI博客"
-  # url = "/posts"
   weight = 10
 
 [[main]]
