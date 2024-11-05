@@ -25,12 +25,14 @@ showHero = false
 {{< keyword >}} 滑雪 {{< /keyword >}}
 {{< keyword >}} 日本美食和文化 {{< /keyword >}}
 {{< keyword >}} 旅行 {{< /keyword >}}
+{{< keyword >}} 电影：剧情，悬疑，科幻 {{< /keyword >}}
+{{< keyword >}} 电视剧：黑镜,权力的游戏等 {{< /keyword >}}
 {{< keyword >}} 幻想小说 {{< /keyword >}}
 {{< keyword >}} 非虚构书籍 {{< /keyword >}}
 {{< keyword >}} 艾德·希兰 (Ed Sheeran) {{< /keyword >}}
 {{< keyword >}} 想象龙乐队 (Imagine Dragons) {{< /keyword >}}
 {{< keyword >}} Black Pink {{< /keyword >}}
-{{< keyword >}} 钢琴音乐 {{< /keyword >}}
+{{< keyword >}} Hans Zimmer {{< /keyword >}}
 {{< keyword >}} 策略角色扮演游戏 {{< /keyword >}}
 {{< keyword >}} 桌游 {{< /keyword >}}
 {{< /keywordList >}}

@@ -26,12 +26,14 @@ My hobbies:
 {{< keyword >}} Skiing {{< /keyword >}}
 {{< keyword >}} Japanese cuisine and culture {{< /keyword >}}
 {{< keyword >}} Traveling {{< /keyword >}}
+{{< keyword >}} Movies: Drama, Mystery, Sci-Fi {{< /keyword >}}
+{{< keyword >}} TV Shows: Black Mirror, Game of Thrones, etc. {{< /keyword >}}
 {{< keyword >}} Fantasy novels {{< /keyword >}}
 {{< keyword >}} Non-fiction books {{< /keyword >}}
 {{< keyword >}} Ed Sheeran {{< /keyword >}}
 {{< keyword >}} Imagine Dragons {{< /keyword >}}
 {{< keyword >}} Black Pink {{< /keyword >}}
-{{< keyword >}} Piano music {{< /keyword >}}
+{{< keyword >}} Hans Zimmer {{< /keyword >}}
 {{< keyword >}} Strategy role-playing games {{< /keyword >}}
 {{< keyword >}} Board games {{< /keyword >}}
 {{< /keywordList >}}
