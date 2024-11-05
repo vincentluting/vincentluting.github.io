@@ -1,7 +1,7 @@
 ---
 title: "Exploring Core AI Technologies: Applications and Frontline Innovations"
 summary: "Core AI Technologies"
-categories: ["Post","Blog",]
+# categories: ["Post","Blog",]
 tags: ["ai"]
 #externalUrl: ""
 #showSummary: true

@@ -1,7 +1,7 @@
 ---
 title: "What is the essence of ChatGPT"
 summary: "Understanding the things behind the ChatGPT"
-categories: ["Post","Blog",]
+# categories: ["Post","Blog",]
 tags: ["ai"]
 #externalUrl: ""
 #showSummary: true

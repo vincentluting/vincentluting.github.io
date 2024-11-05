@@ -1,7 +1,7 @@
 ---
 title: "探索AI的核心技术：从应用场景到前沿创新"
 summary: "AI的核心技术"
-categories: ["Post","Blog",]
+# categories: ["Post","Blog",]
 tags: ["ai"]
 #externalUrl: ""
 #showSummary: true

@@ -1,7 +1,7 @@
 ---
 title: "ChatGPT的本质是什么？"
 summary: "理解chatGPT的本质"
-categories: ["Post","Blog",]
+# categories: ["Post","Blog",]
 tags: ["ai"]
 #externalUrl: ""
 #showSummary: true

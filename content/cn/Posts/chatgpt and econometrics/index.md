@@ -1,7 +1,7 @@
 ---
 title: "探索ChatGPT和计量经济学的联系"
 summary: "chatGPT和计量经济学之间的关系"
-categories: ["Post","Blog",]
+# categories: ["Post","Blog",]
 tags: ["ai"]
 #externalUrl: ""
 #showSummary: true
