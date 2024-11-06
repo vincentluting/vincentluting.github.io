@@ -15,7 +15,7 @@ contentDir = 'content/en'
   dateFormat = "January 2 2006"
 
 [params.author]
-  name = "Vincent Lu"
+  name = "Vincent L."
   image = "img/avatar.png"
   headline = "Late in its coming, yet steadfast in its glow."
   bio = "Finding an island to anchor in the waves of technology."
