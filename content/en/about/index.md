@@ -8,13 +8,13 @@ showHero = false
 +++
 
 
-Hello, everyone. I’m Vincent Lu, and I’ve lived in the Netherlands for nearly a decade. Immersed in a multicultural environment, I’ve developed a deep understanding of cross-cultural communication, emotional insight, and the intersection of technology with human connection. Over the years, I’ve been dedicated to exploring how market promotion and emotional intelligence technology can provide brands with emotionally resonant solutions, enabling them to be more competitive and appealing in cross-cultural markets.
+Hi everyone, I’m Vincent. I’ve been living in the Netherlands for almost nine years now, and working in such a diverse environment has really deepened my appreciation for cross-cultural communication and understanding. I’m passionate about exploring how we can bring together technology and human connection to make brands feel more relatable and impactful.
 
-I focus on leveraging data-driven emotional intelligence and market insights to align a brand’s unique value with the inner needs of its audience. For European and American companies looking to enter the Chinese market, I provide not only strategic guidance but also in-depth cultural support. For Chinese companies, I help them bridge cultural gaps and reach broader international markets. Real brand promotion is not just about conveying information—it’s about creating emotional resonance and making the brand a trusted partner in users’ lives.
+In my work, I focus on helping brands connect emotionally with their audiences by using data-driven insights and a strong understanding of what really matters to people. For European and American companies wanting to enter the Chinese market, I offer not just strategic guidance but cultural insights that make a real difference. And for Chinese brands, I help them bridge the cultural divide to reach global audiences. I believe that true brand promotion goes beyond just sharing information—it’s about creating genuine resonance and making brands a trusted part of people’s lives.
 
-I also enjoy working alongside companies to explore new breakthroughs in employee career development and leadership building. My aim is to be a long-term partner in motivating employee growth and strengthening internal communication and collaboration.
+I’m also very interested in helping companies support their employees in their career growth and leadership development. For me, it’s all about fostering collaboration and building an environment where people feel motivated and connected.
 
-Here, I will share my insights on emotional intelligence, market promotion, and cross-cultural communication to help companies thrive in complex, diverse markets. I hope these reflections inspire others, and I look forward to collaborating with more companies to explore the vast potential of technology and marketing together.
+Here, I’ll be sharing my thoughts on emotional intelligence, market promotion, and navigating the complexities of cross-cultural communication. I hope these insights will be useful, and I look forward to working with companies that want to explore new possibilities in tech and marketing.
 
 <!-- My hobbies:
 
