@@ -25,7 +25,26 @@ Some tags about my job:
 {{< keyword >}} IT Project Manager {{< /keyword >}}
 {{< keyword >}} Marketing Product Owner {{< /keyword >}}
 {{< keyword >}} Marketing Coordinator {{< /keyword >}}
+{{< keyword >}} Part-time AI enthusiast  {{< /keyword >}}
 {{< keyword >}} Part-time career coach {{< /keyword >}}
+{{< /keywordList >}}
+
+Some of my hobbies:
+
+{{< keywordList >}}
+{{< keyword >}} Hiking {{< /keyword >}}
+{{< keyword >}} Swimming {{< /keyword >}}
+{{< keyword >}} Skiing {{< /keyword >}}
+{{< keyword >}} Japanese cuisine and culture {{< /keyword >}}
+{{< keyword >}} Traveling {{< /keyword >}}
+{{< keyword >}} Movies: Drama, Mystery, Sci-Fi {{< /keyword >}}
+{{< keyword >}} TV Shows: Black Mirror, Game of Thrones, etc. {{< /keyword >}}
+{{< keyword >}} Non-fiction books {{< /keyword >}}
+{{< keyword >}} Hans Zimmer {{< /keyword >}}
+{{< keyword >}} Ed Sheeran {{< /keyword >}}
+{{< keyword >}} Imagine Dragons {{< /keyword >}}
+{{< keyword >}} Board games {{< /keyword >}}
+{{< /keywordList >}}
 
 <!-- My hobbies:
 
