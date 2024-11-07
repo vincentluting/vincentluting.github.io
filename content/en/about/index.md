@@ -17,6 +17,15 @@ Outside of my day-to-day work, I’ve started coaching a few people on their car
 
 Here, I’ll be sharing thoughts on market strategy, technology’s role in marketing, and the art of connecting across cultures. I hope these insights are helpful, and I look forward to connecting with others who are curious about building a future in tech, marketing, and meaningful brand connections.
 
+Some tags about my job:
+
+{{< keywordList >}}
+{{< keyword >}} IT Product Promoter {{< /keyword >}}
+{{< keyword >}} IT Project Manager {{< /keyword >}}
+{{< keyword >}} Marketing Product Owner {{< /keyword >}}
+{{< keyword >}} Marketing Coordinator {{< /keyword >}}
+{{< keyword >}} Part-time career coach {{< /keyword >}}
+
 <!-- My hobbies:
 
 {{< keywordList >}}
