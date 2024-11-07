@@ -20,6 +20,7 @@ Here, I’ll be sharing thoughts on market strategy, technology’s role in mark
 Some tags about my job:
 
 {{< keywordList >}}
+{{< keyword >}} MBA in AI {{< /keyword >}}
 {{< keyword >}} IT Product Promoter {{< /keyword >}}
 {{< keyword >}} IT Project Manager {{< /keyword >}}
 {{< keyword >}} Marketing Product Owner {{< /keyword >}}
