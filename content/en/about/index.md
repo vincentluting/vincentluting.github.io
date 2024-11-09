@@ -24,9 +24,9 @@ Some tags about my job:
 {{< keyword >}} IT Product Promoter {{< /keyword >}}
 {{< keyword >}} IT Project Manager {{< /keyword >}}
 {{< keyword >}} Marketing Product Owner {{< /keyword >}}
-{{< keyword >}} Marketing Coordinator {{< /keyword >}}
-{{< keyword >}} Part-time AI enthusiast  {{< /keyword >}}
-{{< keyword >}} Part-time career coach {{< /keyword >}}
+{{< keyword >}} Brand Strategist for tech products {{< /keyword >}}
+{{< keyword >}} AI & Innovation enthusiast  {{< /keyword >}}
+{{< keyword >}} Career coaching as hobby {{< /keyword >}}
 {{< /keywordList >}}
 
 Some of my hobbies:
