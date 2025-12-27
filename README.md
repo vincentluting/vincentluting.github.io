@@ -1,3 +1,3 @@
-Welcome to my blog!
+Hi! Welcome to my blog!
 
 Link: https://vincentluting.github.io/
