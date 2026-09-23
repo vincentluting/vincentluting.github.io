@@ -1,9 +1,10 @@
 export const about = {
   intro: [
-    'I moved from Beijing to the Netherlands in 2015 to study Dutch linguistics at Leiden, and stayed. Nine years later I have worked inside four very different companies here, Huawei, Amazon, Philips and Tencent, and the thread through all of them is the same: sit between headquarters and the local team, understand what each side actually needs, and make the decision land.',
-    'Most of my work has been project and product management: aligning EMEA, Asia and US roadmaps, running IT PMO initiatives, owning dashboards and the data behind them, and building automation when a process was wasting people’s time. I like numbers because they end arguments, and I like people because they start the interesting ones.',
-    'In 2024 I went back to school for an MBA in AI, Data & Analytics at the University of Amsterdam. For the thesis I built Deep Dive, an AI career assessment platform, from the psychometric framework to the production code. It taught me more about product than any course could.',
-    'Outside work I coach a few people on their careers. Having had mentors who believed in me, it feels right to pay it forward. If you are working out your next step, or you are hiring for a role where someone has to hold the middle ground between strategy and delivery, I would love to talk.',
+    'I grew up in China and came to the Netherlands in 2015 to do a master’s in Dutch linguistics at Leiden. The plan was to stay for two years. It has now been nine, and Utrecht is home.',
+    'Since then I have worked at Huawei, Amazon, Philips and Tencent, mostly as a project or product manager. The companies were very different, but my role was always similar: I sat between headquarters and the local team, tried to understand what each side really needed, and made sure decisions were carried out in a way that worked for both. Being Chinese, speaking Dutch and working in English every day helped a lot with that.',
+    'I like building things that make work easier. Dashboards, small automations, better processes. At Amazon and Philips that was mostly data and reporting tools. At Tencent it became IT products and, more recently, AI workflows.',
+    'In 2024 I started an MBA in AI, Data and Analytics at the University of Amsterdam. For my thesis I built Deep Dive, a career assessment platform, from the questionnaire and the scoring model to the code. It is the hardest and most rewarding thing I have done so far, and it is live at deepdivecareer.com.',
+    'Outside work I coach a few people on their careers. I had mentors who believed in me when I was starting out here, and this is my way of giving something back. If you are figuring out your next step, or if you are hiring for a role where someone needs to connect different teams and cultures, feel free to get in touch. I would be happy to talk.',
   ],
   hobbies: [
     'Hiking',

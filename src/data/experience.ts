@@ -9,7 +9,7 @@ export const experience: Experience[] = [
     start: 'May 2025',
     end: 'Jun 2026',
     summary:
-      'Kept regional esports marketing across Europe, MENA and Asia aligned with HQ strategy, and used AI to take the manual work out of reporting.',
+      'I coordinated esports marketing across Europe, the Middle East and Asia, and kept the regional plans in line with what headquarters wanted. I also used AI to cut down the manual reporting work.',
     bullets: [
       'Managed cross-regional coordination across Europe, MENA and Asia, keeping regional priorities aligned with HQ strategy.',
       'Built an AI-enabled workflow for viewer survey reporting, cutting manual processing by about 3 hours per week.',
@@ -28,7 +28,7 @@ export const experience: Experience[] = [
     start: 'Aug 2023',
     end: 'May 2025',
     summary:
-      'Owned the IT relationship with three game studios and served as EU Product Owner for security and foundation IT products.',
+      'I was the IT contact person for three game studios, and the EU product owner for our security and foundation IT products.',
     bullets: [
       'Managed customer relationships across three game studios, promoting tailored IT solutions that achieved $91,000 in annual cost savings.',
       'Led IT PMO initiatives across 3 regions (EMEA, Asia, US), improving operational efficiency and standardising how studios adopt new technologies.',
@@ -48,7 +48,7 @@ export const experience: Experience[] = [
     start: 'Nov 2021',
     end: 'Aug 2023',
     summary:
-      'Turned Amazon Marketing Cloud data into dashboards and features the media teams actually used.',
+      'I owned the dashboards the media teams used to plan and check their Amazon campaigns, built on Amazon Marketing Cloud data.',
     bullets: [
       'Designed and implemented 4 marketing dashboards with engineers, boosting campaign activation productivity by 15%.',
       'Delivered insights on audience segmentation and optimal ad frequency from Amazon Marketing Cloud data, contributing to a 10% uplift in campaign performance.',
@@ -67,7 +67,7 @@ export const experience: Experience[] = [
     start: 'Jul 2019',
     end: 'Nov 2021',
     summary:
-      'Helped launch Amazon.nl and automated the vendor operations behind it.',
+      'I helped launch Amazon.nl and automated a large part of the vendor operations behind it.',
     bullets: [
       'Led 2 cross-regional automation projects, achieving efficiency savings equivalent to 1.8 full-time headcounts.',
       'Facilitated the launch of Amazon’s Dutch marketplace by developing 2 new web tools and SOPs to optimise product selection and defect elimination.',
@@ -87,7 +87,7 @@ export const experience: Experience[] = [
     start: 'Feb 2018',
     end: 'Jun 2019',
     summary:
-      'Controlled a $30M+ European marketing budget and built the tooling to forecast it properly.',
+      'I managed the European marketing budget of more than $30M and built a tool that made forecasting it much more accurate.',
     bullets: [
       'Coordinated marketing and retail campaigns with budgets exceeding $30M across cross-functional teams.',
       'Increased budget forecasting accuracy from 82% to 96% by developing an automation tool for campaign ROI analysis.',
@@ -103,7 +103,7 @@ export const experience: Experience[] = [
     location: 'Amsterdam',
     start: 'Jun 2017',
     end: 'Nov 2017',
-    summary: 'PR and business development for a Chinese company expanding into Europe.',
+    summary: 'My first job in the Netherlands: PR and business development for a Chinese company expanding into Europe.',
     bullets: [
       'Coordinated PR and business development for a Chinese company expanding overseas, raising brand awareness and identifying 5 new business opportunities across Europe.',
     ],

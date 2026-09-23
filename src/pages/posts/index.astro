@@ -14,8 +14,8 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
   <Section class="pb-24">
     <SectionHeading
       eyebrow="Writing"
-      title="Notes on AI for people who have to make decisions with it."
-      intro="Occasional essays. Fewer, longer, and written to be useful rather than timely."
+      title="Some things I have written."
+      intro="I write now and then, mostly about AI and how it actually works underneath. Here are the pieces so far."
     />
     <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post, i) => <PostCard post={post} index={i} />)}

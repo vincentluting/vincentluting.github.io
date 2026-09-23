@@ -12,7 +12,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 <Section id="writing" class="border-t border-line">
   <SectionHeading
     eyebrow="Writing"
-    title="Notes on AI, written for people who have to make decisions with it."
+    title="Some things I have written about AI."
   />
   <div class="grid gap-10 md:grid-cols-3">
     {posts.map((post, i) => <PostCard post={post} index={i} />)}

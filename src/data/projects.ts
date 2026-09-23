@@ -7,7 +7,7 @@ export const projects: Project[] = [
     kicker: 'AI career assessment platform · MBA thesis',
     period: '2025 – 2026',
     summary:
-      'A career exploration platform that combines a 147-question psychometric assessment, 30 original career archetypes and AI-guided coaching. Designed, built and shipped end to end.',
+      'My MBA thesis project, and now a live product. A career assessment with 147 questions and 30 career archetypes I designed myself, plus an AI coach that gives advice based on your own results. I built the whole thing, from the questionnaire to the code.',
     featured: true,
     metrics: [
       { value: '147', label: 'assessment questions' },
@@ -21,16 +21,16 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem:
-        'Most career tests hand people a four-letter label and stop. Internationals in particular need something that understands cross-cultural identity, not just personality, and then actually helps them decide what to do next.',
+        'I have taken a lot of career tests myself. Most of them give you a label and stop there. As someone who moved from China to the Netherlands, I also noticed they never ask about the cross-cultural side of who you are, which for me was the biggest factor in every career decision. I wanted to build something that goes further and helps you decide what to do next.',
       approach: [
         'Designed a multi-dimensional assessment framework (147 questions) covering personality, vocational interests, cognitive style and cross-cultural identity.',
         'Synthesised established instruments (Holland RIASEC, Big Five, Career Anchors, CliftonStrengths, MBTI Step II, DISC, HBDI) with original research into 30 bilingual career archetypes.',
         'Built a 5-layer scoring pipeline that turns raw responses into actionable career profiles, with quality guidelines for consistent scoring.',
-        'Added an AI coaching layer grounded in each person’s own assessment results rather than generic advice.',
+        'Added an AI coach that works from each person’s own results instead of giving generic advice.',
       ],
       outcome: [
         'Live, full-stack product at deepdivecareer.com built with Next.js, TypeScript and PostgreSQL (76,000+ lines of code).',
-        'Serves as the MBA thesis for the University of Amsterdam MBA in AI, Data & Analytics.',
+        'It is also my thesis for the MBA in AI, Data & Analytics at the University of Amsterdam.',
         'Bilingual (English and Chinese) from day one.',
       ],
     },
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     kicker: 'Tencent · PUBG Mobile Esports',
     period: '2025 – 2026',
     summary:
-      'Replaced a manual weekly reporting routine with an AI-assisted workflow, freeing about 3 hours a week and feeding cleaner insight from 12,000+ survey responses to the Esports Data Center team.',
+      'Every week someone had to process the viewer survey by hand. I set up an AI-assisted workflow that does most of it, which saved about 3 hours a week and gave the Esports Data Center team cleaner insight from more than 12,000 responses.',
     stack: ['n8n', 'Claude', 'Survey data', 'Dashboards'],
   },
   {
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     kicker: 'Philips · Product Owner',
     period: '2021 – 2023',
     summary:
-      'Four marketing dashboards and three new AMC platform features built with Amazon Ads and AWS, lifting campaign activation productivity by 15% and campaign performance by 10%.',
+      'Four marketing dashboards and three new platform features, built together with engineers, Amazon Ads and AWS. Campaign activation became 15% faster and campaign performance went up by about 10%.',
     stack: ['Amazon Marketing Cloud', 'AWS', 'SQL', 'Agile delivery'],
   },
   {
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     kicker: 'Team project',
     period: 'Nov 2025 – Feb 2026',
     summary:
-      'Researched leading AI products in depth and built AI-powered prototypes with a cross-functional team over a three-month hackathon.',
+      'Three months of studying the best AI products out there and building our own prototypes with a small team. A good reminder of how much you learn by making things.',
     stack: ['Product research', 'Prototyping', 'LLM tooling'],
   },
 ];

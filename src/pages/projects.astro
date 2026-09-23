@@ -14,13 +14,13 @@ import { featuredProject, otherProjects } from '../data/projects';
   <Section>
     <SectionHeading
       eyebrow="Projects"
-      title="Things I have built or shipped, from a production AI platform to the automation nobody sees."
+      title="Things I have built."
     />
     <CaseStudy project={featuredProject} />
   </Section>
 
   <Section tight class="border-t border-line pb-24">
-    <SectionHeading eyebrow="Selected work" title="Smaller in scope, same approach." />
+    <SectionHeading eyebrow="Selected work" title="A few projects from work." />
     <div class="grid gap-6 md:grid-cols-3">
       {otherProjects.map((p, i) => <ProjectCard project={p} index={i} />)}
     </div>
