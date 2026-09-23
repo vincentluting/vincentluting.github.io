@@ -1,0 +1,41 @@
+---
+import Button from '../Button.astro';
+import Tag from '../Tag.astro';
+import { featuredProject as p } from '../../data/projects';
+---
+
+<section class="bg-surface/60 border-y border-line">
+  <div class="container-page py-16 md:py-24">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16" data-reveal>
+      <div class="lg:col-span-7">
+        <p class="eyebrow mb-3">Featured project</p>
+        <h2 class="text-4xl font-medium leading-tight md:text-5xl">
+          {p.title}
+          <span class="block text-[0.5em] font-normal italic text-muted">{p.kicker}</span>
+        </h2>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">{p.summary}</p>
+        {p.stack && (
+          <div class="mt-6 flex flex-wrap gap-2">
+            {p.stack.map((s) => <Tag>{s}</Tag>)}
+          </div>
+        )}
+        <div class="mt-8 flex flex-wrap gap-3">
+          {p.links?.map((l) => (
+            <Button href={l.href} external>{l.label}</Button>
+          ))}
+          <Button href="/projects/#deep-dive" variant="secondary">Read the case study</Button>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line">
+          {p.metrics?.map((m) => (
+            <div class="bg-paper p-6">
+              <dt class="order-2 text-sm text-muted">{m.label}</dt>
+              <dd class="font-display text-4xl font-medium md:text-5xl">{m.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

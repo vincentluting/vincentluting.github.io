@@ -1,0 +1,24 @@
+---
+import Button from '../Button.astro';
+import { site } from '../../data/site';
+---
+
+<section id="contact" class="border-t border-line">
+  <div class="container-page py-20 md:py-28">
+    <div class="max-w-3xl" data-reveal>
+      <p class="eyebrow mb-4">Contact</p>
+      <h2 class="text-4xl font-medium leading-tight md:text-6xl">
+        Hiring for a role that sits between strategy and delivery?
+        <span class="text-accent">Let’s talk.</span>
+      </h2>
+      <p class="mt-6 max-w-xl text-lg text-muted">
+        Based in {site.location}. Happy to meet in Utrecht, Amsterdam or on a call.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href={`mailto:${site.email}`}>Email me</Button>
+        <Button href={site.linkedin} variant="secondary" external>Connect on LinkedIn</Button>
+        <Button href={site.cvPath} variant="secondary" download>Download CV</Button>
+      </div>
+    </div>
+  </div>
+</section>

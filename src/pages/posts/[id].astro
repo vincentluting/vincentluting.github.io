@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.date.valueOf() - b.data.date.valueOf(),
+  );
+  return posts.map((post, i) => ({
+    params: { id: post.id },
+    props: { post, prev: posts[i - 1], next: posts[i + 1] },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  prev?: CollectionEntry<'posts'>;
+  next?: CollectionEntry<'posts'>;
+}
+const { post, prev, next } = Astro.props;
+const { Content } = await render(post);
+const minutes = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 0) / 200));
+---
+
+<PostLayout post={post} prev={prev} next={next} minutes={minutes}>
+  <Content />
+</PostLayout>

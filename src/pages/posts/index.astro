@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="Writing" description="Essays on AI, data and how to think about both, by Ting (Vincent) Lu.">
+  <Section class="pb-24">
+    <SectionHeading
+      eyebrow="Writing"
+      title="Notes on AI for people who have to make decisions with it."
+      intro="Occasional essays. Fewer, longer, and written to be useful rather than timely."
+    />
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post, i) => <PostCard post={post} index={i} />)}
+    </div>
+  </Section>
+</BaseLayout>

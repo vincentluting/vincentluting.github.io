@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../../assets/portrait.webp';
+import Button from '../Button.astro';
+import { site } from '../../data/site';
+---
+
+<section class="container-page pt-14 pb-16 md:pt-24 md:pb-24">
+  <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-7" data-reveal>
+      <p class="eyebrow mb-5 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span>{site.tagline}</span>
+        <span aria-hidden="true" class="hidden h-px w-6 bg-line sm:inline-block"></span>
+        <span>{site.location}</span>
+      </p>
+      <h1 class="text-5xl font-medium leading-[1.02] sm:text-6xl md:text-7xl">
+        {site.name}<span class="text-accent">.</span>
+        <span class="mt-2 block text-[0.62em] font-normal italic text-muted">{site.headline}</span>
+      </h1>
+      <p class="mt-7 max-w-xl text-lg leading-relaxed text-muted md:text-xl">{site.lead}</p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <Button href={site.cvPath} download>
+          Download CV
+          <svg class="h-4 w-4 transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg>
+        </Button>
+        <Button href={site.linkedin} variant="secondary" external>LinkedIn</Button>
+        <Button href={`mailto:${site.email}`} variant="ghost">{site.email}</Button>
+      </div>
+
+      {(site.availability || site.workAuthorization) && (
+        <p class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
+          <span class="inline-flex items-center gap-2">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+            </span>
+            {site.availability}
+          </span>
+          {site.workAuthorization && <span aria-hidden="true">·</span>}
+          {site.workAuthorization && <span>{site.workAuthorization}</span>}
+        </p>
+      )}
+    </div>
+
+    <div class="lg:col-span-5" data-reveal style="--d: 120ms">
+      <div class="relative mx-auto max-w-sm lg:max-w-none">
+        <div class="absolute -inset-3 -z-10 rounded-[2rem] border border-line"></div>
+        <div class="absolute -right-4 -top-4 -z-10 h-24 w-24 rounded-full bg-accent-soft"></div>
+        <Image
+          src={portrait}
+          alt={`Portrait of ${site.fullName}`}
+          width={880}
+          densities={[1, 2]}
+          loading="eager"
+          fetchpriority="high"
+          class="aspect-[4/5] w-full rounded-[1.5rem] object-cover shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-16 border-t border-line pt-8 md:mt-20" data-reveal style="--d: 200ms">
+    <p class="eyebrow mb-4">Worked with</p>
+    <ul class="flex flex-wrap gap-x-10 gap-y-3 font-display text-xl text-muted md:text-2xl">
+      {site.companies.map((c) => <li>{c}</li>)}
+    </ul>
+  </div>
+</section>

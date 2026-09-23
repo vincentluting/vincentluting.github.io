@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from '../FormattedDate.astro';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  index?: number;
+}
+const { post, index = 0 } = Astro.props;
+const href = `/posts/${post.id}/`;
+const words = post.body?.split(/\s+/).length ?? 0;
+const minutes = Math.max(1, Math.ceil(words / 200));
+---
+
+<article class="group flex flex-col" data-reveal style={`--d: ${index * 70}ms`}>
+  <a href={href} class="block overflow-hidden rounded-2xl border border-line bg-surface">
+    {post.data.cover ? (
+      <Image
+        src={post.data.cover}
+        alt={post.data.coverAlt ?? ''}
+        width={720}
+        densities={[1, 2]}
+        class="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+      />
+    ) : (
+      <div class="aspect-[16/10] w-full"></div>
+    )}
+  </a>
+  <div class="mt-5">
+    <p class="text-xs text-muted">
+      <FormattedDate date={post.data.date} /> · {minutes} min read
+    </p>
+    <h3 class="mt-2 text-xl font-medium leading-snug">
+      <a href={href} class="transition-colors group-hover:text-accent">{post.data.title}</a>
+    </h3>
+    <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
+  </div>
+</article>

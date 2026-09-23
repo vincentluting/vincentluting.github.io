@@ -1,0 +1,12 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  tight?: boolean;
+}
+const { id, class: className = '', tight = false } = Astro.props;
+---
+
+<section id={id} class:list={['container-page', tight ? 'py-12 md:py-16' : 'py-16 md:py-24', className]}>
+  <slot />
+</section>

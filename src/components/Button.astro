@@ -1,0 +1,28 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+  download?: boolean;
+  class?: string;
+}
+const { href, variant = 'primary', external = false, download = false, class: className = '' } = Astro.props;
+
+const base =
+  'group inline-flex items-center gap-2 rounded-full text-sm font-medium transition-all duration-300 ease-out-soft focus-visible:outline-none';
+const variants = {
+  primary: 'px-5 py-2.5 bg-ink text-paper hover:bg-accent hover:text-paper shadow-sm',
+  secondary: 'px-5 py-2.5 border border-line bg-transparent text-ink hover:border-ink',
+  ghost: 'px-1 py-2.5 text-ink underline-offset-4 hover:underline',
+};
+---
+
+<a
+  href={href}
+  class:list={[base, variants[variant], className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  download={download ? '' : undefined}
+>
+  <slot />
+</a>

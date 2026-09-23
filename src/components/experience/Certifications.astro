@@ -1,0 +1,12 @@
+---
+import { certifications } from '../../data/certifications';
+---
+
+<ul class="grid gap-4 sm:grid-cols-2">
+  {certifications.map((c, i) => (
+    <li class="rounded-2xl border border-line bg-surface p-6" data-reveal style={`--d: ${i * 60}ms`}>
+      <p class="font-medium text-ink">{c.name}</p>
+      <p class="mt-1 text-sm text-muted">{c.issuer}{c.year && ` · ${c.year}`}</p>
+    </li>
+  ))}
+</ul>

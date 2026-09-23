@@ -1,0 +1,86 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Tag from '../components/Tag.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { site } from '../data/site';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  prev?: CollectionEntry<'posts'>;
+  next?: CollectionEntry<'posts'>;
+  minutes: number;
+}
+const { post, prev, next, minutes } = Astro.props;
+const { title, description, date, tags, cover, coverAlt } = post.data;
+
+const og = cover ? await getImage({ src: cover, format: 'jpg', width: 1200, quality: 82 }) : undefined;
+const ogPath = og?.src ?? '/og-default.png';
+const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
+---
+
+<BaseLayout title={title} description={description} image={ogPath} type="article" publishedTime={date.toISOString()}>
+  <JsonLd
+    slot="head"
+    data={{
+      '@type': 'BlogPosting',
+      headline: title,
+      description,
+      datePublished: date.toISOString(),
+      image: new URL(ogPath, site.url).toString(),
+      url: canonical,
+      mainEntityOfPage: canonical,
+      author: { '@type': 'Person', name: site.fullName, url: site.url },
+    }}
+  />
+  <article class="container-page py-14 md:py-20">
+    <header class="mx-auto max-w-3xl" data-reveal>
+      <p class="text-sm text-muted">
+        <a href="/posts/" class="hover:text-ink">Writing</a>
+        <span aria-hidden="true"> / </span>
+        <FormattedDate date={date} /> · {minutes} min read
+      </p>
+      <h1 class="mt-4 text-4xl font-medium leading-tight md:text-5xl">{title}</h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted">{description}</p>
+      {tags.length > 0 && (
+        <div class="mt-5 flex flex-wrap gap-2">
+          {tags.map((t) => <Tag>#{t}</Tag>)}
+        </div>
+      )}
+    </header>
+
+    {cover && (
+      <figure class="mx-auto mt-10 max-w-4xl" data-reveal style="--d: 80ms">
+        <Image src={cover} alt={coverAlt ?? ''} width={1400} densities={[1, 2]} class="aspect-[16/9] w-full rounded-2xl object-cover" />
+      </figure>
+    )}
+
+    <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+      <slot />
+    </div>
+
+    <footer class="mx-auto mt-16 max-w-3xl border-t border-line pt-8">
+      <p class="text-sm text-muted">
+        Written by <a href="/about/" class="text-ink underline decoration-accent decoration-2 underline-offset-4">{site.fullName}</a>.
+      </p>
+      <nav class="mt-8 grid gap-4 sm:grid-cols-2" aria-label="Other posts">
+        {prev ? (
+          <a href={`/posts/${prev.id}/`} class="group rounded-2xl border border-line p-5 transition-colors hover:border-ink/40">
+            <span class="eyebrow">Older</span>
+            <span class="mt-2 block font-medium leading-snug group-hover:text-accent">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span></span>
+        )}
+        {next && (
+          <a href={`/posts/${next.id}/`} class="group rounded-2xl border border-line p-5 text-right transition-colors hover:border-ink/40">
+            <span class="eyebrow">Newer</span>
+            <span class="mt-2 block font-medium leading-snug group-hover:text-accent">{next.data.title}</span>
+          </a>
+        )}
+      </nav>
+    </footer>
+  </article>
+</BaseLayout>

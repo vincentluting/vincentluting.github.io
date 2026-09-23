@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import PostCard from '../blog/PostCard.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<Section id="writing" class="border-t border-line">
+  <SectionHeading
+    eyebrow="Writing"
+    title="Notes on AI, written for people who have to make decisions with it."
+  />
+  <div class="grid gap-10 md:grid-cols-3">
+    {posts.map((post, i) => <PostCard post={post} index={i} />)}
+  </div>
+  <div class="mt-10" data-reveal>
+    <a href="/posts/" class="group inline-flex items-center gap-2 text-sm font-medium text-ink">
+      All writing
+      <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+    </a>
+  </div>
+</Section>

@@ -1,0 +1,15 @@
+---
+import { highlights } from '../../data/highlights';
+---
+
+<section class="border-y border-line bg-surface/60">
+  <div class="container-page grid grid-cols-2 gap-px overflow-hidden rounded-none md:grid-cols-3 lg:grid-cols-6">
+    {highlights.map((h, i) => (
+      <div class="px-2 py-8 md:px-4 md:py-10" data-reveal style={`--d: ${i * 60}ms`}>
+        <p class="font-display text-4xl font-medium leading-none text-ink md:text-5xl">{h.value}</p>
+        <p class="mt-3 text-sm text-ink">{h.label}</p>
+        {h.sub && <p class="mt-1 text-xs text-muted">{h.sub}</p>}
+      </div>
+    ))}
+  </div>
+</section>

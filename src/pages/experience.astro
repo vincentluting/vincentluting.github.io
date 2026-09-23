@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TimelineItem from '../components/experience/TimelineItem.astro';
+import Education from '../components/experience/Education.astro';
+import Certifications from '../components/experience/Certifications.astro';
+import Button from '../components/Button.astro';
+import { experience } from '../data/experience';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Experience"
+  description="Full work history of Ting (Vincent) Lu: Tencent, Philips, Amazon and Huawei in the Netherlands, plus education and certifications."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="Experience"
+      title="Every role, and what actually changed because I was in it."
+      intro="Project and product management across esports, IT, advertising, e-commerce and marketing finance. Numbers are from the work itself, not estimates."
+    />
+    <ol class="relative border-l border-line md:border-l-0 md:before:absolute md:before:left-[25%] md:before:top-0 md:before:h-full md:before:w-px md:before:bg-line">
+      {experience.map((job, i) => <TimelineItem job={job} index={i} />)}
+    </ol>
+    <div class="mt-4" data-reveal>
+      <Button href={site.cvPath} download>Download the PDF version</Button>
+    </div>
+  </Section>
+
+  <Section tight class="border-t border-line">
+    <SectionHeading eyebrow="Education" title="From Dutch linguistics to an MBA in AI." />
+    <Education />
+  </Section>
+
+  <Section tight class="pb-24">
+    <SectionHeading eyebrow="Certifications" title="Certified where it counts." />
+    <Certifications />
+  </Section>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Hero from '../components/home/Hero.astro';
+import Highlights from '../components/home/Highlights.astro';
+import SelectedExperience from '../components/home/SelectedExperience.astro';
+import FeaturedProject from '../components/home/FeaturedProject.astro';
+import Skills from '../components/home/Skills.astro';
+import WritingTeaser from '../components/home/WritingTeaser.astro';
+import Contact from '../components/home/Contact.astro';
+import { site } from '../data/site';
+import { education } from '../data/education';
+
+const person = {
+  '@type': 'Person',
+  name: site.fullName,
+  givenName: 'Ting',
+  familyName: 'Lu',
+  alternateName: 'Vincent Lu',
+  jobTitle: site.role,
+  url: site.url,
+  image: new URL('/og-default.png', site.url).toString(),
+  sameAs: [site.linkedin, site.deepDive],
+  knowsLanguage: ['en', 'zh', 'nl'],
+  address: { '@type': 'PostalAddress', addressLocality: 'Utrecht', addressCountry: 'NL' },
+  alumniOf: education.map((e) => ({ '@type': 'CollegeOrUniversity', name: e.school })),
+};
+---
+
+<BaseLayout title={`${site.fullName} · ${site.role} in the Netherlands`} description={site.description}>
+  <JsonLd slot="head" data={person} />
+  <Hero />
+  <Highlights />
+  <SelectedExperience />
+  <FeaturedProject />
+  <Skills />
+  <WritingTeaser />
+  <Contact />
+</BaseLayout>
