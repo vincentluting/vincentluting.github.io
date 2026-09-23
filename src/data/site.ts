@@ -3,11 +3,11 @@ export const site = {
   preferredName: 'Vincent',
   /** Used in the <title> and JSON-LD */
   fullName: 'Ting (Vincent) Lu',
-  role: 'Project & Product Manager',
-  tagline: 'Project & Product Manager',
+  role: 'Project Manager & Product Owner',
+  tagline: 'Project Manager & Product Owner',
   headline: 'I sit between headquarters and local teams, and make sure things get done.',
   lead:
-    'Hi, I’m Vincent. I have spent the last eight years in the Netherlands working at Huawei, Amazon, Philips and Tencent, mostly as a project or product manager. I coordinate people across Europe and Asia, build dashboards and small automations, and last year I built an AI career platform on my own, from the first question to the live product.',
+    'Hi, I’m Vincent. I have spent the last eight years in the Netherlands working at Huawei, Amazon, Philips and Tencent, mostly as a project manager or product owner. I coordinate people across Europe and Asia, build dashboards and small automations, and last year I built an AI career platform on my own, from the first question to the live product.',
   location: 'Utrecht, the Netherlands',
   /** One line about work authorisation. Leave empty to hide. */
   workAuthorization: '',
@@ -20,11 +20,11 @@ export const site = {
   cvPath: '/cv/Ting-Lu-CV.pdf',
   url: 'https://vincentluting.github.io',
   description:
-    'Ting (Vincent) Lu is a project and product manager in Utrecht, the Netherlands. Eight years at Huawei, Amazon, Philips and Tencent, an MBA in AI from the University of Amsterdam, and the builder of Deep Dive, an AI career assessment platform.',
+    'Ting (Vincent) Lu is a project manager and product owner in Utrecht, the Netherlands. Eight years at Huawei, Amazon, Philips and Tencent, an MBA in AI from the University of Amsterdam, and the builder of Deep Dive, an AI career assessment platform.',
   languages: [
-    { name: 'English', level: 'Fluent' },
+    { name: 'English', level: 'C1' },
     { name: 'Mandarin', level: 'Native' },
-    { name: 'Dutch', level: 'Professional working proficiency' },
+    { name: 'Dutch', level: 'B2 · NT2 Staatsexamen II' },
   ],
   companies: ['Huawei', 'Amazon', 'Philips', 'Tencent', 'University of Amsterdam'],
 } as const;

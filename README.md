@@ -1,6 +1,6 @@
 # vincentluting.github.io
 
-Personal site of Ting (Vincent) Lu — project & product manager in the Netherlands.
+Personal site of Ting (Vincent) Lu — project manager & product owner in the Netherlands.
 Live at **https://vincentluting.github.io**.
 
 Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Fraunces + Inter).

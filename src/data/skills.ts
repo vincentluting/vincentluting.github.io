@@ -41,6 +41,6 @@ export const skills: SkillGroup[] = [
   },
   {
     title: 'Languages',
-    items: ['English · fluent', 'Mandarin · native', 'Dutch · professional (MA Dutch Linguistics)'],
+    items: ['English · C1', 'Mandarin · native', 'Dutch · B2 (NT2 Staatsexamen II)'],
   },
 ];
