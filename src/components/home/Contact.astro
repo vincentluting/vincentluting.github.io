@@ -1,6 +1,6 @@
 ---
 import Button from '../Button.astro';
-import { site } from '../../data';
+import { site, cvUrl } from '../../data';
 ---
 
 <section id="contact" class="border-t border-line">
@@ -12,12 +12,12 @@ import { site } from '../../data';
         <span class="text-accent">I would love to hear from you.</span>
       </h2>
       <p class="mt-6 max-w-xl text-lg text-muted">
-        I live in Utrecht and am happy to meet in person anywhere in the Randstad, or on a call.
+        I live in Utrecht. Happy to meet in Utrecht, around Eindhoven, or on a call.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <Button href={`mailto:${site.email}`}>Email me</Button>
         <Button href={site.linkedin} variant="secondary" external>Connect on LinkedIn</Button>
-        <Button href={site.cvPath} variant="secondary" download>Download CV</Button>
+        {cvUrl && <Button href={cvUrl} variant="secondary" download>Download CV</Button>}
       </div>
     </div>
   </div>

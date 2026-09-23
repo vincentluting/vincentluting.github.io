@@ -1,6 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-import { site } from '../data';
+import { site, cvUrl } from '../data';
 
 const nav = [
   { label: 'Experience', href: '/experience/' },
@@ -34,14 +34,14 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     </nav>
 
     <div class="flex items-center gap-2">
-      <a
-        href={site.cvPath}
+      {cvUrl && <a
+        href={cvUrl}
         download
         class="hidden items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-ink sm:inline-flex"
       >
         <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg>
         CV
-      </a>
+      </a>}
       <ThemeToggle />
       <button
         type="button"
@@ -63,7 +63,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           {item.label}
         </a>
       ))}
-      <a href={site.cvPath} download class="py-2.5 text-base text-accent">Download CV</a>
+      {cvUrl && <a href={cvUrl} download class="py-2.5 text-base text-accent">Download CV</a>}
     </nav>
   </div>
 </header>

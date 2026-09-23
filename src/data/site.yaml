@@ -1,31 +1,37 @@
 name: Ting Lu
 preferredName: Vincent
 fullName: Ting (Vincent) Lu
-role: Project Manager & Product Owner
-tagline: Project Manager & Product Owner
-headline: I make sure things get done.
-lead: Project and program manager with 8 years in the Netherlands at Huawei,
-  Amazon, Philips and Tencent. I work with customers, suppliers and delivery
-  teams to get things adopted and running — three game studios as their IT
-  partner at Tencent, 10+ vendors at Amazon, cross-regional alignment across
-  Europe, MENA and Asia.
+role: Project Manager
+tagline: Project Manager · Customers, suppliers and delivery
+headline: I work with customers, suppliers and delivery teams until the thing is live and being used.
+lead: Hi, I’m Vincent. For eight years I have worked in the Netherlands at Huawei, Amazon, Philips and Tencent. I helped external vendors grow on Amazon, launched new platform features with Amazon Ads and AWS, and was the IT partner for three game studios at Tencent. I speak Mandarin, English and Dutch, and I have an MBA in AI. Now I am looking for a place to stay for the long run, ideally in high-tech hardware.
 location: Utrecht, the Netherlands
+workAuthorization: ""
 availability: Open to new roles
+lookingFor:
+  intro: I want my next job to be one I can grow into for many years, where the result is something real that works, not only a report or a meeting.
+  roles:
+    - Customer or supplier project manager
+    - Customer support or service program coordinator
+    - Partner or supplier program manager with Chinese partners
+    - Operations or supply chain project coordinator
+  sectors:
+    - Semiconductor equipment and high-tech manufacturing
+    - Industrial automation and logistics systems
+    - Energy and grid projects
+  region: Utrecht and Brainport Eindhoven, or anywhere I can reach from Utrecht
 email: vincentluting@gmail.com
 linkedin: https://www.linkedin.com/in/vincentluting
 deepDive: https://www.deepdivecareer.com
+cvPath: /cv/Ting-Lu-CV.pdf
 portrait: /src/assets/uploads/portrait.webp
-cvPath: /cv/Ting Lu_CV.pdf
 url: https://vincentluting.github.io
-description: Ting (Vincent) Lu is a project manager and product owner in
-  Utrecht, the Netherlands. Eight years at Huawei, Amazon, Philips and Tencent,
-  an MBA in AI from the University of Amsterdam, and the builder of Deep Dive,
-  an AI career assessment platform.
+description: Ting (Vincent) Lu is a project manager in Utrecht, the Netherlands. Eight years in the Netherlands at Huawei, Amazon, Philips and Tencent, working with customers, suppliers and delivery teams. Mandarin, English and Dutch. MBA in AI, and builder of the Deep Dive career platform.
 languages:
   - name: English
     level: C1
   - name: Dutch
-    level: B2 · NT2 Staatsexamen II
+    level: B2 · NT2 Staatsexamen II · MA Dutch Linguistics
   - name: Mandarin
     level: Native
 companies:

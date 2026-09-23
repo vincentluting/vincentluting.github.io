@@ -7,25 +7,27 @@ import Education from '../components/experience/Education.astro';
 import Certifications from '../components/experience/Certifications.astro';
 import Button from '../components/Button.astro';
 import { experience } from '../data';
-import { site } from '../data';
+import { cvUrl } from '../data';
 ---
 
 <BaseLayout
   title="Experience"
-  description="Full work history of Ting (Vincent) Lu: Tencent, Philips, Amazon and Huawei in the Netherlands, plus education and certifications."
+  description="Work history of Ting (Vincent) Lu: customer, vendor and partner projects at Tencent, Philips, Amazon and Huawei in the Netherlands."
 >
   <Section>
     <SectionHeading
       eyebrow="Experience"
       title="My work so far."
-      intro="Eight years in the Netherlands, mostly as a project manager or product owner, in esports, IT, advertising, e-commerce and marketing finance."
+      intro="Eight years in the Netherlands as a project manager, product owner and consultant. I have put the work with external vendors and partners first in each role."
     />
     <ol class="relative border-l border-line md:border-l-0 md:before:absolute md:before:left-[25%] md:before:top-0 md:before:h-full md:before:w-px md:before:bg-line">
       {experience.map((job, i) => <TimelineItem job={job} index={i} />)}
     </ol>
-    <div class="mt-4" data-reveal>
-      <Button href={site.cvPath} download>Download the PDF version</Button>
-    </div>
+    {cvUrl && (
+      <div class="mt-4" data-reveal>
+        <Button href={cvUrl} download>Download the PDF version</Button>
+      </div>
+    )}
   </Section>
 
   <Section tight class="border-t border-line">

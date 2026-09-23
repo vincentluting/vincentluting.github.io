@@ -5,117 +5,111 @@ jobs:
     location: Amsterdam
     start: May 2025
     end: Jun 2026
-    summary: I coordinated esports marketing across Europe, the Middle East and Asia, and kept the regional plans in line with what headquarters wanted. I also used AI to cut down the manual reporting work.
+    summary: I ran esports marketing projects across Europe, the Middle East and Asia, and kept the regional teams and headquarters working from the same plan. I also replaced a manual weekly reporting job with an AI workflow.
     bullets:
-      - Managed cross-regional coordination across Europe, MENA and Asia, keeping regional priorities aligned with HQ strategy.
-      - Built an AI-enabled workflow for viewer survey reporting, cutting manual processing by about 3 hours per week.
-      - Partnered with the Esports Data Center product manager on analysis of 12,000+ viewer survey responses to support decisions on user engagement features.
-      - Orchestrated global PUBG Mobile events, aligning diverse regional stakeholder needs with HQ strategy to grow the international player base by 3%.
+      - Delivered global PUBG Mobile events across Europe, MENA and Asia with regional partners, helping grow the international player base by 3%.
+      - Kept regional priorities and HQ strategy aligned across three regions.
+      - Built an AI-enabled workflow for viewer survey reporting, cutting manual work by about 3 hours per week.
+      - Analysed 12,000+ viewer survey responses with the Esports Data Center product manager to support decisions on engagement features.
     featured: true
-    highlightIdx:
-      - 0
-      - 1
+    highlightIdx: [0, 2]
     tags:
-      - Stakeholder alignment
-      - AI automation
-      - Esports
+      - Event delivery
+      - Regional partners
+      - AI workflow
   - id: tencent-it
     company: Tencent
     role: Customer Relationship IT Project Manager
     location: Amsterdam
     start: Aug 2023
     end: May 2025
-    summary: I was the IT contact person for three game studios, and the EU product owner for our security and foundation IT products.
+    summary: I was the fixed IT partner for three internal game studios. I listened to what they needed, found the right solution and made sure it was delivered and used. I was also EU Product Owner for our security and foundation IT products.
     bullets:
-      - Managed customer relationships across three game studios, promoting tailored IT solutions that achieved $91,000 in annual cost savings.
-      - Led IT PMO initiatives across 3 regions (EMEA, Asia, US), improving operational efficiency and standardising how studios adopt new technologies.
-      - Served as EU Product Owner for Security and Foundation IT products, aligning EMEA, Asia and US roadmaps with studio business needs.
-      - Worked with HR and Finance on onboarding processes, acting as the operational bridge between IT systems and people workflows.
-      - Coached 2 junior IT specialists and 4 interns with structured development plans and regular feedback.
+      - Acted as the IT partner for three game studios and delivered tailored IT solutions that saved $91,000 a year.
+      - Led IT PMO projects across EMEA, Asia and the US and standardised how studios adopt new tools.
+      - Served as EU Product Owner for Security and Foundation IT products, aligning EMEA, Asia and US roadmaps with studio needs.
+      - Worked with HR and Finance on onboarding, connecting IT systems with people processes.
+      - Coached 2 junior IT specialists and 4 interns.
     featured: true
-    highlightIdx:
-      - 0
-      - 2
+    highlightIdx: [0, 1]
     tags:
+      - Client partnership
+      - Adoption
       - IT PMO
-      - Product ownership
-      - Coaching
   - id: philips
     company: Philips
     role: Product Owner, Amazon Ads Dashboards
     location: Amsterdam
     start: Nov 2021
     end: Aug 2023
-    summary: I owned the dashboards the media teams used to plan and check their Amazon campaigns, built on Amazon Marketing Cloud data.
+    summary: I worked with Amazon Ads and AWS as outside partners, and with our own engineers, to build the dashboards and platform features our media teams used every day.
     bullets:
-      - Designed and implemented 4 marketing dashboards with engineers, boosting campaign activation productivity by 15%.
-      - Delivered insights on audience segmentation and optimal ad frequency from Amazon Marketing Cloud data, contributing to a 10% uplift in campaign performance.
-      - Collaborated with Amazon Ads and AWS to design and launch 3 new product features for the Amazon Marketing Cloud platform.
-      - Partnered with media and analytics teams to improve campaign targeting and ROI.
+      - Worked with Amazon Ads and AWS to design and launch 3 new features on the Amazon Marketing Cloud platform.
+      - Delivered 4 marketing dashboards with engineers, making campaign activation 15% faster.
+      - Used Amazon Marketing Cloud data on audiences and ad frequency to help lift campaign performance by 10%.
+      - Worked with media and analytics teams on campaign targeting and ROI.
     featured: true
-    highlightIdx:
-      - 0
-      - 2
+    highlightIdx: [0, 1]
     tags:
+      - External partners
+      - Delivery with engineers
       - Dashboards
-      - Amazon Marketing Cloud
-      - Product ownership
   - id: amazon
     company: Amazon
     role: Vendor Service Consultant
     location: The Hague
     start: Jul 2019
     end: Nov 2021
-    summary: I helped launch Amazon.nl and automated a large part of the vendor operations behind it.
+    summary: My most customer-facing job. I advised external vendors on how to grow on Amazon, helped get the Dutch marketplace ready for launch, and automated the operations behind it.
     bullets:
-      - Led 2 cross-regional automation projects, achieving efficiency savings equivalent to 1.8 full-time headcounts.
-      - Facilitated the launch of Amazon’s Dutch marketplace by developing 2 new web tools and SOPs to optimise product selection and defect elimination.
-      - Built 3 Amazon QuickSight dashboards, improving e-commerce data quality by 30% and reducing reporting errors by 25%.
-      - Advised 10+ e-commerce vendors on growth strategies using data-driven insights.
-      - Trained and mentored 10+ new hires and 3 internal teams on technical learning and development.
+      - Advised 10+ external e-commerce vendors on growth, using their data to improve product visibility and campaign results.
+      - Helped launch Amazon’s Dutch marketplace with 2 new web tools and SOPs for product selection and defect elimination.
+      - Led 2 cross-regional automation projects, saving the equivalent of 1.8 full-time jobs.
+      - Built 3 Amazon QuickSight dashboards, improving data quality by 30% and cutting reporting errors by 25%.
+      - Trained 10+ new hires and 3 internal teams.
     featured: true
-    highlightIdx:
-      - 1
-      - 0
+    highlightIdx: [0, 1]
     tags:
-      - Automation
+      - External vendors
       - Marketplace launch
-      - QuickSight
+      - Automation
   - id: huawei
     company: Huawei Technologies B.V.
     role: Marketing Financial Controller
     location: The Hague
     start: Feb 2018
     end: Jun 2019
-    summary: I managed the European marketing budget of more than $30M and built a tool that made forecasting it much more accurate.
+    summary: I controlled a European marketing budget of more than $30M for a Chinese headquarters, and built the tool that made the forecast reliable.
     bullets:
-      - Coordinated marketing and retail campaigns with budgets exceeding $30M across cross-functional teams.
-      - Increased budget forecasting accuracy from 82% to 96% by developing an automation tool for campaign ROI analysis.
-      - Evaluated campaign performance to improve online and offline visibility, achieving a 15% increase in post-campaign engagement.
-      - Provided quarterly budget allocation reports to C-level executives.
+      - Coordinated marketing and retail campaigns with budgets above $30M across teams in Europe and China.
+      - Raised budget forecast accuracy from 82% to 96% with an automation tool for campaign ROI.
+      - Improved post-campaign engagement by 15% through campaign performance reviews.
+      - Reported quarterly budget allocation to C-level executives.
+    featured: true
+    highlightIdx: [1, 0]
     tags:
+      - China–Europe
       - Budget control
-      - ROI analysis
-      - Campaign coordination
+      - Forecasting
   - id: caca
     company: CaCa Media B.V.
     role: Public Relations Intern
     location: Amsterdam
     start: Jun 2017
     end: Nov 2017
-    summary: "My first job in the Netherlands: PR and business development for a Chinese company expanding into Europe."
+    summary: My first job in the Netherlands. PR and business development for a Chinese company entering Europe.
     bullets:
-      - Coordinated PR and business development for a Chinese company expanding overseas, raising brand awareness and identifying 5 new business opportunities across Europe.
+      - Found 5 new business opportunities across Europe for a Chinese company expanding overseas, and supported its PR.
     tags:
-      - PR
       - Business development
+      - China–Europe
 education:
   - school: University of Amsterdam
     degree: MBA
     field: AI, Data & Analytics
     location: Amsterdam
     years: 2024 – 2026
-    note: "Thesis: an AI-powered career exploration platform, now live as Deep Dive."
+    note: "Thesis: Deep Dive, an AI career assessment platform I designed and built. Live at deepdivecareer.com."
   - school: Leiden University
     degree: MA
     field: Dutch Linguistics
@@ -131,3 +125,5 @@ certifications:
     issuer: Amazon Web Services
   - name: Professional Scrum Master I (PSM I)
     issuer: Scrum.org
+  - name: Dutch as a Second Language, Programme II (NT2 Staatsexamen II)
+    issuer: DUO

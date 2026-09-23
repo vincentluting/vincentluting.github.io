@@ -1,0 +1,33 @@
+---
+import Section from '../Section.astro';
+import { site } from '../../data';
+
+const lf = site.lookingFor;
+---
+
+{lf && (
+  <Section id="looking-for" tight class="border-t border-line">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5" data-reveal>
+        <p class="eyebrow mb-3">What I am looking for</p>
+        <h2 class="text-3xl font-medium leading-tight md:text-4xl">A job I can stay in and get better at.</h2>
+        {lf.intro && <p class="mt-4 text-lg leading-relaxed text-muted">{lf.intro}</p>}
+        {lf.region && <p class="mt-4 text-sm text-ink">{lf.region}</p>}
+      </div>
+      <div class="grid gap-8 sm:grid-cols-2 lg:col-span-7">
+        <div data-reveal style="--d: 80ms">
+          <h3 class="font-sans text-sm font-medium uppercase tracking-[0.14em]">Roles</h3>
+          <ul class="mt-4 space-y-2 border-l border-line pl-4 text-muted">
+            {lf.roles.map((r) => <li class="leading-relaxed">{r}</li>)}
+          </ul>
+        </div>
+        <div data-reveal style="--d: 140ms">
+          <h3 class="font-sans text-sm font-medium uppercase tracking-[0.14em]">Sectors</h3>
+          <ul class="mt-4 space-y-2 border-l border-line pl-4 text-muted">
+            {lf.sectors.map((s) => <li class="leading-relaxed">{s}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Section>
+)}

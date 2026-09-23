@@ -3,7 +3,7 @@ projects:
     title: Deep Dive
     kicker: AI career assessment platform · MBA thesis
     period: 2025 – 2026
-    summary: My MBA thesis project, and now a live product. A career assessment with 147 questions and 30 career archetypes I designed myself, plus an AI coach that gives advice based on your own results. I built the whole thing, from the questionnaire to the code.
+    summary: My MBA thesis, finished and live. A career assessment with 147 questions and 30 career archetypes I designed myself, plus an AI coach that gives advice based on your own results. I built it alone, from the questionnaire and scoring model to the production code.
     featured: true
     metrics:
       - value: "147"
@@ -13,7 +13,7 @@ projects:
       - value: "5"
         label: layer scoring pipeline
       - value: 76k+
-        label: lines of code
+        label: lines of code, solo
     stack:
       - Next.js
       - TypeScript
@@ -27,13 +27,32 @@ projects:
       problem: I have taken a lot of career tests myself. Most of them give you a label and stop there. As someone who moved from China to the Netherlands, I also noticed they never ask about the cross-cultural side of who you are, which for me was the biggest factor in every career decision. I wanted to build something that goes further and helps you decide what to do next.
       approach:
         - Designed a multi-dimensional assessment framework (147 questions) covering personality, vocational interests, cognitive style and cross-cultural identity.
-        - Synthesised established instruments (Holland RIASEC, Big Five, Career Anchors, CliftonStrengths, MBTI Step II, DISC, HBDI) with original research into 30 bilingual career archetypes.
-        - Built a 5-layer scoring pipeline that turns raw responses into actionable career profiles, with quality guidelines for consistent scoring.
+        - Combined established instruments (Holland RIASEC, Big Five, Career Anchors, CliftonStrengths, MBTI Step II, DISC, HBDI) with my own research into 30 bilingual career archetypes.
+        - Built a 5-layer scoring pipeline that turns raw answers into a career profile, with written rules so scoring stays consistent.
         - Added an AI coach that works from each person’s own results instead of giving generic advice.
       outcome:
-        - Live, full-stack product at deepdivecareer.com built with Next.js, TypeScript and PostgreSQL (76,000+ lines of code).
-        - It is also my thesis for the MBA in AI, Data & Analytics at the University of Amsterdam.
+        - A live, full-stack product at deepdivecareer.com, built with Next.js, TypeScript and PostgreSQL (76,000+ lines of code).
+        - Submitted as my thesis for the MBA in AI, Data & Analytics at the University of Amsterdam.
         - Bilingual (English and Chinese) from day one.
+        - What it taught me about delivery (scope, testing with real users, fixing what breaks) I now bring to every project.
+  - id: amazon-nl-launch
+    title: Getting Amazon.nl ready for launch
+    kicker: Amazon · Vendor Service Consultant
+    period: 2019 – 2021
+    summary: Worked with vendors on the Dutch marketplace launch. I built 2 web tools and the SOPs for product selection and defect elimination, and advised more than ten external vendors on how to grow once they were live.
+    stack:
+      - External vendors
+      - SOPs
+      - Amazon QuickSight
+  - id: amc-features
+    title: New Amazon Marketing Cloud features
+    kicker: Philips · Product Owner
+    period: 2021 – 2023
+    summary: Three new platform features and four dashboards, built together with Amazon Ads, AWS and our own engineers. Campaign activation became 15% faster and campaign performance went up by about 10%.
+    stack:
+      - Amazon Ads and AWS as partners
+      - SQL
+      - Agile delivery
   - id: viewer-survey-ai
     title: AI-enabled viewer survey reporting
     kicker: Tencent · PUBG Mobile Esports
@@ -43,23 +62,3 @@ projects:
       - n8n
       - Claude
       - Survey data
-      - Dashboards
-  - id: amc-dashboards
-    title: Amazon Marketing Cloud dashboards
-    kicker: Philips · Product Owner
-    period: 2021 – 2023
-    summary: Four marketing dashboards and three new platform features, built together with engineers, Amazon Ads and AWS. Campaign activation became 15% faster and campaign performance went up by about 10%.
-    stack:
-      - Amazon Marketing Cloud
-      - AWS
-      - SQL
-      - Agile delivery
-  - id: ai-hackathon
-    title: AI Hackathon
-    kicker: Team project
-    period: Nov 2025 – Feb 2026
-    summary: Three months of studying the best AI products out there and building our own prototypes with a small team. A good reminder of how much you learn by making things.
-    stack:
-      - Product research
-      - Prototyping
-      - LLM tooling

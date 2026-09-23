@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { resolveImage } from '../../lib/images';
 import Button from '../Button.astro';
-import { site } from '../../data';
+import { site, cvUrl } from '../../data';
 
 const portrait = resolveImage(site.portrait);
 ---
@@ -22,11 +22,11 @@ const portrait = resolveImage(site.portrait);
       <p class="mt-7 max-w-xl text-lg leading-relaxed text-muted md:text-xl">{site.lead}</p>
 
       <div class="mt-9 flex flex-wrap items-center gap-3">
-        <Button href={site.cvPath} download>
+        {cvUrl && <Button href={cvUrl} download>
           Download CV
           <svg class="h-4 w-4 transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg>
-        </Button>
-        <Button href={site.linkedin} variant="secondary" external>LinkedIn</Button>
+        </Button>}
+        <Button href={site.linkedin} variant={cvUrl ? 'secondary' : 'primary'} external>LinkedIn</Button>
         <Button href={`mailto:${site.email}`} variant="ghost">{site.email}</Button>
       </div>
 

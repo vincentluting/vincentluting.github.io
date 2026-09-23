@@ -65,10 +65,18 @@ export const SiteSchema = z.object({
   location: str,
   workAuthorization: z.string().default(''),
   availability: z.string().default(''),
+  lookingFor: z
+    .object({
+      intro: z.string().default(''),
+      roles: z.array(str).default([]),
+      sectors: z.array(str).default([]),
+      region: z.string().default(''),
+    })
+    .optional(),
   email: str,
   linkedin: z.url(),
   deepDive: z.url(),
-  cvPath: str,
+  cvPath: z.string().default(''),
   portrait: str,
   url: z.url(),
   description: str,

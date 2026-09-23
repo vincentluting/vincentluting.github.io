@@ -6,6 +6,8 @@
  * producing a broken page.
  */
 import YAML from 'yaml';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { z } from 'astro/zod';
 import siteRaw from './site.yaml?raw';
 import aboutRaw from './about.yaml?raw';
@@ -36,6 +38,18 @@ function load<T extends z.ZodTypeAny>(file: string, schema: T, raw: string): z.i
 }
 
 export const site = load('site.yaml', SiteSchema, siteRaw);
+
+/** URL of the CV PDF, or undefined when the file is not in public/ (buttons are then hidden). */
+export const cvUrl: string | undefined = (() => {
+  const path = site.cvPath?.trim();
+  if (!path) return undefined;
+  const onDisk = join(process.cwd(), 'public', path.replace(/^\//, ''));
+  if (!existsSync(onDisk)) {
+    console.warn(`[site] CV not found at public${path}; hiding the Download CV buttons.`);
+    return undefined;
+  }
+  return encodeURI(path);
+})();
 export const about = load('about.yaml', AboutSchema, aboutRaw);
 
 const experienceFile = load('experience.yaml', ExperienceFileSchema, experienceRaw);

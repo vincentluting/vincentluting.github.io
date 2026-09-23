@@ -1,54 +1,49 @@
 groups:
-  - title: Product & project
+  - title: Delivery
     items:
-      - Stakeholder management
+      - Customer and supplier management
+      - Vendor onboarding and coaching
+      - Cross-regional project delivery (EU, Asia, US)
       - Agile / Scrum (PSM I)
-      - SAFe
-      - Roadmapping
       - IT PMO
-      - Budget & KPI reporting
-      - Risk & timeline control
-      - Jira · Confluence
-      - ServiceNow · Azure DevOps
-  - title: AI & data
+      - Budget control and forecasting
+      - Risk and timeline control
+      - Jira · Confluence · ServiceNow · Azure DevOps
+  - title: Data and automation
     items:
-      - Claude · GPT
-      - n8n automation
-      - NotebookLM
-      - Amazon QuickSight
-      - Amazon Marketing Cloud
+      - Dashboards (Amazon QuickSight, Amazon Marketing Cloud)
       - SQL
       - Python
-      - Data visualisation
-      - Performance dashboards
-  - title: Engineering
+      - n8n automation
+      - Claude and GPT in daily workflows
+      - Survey and customer data analysis
+  - title: Building
     items:
       - Next.js · TypeScript
       - PostgreSQL
       - HTML / CSS / JavaScript
       - AWS (Cloud Practitioner)
-      - Vercel
   - title: Languages
     items:
       - English · C1
-      - Mandarin · native
       - Dutch · B2 (NT2 Staatsexamen II)
+      - Mandarin · native
 highlights:
   - value: 8+
-    label: years in the Netherlands
-    sub: The Hague · Amsterdam · Utrecht
-  - value: "4"
-    label: global tech companies
+    label: years working in the Netherlands
     sub: Huawei · Amazon · Philips · Tencent
-  - value: $30M+
-    label: marketing budgets coordinated
-    sub: Huawei Europe
-  - value: $91k
-    label: annual IT savings delivered
-    sub: Tencent game studios
-  - value: 76k+
-    label: lines of code shipped
-    sub: Deep Dive career platform
+  - value: 10+
+    label: external vendors advised
+    sub: Amazon, growth and data quality
   - value: "3"
-    label: working languages
-    sub: English · Mandarin · Dutch
+    label: game studios as their IT partner
+    sub: Tencent, internal clients
+  - value: $91k
+    label: yearly savings delivered
+    sub: Tencent IT solutions
+  - value: 82→96%
+    label: budget forecast accuracy
+    sub: Huawei, $30M+ marketing budget
+  - value: 76k+
+    label: lines of code, built alone
+    sub: Deep Dive career platform

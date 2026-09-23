@@ -9,11 +9,13 @@ media:
     input: src/assets/uploads
     output: /src/assets/uploads
     categories: [image]
+    rename: safe
   - name: files
     label: Files (CV)
     input: public/cv
     output: /cv
     extensions: [pdf]
+    rename: safe
 
 components:
   bullets:
@@ -40,6 +42,14 @@ content:
       - { name: location, label: Location, type: string }
       - { name: availability, label: Availability line, type: string, description: 例如 "Open to new roles"，留空则隐藏 }
       - { name: workAuthorization, label: Work authorisation line, type: string, description: 例如 "Permanent resident, no visa sponsorship needed"，留空则隐藏 }
+      - name: lookingFor
+        label: What I am looking for (home page)
+        type: object
+        fields:
+          - { name: intro, label: Intro sentence, type: text }
+          - { name: roles, label: Roles, type: string, list: true }
+          - { name: sectors, label: Sectors, type: string, list: true }
+          - { name: region, label: Region, type: string }
       - { name: email, label: Email, type: string }
       - { name: linkedin, label: LinkedIn URL, type: string }
       - { name: deepDive, label: Deep Dive URL, type: string }
@@ -52,7 +62,7 @@ content:
         label: CV PDF
         type: file
         options: { media: files }
-        description: 上传新的 PDF 后在这里选中它
+        description: 上传新的 PDF 后在这里选中它。文件不存在时网站会自动隐藏下载按钮。
       - { name: url, label: Site URL, type: string, readonly: true }
       - { name: description, label: SEO description, type: text, description: 搜索引擎和分享预览里的一段介绍 }
       - name: languages
