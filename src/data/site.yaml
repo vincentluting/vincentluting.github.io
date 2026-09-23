@@ -14,7 +14,7 @@ email: vincentluting@gmail.com
 linkedin: https://www.linkedin.com/in/vincentluting
 deepDive: https://www.deepdivecareer.com
 portrait: /src/assets/uploads/portrait.webp
-cvPath: /cv/Ting-Lu-CV.pdf
+cvPath: /cv/Ting Lu_CV.pdf
 url: https://vincentluting.github.io
 description: Ting (Vincent) Lu is a project manager and product owner in
   Utrecht, the Netherlands. Eight years at Huawei, Amazon, Philips and Tencent,
@@ -23,10 +23,10 @@ description: Ting (Vincent) Lu is a project manager and product owner in
 languages:
   - name: English
     level: C1
-  - name: Mandarin
-    level: Native
   - name: Dutch
     level: B2 · NT2 Staatsexamen II
+  - name: Mandarin
+    level: Native
 companies:
   - Huawei
   - Amazon
