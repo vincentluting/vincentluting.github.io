@@ -1,0 +1,222 @@
+# Pages CMS configuration (https://pagescms.org)
+# Sign in at https://app.pagescms.org with GitHub, open this repository, and edit
+# everything below through forms. Every save is a commit to `main`, which
+# rebuilds and publishes the site automatically (about 1 minute).
+
+media:
+  - name: images
+    label: Images
+    input: src/assets/uploads
+    output: /src/assets/uploads
+    categories: [image]
+  - name: files
+    label: Files (CV)
+    input: public/cv
+    output: /cv
+    extensions: [pdf]
+
+components:
+  bullets:
+    name: bullets
+    label: Bullet points
+    type: string
+    list: true
+    description: 一条一句，动词开头，尽量带数字。
+
+content:
+  - name: site
+    label: Profile & contact
+    type: file
+    path: src/data/site.yaml
+    format: yaml
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: preferredName, label: Preferred name, type: string }
+      - { name: fullName, label: Full display name, type: string, description: 用于浏览器标题和页脚，例如 "Ting (Vincent) Lu" }
+      - { name: role, label: Job title, type: string, description: 页脚和搜索引擎里显示的职位 }
+      - { name: tagline, label: Hero eyebrow line, type: string, description: 首页姓名上方的小字 }
+      - { name: headline, label: Hero headline, type: text, description: 首页姓名下方的斜体大字 }
+      - { name: lead, label: Hero paragraph, type: text }
+      - { name: location, label: Location, type: string }
+      - { name: availability, label: Availability line, type: string, description: 例如 "Open to new roles"，留空则隐藏 }
+      - { name: workAuthorization, label: Work authorisation line, type: string, description: 例如 "Permanent resident, no visa sponsorship needed"，留空则隐藏 }
+      - { name: email, label: Email, type: string }
+      - { name: linkedin, label: LinkedIn URL, type: string }
+      - { name: deepDive, label: Deep Dive URL, type: string }
+      - name: portrait
+        label: Portrait photo
+        type: image
+        options: { media: images }
+        description: 首页和 About 页的照片，建议竖版 4:5
+      - name: cvPath
+        label: CV PDF
+        type: file
+        options: { media: files }
+        description: 上传新的 PDF 后在这里选中它
+      - { name: url, label: Site URL, type: string, readonly: true }
+      - { name: description, label: SEO description, type: text, description: 搜索引擎和分享预览里的一段介绍 }
+      - name: languages
+        label: Languages
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Language, type: string }
+          - { name: level, label: Level, type: string }
+      - { name: companies, label: "Worked with (logos row)", type: string, list: true }
+
+  - name: about
+    label: About page
+    type: file
+    path: src/data/about.yaml
+    format: yaml
+    fields:
+      - { name: intro, label: Story paragraphs, type: text, list: true, description: 每一项是一段 }
+      - { name: hobbies, label: Outside work, type: string, list: true }
+
+  - name: experience
+    label: Experience
+    type: file
+    path: src/data/experience.yaml
+    format: yaml
+    fields:
+      - name: jobs
+        label: Jobs
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.company} · {fields.role}"
+        fields:
+          - { name: id, label: ID, type: string, description: 小写字母和连字符，例如 tencent-esports, pattern: "^[a-z0-9-]+$" }
+          - { name: company, label: Company, type: string, required: true }
+          - { name: role, label: Role, type: string, required: true }
+          - { name: location, label: Location, type: string }
+          - { name: start, label: Start, type: string, description: 例如 "May 2025" }
+          - { name: end, label: End, type: string, description: 例如 "Jun 2026" 或 "Present" }
+          - { name: summary, label: One-line summary, type: text }
+          - { name: bullets, component: bullets }
+          - { name: featured, label: Show on home page, type: boolean }
+          - { name: highlightIdx, label: Bullets to show on home page, type: number, list: true, description: 从 0 开始数的序号，例如 0 和 2 }
+          - { name: tags, label: Tags, type: string, list: true }
+      - name: education
+        label: Education
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.school}"
+        fields:
+          - { name: school, label: School, type: string, required: true }
+          - { name: degree, label: Degree, type: string }
+          - { name: field, label: Field of study, type: string }
+          - { name: location, label: Location, type: string }
+          - { name: years, label: Years, type: string }
+          - { name: note, label: Note, type: string }
+      - name: certifications
+        label: Certifications
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string, required: true }
+          - { name: issuer, label: Issuer, type: string }
+          - { name: year, label: Year, type: string }
+
+  - name: projects
+    label: Projects
+    type: file
+    path: src/data/projects.yaml
+    format: yaml
+    fields:
+      - name: projects
+        label: Projects
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title}"
+        description: 勾选 Featured 的那个会成为首页专题和 Projects 页的案例研究（只能有一个）。
+        fields:
+          - { name: id, label: ID, type: string, pattern: "^[a-z0-9-]+$" }
+          - { name: title, label: Title, type: string, required: true }
+          - { name: kicker, label: Kicker, type: string, description: 标题下的小字，例如 "Tencent · PUBG Mobile Esports" }
+          - { name: period, label: Period, type: string }
+          - { name: summary, label: Summary, type: text }
+          - { name: featured, label: Featured, type: boolean }
+          - name: metrics
+            label: Metrics
+            type: object
+            list: true
+            fields:
+              - { name: value, label: Value, type: string }
+              - { name: label, label: Label, type: string }
+          - { name: stack, label: Tools / stack, type: string, list: true }
+          - name: links
+            label: Links
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Label, type: string }
+              - { name: href, label: URL, type: string }
+          - name: caseStudy
+            label: Case study
+            type: object
+            fields:
+              - { name: problem, label: The problem, type: text }
+              - { name: approach, label: What I did, type: text, list: true }
+              - { name: outcome, label: Outcome, type: text, list: true }
+
+  - name: skills
+    label: Skills & numbers
+    type: file
+    path: src/data/skills.yaml
+    format: yaml
+    fields:
+      - name: groups
+        label: Skill groups
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title}"
+        fields:
+          - { name: title, label: Group title, type: string }
+          - { name: items, label: Items, type: string, list: true }
+      - name: highlights
+        label: Key numbers (home page)
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.value} {fields.label}"
+        fields:
+          - { name: value, label: Number, type: string, description: 例如 "8+" }
+          - { name: label, label: Label, type: string }
+          - { name: sub, label: Small print, type: string }
+
+  - name: posts
+    label: Writing
+    type: collection
+    path: src/content/posts
+    filename: "{primary}.md"
+    view:
+      primary: title
+      sort: date
+      order: desc
+      fields: [title, date, draft]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: Description, type: text, description: 列表卡片和分享预览里显示的一两句话 }
+      - name: date
+        label: Date
+        type: date
+        options: { format: "yyyy-MM-dd" }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: draft, label: Draft (hide from site), type: boolean, default: false }
+      - name: cover
+        label: Cover image
+        type: image
+        options: { media: images, path: posts }
+      - { name: coverAlt, label: Cover image description, type: string }
+      - name: body
+        label: Body
+        type: rich-text
+        options: { format: markdown, media: images, path: posts }

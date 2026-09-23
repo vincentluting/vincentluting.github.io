@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../FormattedDate.astro';
+import { resolveImage } from '../../lib/images';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -11,13 +12,14 @@ const { post, index = 0 } = Astro.props;
 const href = `/posts/${post.id}/`;
 const words = post.body?.split(/\s+/).length ?? 0;
 const minutes = Math.max(1, Math.ceil(words / 200));
+const cover = resolveImage(post.data.cover);
 ---
 
 <article class="group flex flex-col" data-reveal style={`--d: ${index * 70}ms`}>
   <a href={href} class="block overflow-hidden rounded-2xl border border-line bg-surface">
-    {post.data.cover ? (
+    {cover ? (
       <Image
-        src={post.data.cover}
+        src={cover}
         alt={post.data.coverAlt ?? ''}
         width={720}
         densities={[1, 2]}

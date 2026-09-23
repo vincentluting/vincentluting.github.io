@@ -3,7 +3,7 @@ title: "What is the essence of ChatGPT"
 description: "Why ChatGPT's fluency comes from pattern recognition and probability rather than understanding, and what that means for how we use it."
 date: 2024-09-29
 tags: ["ai"]
-cover: "./cover.png"
+cover: /src/assets/uploads/posts/core-of-chatgpt.png
 coverAlt: "Illustration of a neural network generating text"
 ---
 

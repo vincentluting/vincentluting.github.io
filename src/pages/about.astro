@@ -5,9 +5,11 @@ import Section from '../components/Section.astro';
 import Tag from '../components/Tag.astro';
 import Button from '../components/Button.astro';
 import JsonLd from '../components/JsonLd.astro';
-import portrait from '../assets/portrait.webp';
-import { about } from '../data/about';
-import { site } from '../data/site';
+import { resolveImage } from '../lib/images';
+import { about } from '../data';
+import { site } from '../data';
+
+const portrait = resolveImage(site.portrait);
 ---
 
 <BaseLayout

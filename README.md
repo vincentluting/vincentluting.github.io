@@ -19,26 +19,41 @@ npm run check      # astro check (types + template errors)
 
 Requires Node 22.12+ (see `.nvmrc`).
 
+## Editing content without code
+
+All text on the site lives in plain YAML and Markdown files, and the repo has a
+[Pages CMS](https://pagescms.org) config (`.pages.yml`). To edit through forms:
+
+1. Go to https://app.pagescms.org and sign in with GitHub.
+2. Install the Pages CMS GitHub App for this repository (one-time).
+3. Open the repo. You get sections for Profile & contact, About, Experience,
+   Projects, Skills & numbers and Writing, plus image and CV uploads.
+4. Save. Each save is a commit to `main`, and the site rebuilds in about a minute.
+
+You can also edit the same files directly on github.com (pencil icon on a file).
+
 ## Where things live
 
 | What | Where |
 |---|---|
-| Name, headline, contact links, availability line | `src/data/site.ts` |
-| Work history (timeline + home "Selected experience") | `src/data/experience.ts` — set `featured: true` and `highlightIdx` to control what the home page shows |
-| Education / certifications | `src/data/education.ts`, `src/data/certifications.ts` |
-| Projects and the Deep Dive case study | `src/data/projects.ts` |
-| Skill groups | `src/data/skills.ts` |
-| Stat tiles on the home page | `src/data/highlights.ts` |
-| About page copy and hobbies | `src/data/about.ts` |
-| Blog posts | `src/content/posts/<slug>/index.md` (+ `cover.*` next to it) |
-| Portrait photo | `src/assets/portrait.webp` — replace the file, keep the name |
-| CV PDF | `public/cv/Ting-Lu-CV.pdf` — replace the file, keep the name |
+| Name, headline, contact links, availability / work-authorisation lines, portrait, CV | `src/data/site.yaml` |
+| Work history, education, certifications | `src/data/experience.yaml` — `featured: true` and `highlightIdx` control what the home page shows |
+| Projects and the Deep Dive case study | `src/data/projects.yaml` — the project with `featured: true` becomes the case study |
+| Skill groups and the key-number tiles | `src/data/skills.yaml` |
+| About page story and hobbies | `src/data/about.yaml` |
+| Blog posts | `src/content/posts/<slug>.md` |
+| Uploaded images (portrait, post covers) | `src/assets/uploads/` — referenced as `/src/assets/uploads/<file>` |
+| CV PDF | `public/cv/` — referenced as `/cv/<file>.pdf` |
 | Default social share image | `public/og-default.png` (1200×630) |
 | Colours, fonts, dark mode tokens | `src/styles/global.css` |
 
+The YAML files are validated at build time (`src/data/types.ts`). If a value is
+missing or malformed, `npm run build` (and the GitHub Action) fails with a message
+naming the file and field.
+
 ## Adding a post
 
-Create `src/content/posts/my-slug/index.md`:
+In Pages CMS: Writing → Add. Or create `src/content/posts/my-slug.md`:
 
 ```md
 ---
@@ -46,14 +61,14 @@ title: "Post title"
 description: "One or two sentences used in cards, SEO and RSS."
 date: 2026-01-31
 tags: ["ai"]
-cover: "./cover.webp"
+cover: /src/assets/uploads/posts/my-slug.webp
 coverAlt: "What the image shows"
 ---
 
 Body in Markdown.
 ```
 
-The folder name becomes the URL: `/posts/my-slug/`.
+The file name becomes the URL: `/posts/my-slug/`.
 
 ## Deploy
 

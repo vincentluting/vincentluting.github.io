@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import portrait from '../../assets/portrait.webp';
+import { resolveImage } from '../../lib/images';
 import Button from '../Button.astro';
-import { site } from '../../data/site';
+import { site } from '../../data';
+
+const portrait = resolveImage(site.portrait);
 ---
 
 <section class="container-page pt-14 pb-16 md:pt-24 md:pb-24">

@@ -1,0 +1,54 @@
+groups:
+  - title: Product & project
+    items:
+      - Stakeholder management
+      - Agile / Scrum (PSM I)
+      - SAFe
+      - Roadmapping
+      - IT PMO
+      - Budget & KPI reporting
+      - Risk & timeline control
+      - Jira · Confluence
+      - ServiceNow · Azure DevOps
+  - title: AI & data
+    items:
+      - Claude · GPT
+      - n8n automation
+      - NotebookLM
+      - Amazon QuickSight
+      - Amazon Marketing Cloud
+      - SQL
+      - Python
+      - Data visualisation
+      - Performance dashboards
+  - title: Engineering
+    items:
+      - Next.js · TypeScript
+      - PostgreSQL
+      - HTML / CSS / JavaScript
+      - AWS (Cloud Practitioner)
+      - Vercel
+  - title: Languages
+    items:
+      - English · C1
+      - Mandarin · native
+      - Dutch · B2 (NT2 Staatsexamen II)
+highlights:
+  - value: 8+
+    label: years in the Netherlands
+    sub: The Hague · Amsterdam · Utrecht
+  - value: "4"
+    label: global tech companies
+    sub: Huawei · Amazon · Philips · Tencent
+  - value: $30M+
+    label: marketing budgets coordinated
+    sub: Huawei Europe
+  - value: $91k
+    label: annual IT savings delivered
+    sub: Tencent game studios
+  - value: 76k+
+    label: lines of code shipped
+    sub: Deep Dive career platform
+  - value: "3"
+    label: working languages
+    sub: English · Mandarin · Dutch
