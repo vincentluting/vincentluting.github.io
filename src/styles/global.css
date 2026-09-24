@@ -12,10 +12,12 @@
   --accent: #b8452f; /* vermilion seal */
   --accent-soft: #f0dccf;
   --accent-2: #2f4a6b; /* indigo */
-  /* Read by the fluid-ink hero simulation */
-  --ink-canvas-bg: var(--paper);
-  --ink-pigment: #26221c;
-  --ink-accent: #2f4a6b;
+  /* Ink painting in the hero (src/scripts/fluid-ink.ts, InkMountains) */
+  --ink-pigment: #17140f; /* dense sumi */
+  --ink-wash: #5d6873; /* thin wash, cool grey */
+  --ink-red: #b23a26; /* vermilion */
+  --ink-mountain: #3d4650;
+  --ink-opacity: 1;
   color-scheme: light;
 }
 .dark {
@@ -27,8 +29,11 @@
   --accent: #e0694f;
   --accent-soft: #3a2119;
   --accent-2: #7f9cc2;
-  --ink-pigment: #cfc6b4;
-  --ink-accent: #e0694f;
+  --ink-pigment: #d8cfbd;
+  --ink-wash: #6c7888;
+  --ink-opacity: 0.5;
+  --ink-red: #e0694f;
+  --ink-mountain: #9aa4b0;
   color-scheme: dark;
 }
 

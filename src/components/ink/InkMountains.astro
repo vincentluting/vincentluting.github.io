@@ -1,0 +1,82 @@
+---
+/**
+ * Distant mountains in ink wash, fading into mist at their feet. Static SVG:
+ * the filters run once when the browser first paints it. Each layer is
+ * displaced by paper-like noise so the ridges look brushed, not drawn, and
+ * the far layers are softer and paler, the way ink thins with distance.
+ */
+import { mountains } from '../../lib/shapes';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+const layers = [
+  { d: mountains[0], blur: 5, displace: 26, opacity: 0.22 },
+  { d: mountains[1], blur: 2.4, displace: 20, opacity: 0.34 },
+  { d: mountains[2], blur: 1.1, displace: 14, opacity: 0.5 },
+];
+---
+
+<svg class:list={['ink-mountains', className]} viewBox="0 0 1600 600" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Mist: each layer is solid at the ridge and dissolves towards its foot. -->
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.25" stop-color="#fff" stop-opacity="1" />
+      <stop offset="0.72" stop-color="#fff" stop-opacity="0.15" />
+      <stop offset="1" stop-color="#fff" stop-opacity="0" />
+    </linearGradient>
+    <!-- Fade the range out towards the left, where the text is. -->
+    <linearGradient id="mist-side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0" />
+      <stop offset="0.45" stop-color="#fff" stop-opacity="0.35" />
+      <stop offset="0.75" stop-color="#fff" stop-opacity="1" />
+    </linearGradient>
+    <mask id="mist-mask" maskContentUnits="userSpaceOnUse">
+      <rect width="1600" height="600" fill="url(#mist-side)" />
+    </mask>
+    {layers.map((l, i) => (
+      <>
+        <filter id={`ridge-${i}`} x="-5%" y="-10%" width="110%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.035" numOctaves="4" seed={11 + i * 7} result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale={l.displace} xChannelSelector="R" yChannelSelector="G" result="brushed" />
+          <feGaussianBlur in="brushed" stdDeviation={l.blur} result="soft" />
+          <!-- Granulation: pigment settling into the paper's tooth. -->
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed={3 + i} result="tooth" />
+          <feColorMatrix in="tooth" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.25" result="toothA" />
+          <feComposite in="soft" in2="toothA" operator="in" />
+        </filter>
+        <mask id={`fade-${i}`} maskContentUnits="objectBoundingBox">
+          <rect width="1" height="1" fill="url(#mist)" />
+        </mask>
+      </>
+    ))}
+  </defs>
+  <g mask="url(#mist-mask)">
+    {layers.map((l, i) => (
+      <g mask={`url(#fade-${i})`} opacity={l.opacity}>
+        <path d={l.d} fill="var(--ink-mountain)" filter={`url(#ridge-${i})`} />
+      </g>
+    ))}
+  </g>
+</svg>
+
+<style>
+  .ink-mountains {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 78%;
+    pointer-events: none;
+  }
+  /* In the one-column layout, keep the range's proportions and let it run
+     along the bottom, behind the photo, instead of stretching it. */
+  @media (width < 64rem) {
+    .ink-mountains {
+      width: 200%;
+      height: auto;
+      aspect-ratio: 8 / 3;
+    }
+  }
+</style>

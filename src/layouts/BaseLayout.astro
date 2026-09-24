@@ -31,12 +31,17 @@ const props = Astro.props;
     >
       Skip to content
     </a>
-    <!-- Filter for the ink-bleed title reveal: blur, then a hard alpha threshold,
-         so letters look like ink spreading into paper before they settle. -->
+    <!-- Filter for the ink-bleed title reveal. The letters are pushed around
+         by paper-fibre noise and blurred, then a hard alpha threshold turns
+         that into ink soaking into paper; both settle to crisp text. -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-      <filter id="ink-bleed" x="-10%" y="-20%" width="120%" height="140%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b">
-          <animate data-ink-anim attributeName="stdDeviation" values="5;2.2;0" keyTimes="0;0.55;1" dur="1.3s" begin="indefinite" fill="freeze" calcMode="spline" keySplines="0.2 0.7 0.3 1;0.2 0.7 0.3 1" />
+      <filter id="ink-bleed" x="-10%" y="-25%" width="120%" height="150%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018 0.11" numOctaves="3" seed="7" result="fibres" />
+        <feDisplacementMap in="SourceGraphic" in2="fibres" scale="16" xChannelSelector="R" yChannelSelector="G" result="wick">
+          <animate data-ink-anim attributeName="scale" values="16;5;0" keyTimes="0;0.5;1" dur="1.6s" begin="indefinite" fill="freeze" calcMode="spline" keySplines="0.2 0.7 0.3 1;0.2 0.7 0.3 1" />
+        </feDisplacementMap>
+        <feGaussianBlur in="wick" stdDeviation="5" result="b">
+          <animate data-ink-anim attributeName="stdDeviation" values="5;2;0" keyTimes="0;0.55;1" dur="1.6s" begin="indefinite" fill="freeze" calcMode="spline" keySplines="0.2 0.7 0.3 1;0.2 0.7 0.3 1" />
         </feGaussianBlur>
         <feComponentTransfer in="b">
           <feFuncA type="table" tableValues="0 0 0.9 1 1" />

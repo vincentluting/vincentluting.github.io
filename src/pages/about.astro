@@ -35,7 +35,7 @@ const portrait = resolveImage(site.portrait);
       <div class="lg:col-span-7">
         <p class="eyebrow mb-4">About</p>
         <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>
-          Hi, I’m <em class="font-normal text-accent">Vincent</em>.
+          Hi, I’m <em class="font-normal text-accent">{site.preferredName}</em>.
         </h1>
         <Brush variant={0} />
         <div class="mt-8 space-y-6 text-xl leading-[1.7]">
@@ -43,7 +43,7 @@ const portrait = resolveImage(site.portrait);
             <p data-reveal style={`--d: ${i * 60}ms`} class:list={[i === 0 && 'first-letter:float-left first-letter:mr-2 first-letter:font-display first-letter:text-[3.6em] first-letter:leading-[0.85] first-letter:text-accent']}>{p}</p>
           ))}
         </div>
-        <Signature class="mt-8 h-16 w-auto md:h-20" />
+        <Signature class="mt-8 h-20 w-auto md:h-24" />
         <div class="mt-8 flex flex-wrap gap-3" data-reveal>
           <Button href={`mailto:${site.email}`}>Send me an email</Button>
           <Button href="/how-i-work/" variant="secondary">How I work</Button>

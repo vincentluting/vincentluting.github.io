@@ -38,11 +38,11 @@ if (!motionOn() || !('IntersectionObserver' in window)) {
 // The h1 is visible and readable from the first paint (only its edges are
 // soft), so this never delays Largest Contentful Paint.
 const title = document.querySelector<HTMLElement>('[data-ink-title]');
-const anim = document.querySelector<SVGAnimateElement>('[data-ink-anim]');
-if (title && anim && motionOn()) {
+const anims = document.querySelectorAll<SVGAnimateElement>('[data-ink-anim]');
+if (title && anims.length && motionOn()) {
   title.classList.add('is-bleeding');
-  requestAnimationFrame(() => anim.beginElement());
-  window.setTimeout(() => title.classList.remove('is-bleeding'), 1400);
+  requestAnimationFrame(() => anims.forEach((a) => a.beginElement()));
+  window.setTimeout(() => title.classList.remove('is-bleeding'), 1700);
 }
 
 // ---- motion toggle ----------------------------------------------------------
