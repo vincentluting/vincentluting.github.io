@@ -32,25 +32,6 @@ export const CertificationSchema = z.object({
   year: optStr,
 });
 
-export const ProjectSchema = z.object({
-  id: str,
-  title: str,
-  kicker: str,
-  period: str,
-  summary: str,
-  featured: z.boolean().default(false),
-  metrics: z.array(z.object({ value: str, label: str })).optional(),
-  stack: z.array(str).optional(),
-  links: z.array(z.object({ label: str, href: str })).optional(),
-  caseStudy: z
-    .object({
-      problem: str,
-      approach: z.array(str).default([]),
-      outcome: z.array(str).default([]),
-    })
-    .optional(),
-});
-
 export const SkillGroupSchema = z.object({ title: str, items: z.array(str).default([]) });
 export const HighlightSchema = z.object({ value: str, label: str, sub: optStr });
 
@@ -89,12 +70,27 @@ export const AboutSchema = z.object({
   hobbies: z.array(str).default([]),
 });
 
+export const NowSchema = z.object({
+  updated: z.coerce.date(),
+  intro: z.string().default(''),
+  sections: z.array(z.object({ title: str, items: z.array(str).default([]) })).default([]),
+});
+
+export const TestimonialSchema = z.object({
+  quote: str,
+  name: str,
+  title: str,
+  company: optStr,
+  relation: optStr,
+  link: optStr,
+});
+export const TestimonialsFileSchema = z.object({ items: z.array(TestimonialSchema).nullish().transform((v) => v ?? []) });
+
 export const ExperienceFileSchema = z.object({
   jobs: z.array(ExperienceSchema),
   education: z.array(EducationSchema).default([]),
   certifications: z.array(CertificationSchema).default([]),
 });
-export const ProjectsFileSchema = z.object({ projects: z.array(ProjectSchema) });
 export const SkillsFileSchema = z.object({
   groups: z.array(SkillGroupSchema).default([]),
   highlights: z.array(HighlightSchema).default([]),
@@ -103,10 +99,9 @@ export const SkillsFileSchema = z.object({
 export type Experience = z.infer<typeof ExperienceSchema>;
 export type Education = z.infer<typeof EducationSchema>;
 export type Certification = z.infer<typeof CertificationSchema>;
-export type Project = z.infer<typeof ProjectSchema>;
-export type ProjectLink = NonNullable<Project['links']>[number];
-export type ProjectMetric = NonNullable<Project['metrics']>[number];
 export type SkillGroup = z.infer<typeof SkillGroupSchema>;
 export type Highlight = z.infer<typeof HighlightSchema>;
 export type Site = z.infer<typeof SiteSchema>;
 export type About = z.infer<typeof AboutSchema>;
+export type Now = z.infer<typeof NowSchema>;
+export type Testimonial = z.infer<typeof TestimonialSchema>;

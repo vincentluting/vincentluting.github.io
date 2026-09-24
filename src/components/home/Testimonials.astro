@@ -1,0 +1,23 @@
+---
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { testimonials } from '../../data';
+---
+
+{testimonials.length > 0 && (
+  <Section id="testimonials" class="border-t border-line">
+    <SectionHeading eyebrow="In other people’s words" title="What people I worked with say." brush={2} />
+    <div class="grid gap-8 md:grid-cols-2">
+      {testimonials.map((t, i) => (
+        <figure class="sheet p-6 md:p-8" data-reveal style={`--d: ${i * 80}ms; rotate: ${i % 2 ? '0.4deg' : '-0.4deg'}`}>
+          <blockquote class="font-display text-xl italic leading-relaxed">“{t.quote}”</blockquote>
+          <figcaption class="mt-5 font-mono text-[0.78rem] text-muted">
+            {t.link ? <a class="ink-link" href={t.link} target="_blank" rel="noopener noreferrer">{t.name}</a> : <span class="text-ink">{t.name}</span>}
+            {' · '}{t.title}{t.company && `, ${t.company}`}
+            {t.relation && <span class="mt-1 block">{t.relation}</span>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </Section>
+)}

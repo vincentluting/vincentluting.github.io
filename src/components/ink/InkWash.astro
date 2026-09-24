@@ -1,0 +1,71 @@
+---
+/**
+ * A band of paper with ink drifting through it (WebGL, see
+ * src/scripts/fluid-ink.ts). The static wash underneath is what visitors see
+ * without WebGL2, with motion off, and while the simulation starts up.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['ink', className]}>
+  <div class="ink__fallback" aria-hidden="true"></div>
+  <fluid-ink class="ink__sim" data-strength="1.7" data-auto="1" aria-hidden="true"></fluid-ink>
+  <div class="ink__content">
+    <slot />
+  </div>
+</div>
+
+<script>
+  import '../../scripts/fluid-ink';
+</script>
+
+<style>
+  .ink {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .ink__fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(40% 50% at 78% 38%, color-mix(in oklab, var(--ink-pigment) 16%, transparent), transparent 72%),
+      radial-gradient(26% 30% at 88% 70%, color-mix(in oklab, var(--ink-accent) 12%, transparent), transparent 70%),
+      radial-gradient(30% 34% at 60% 80%, color-mix(in oklab, var(--ink-pigment) 9%, transparent), transparent 72%);
+  }
+  .ink__sim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+  /* The canvas is opaque, so lay the paper grain back over it. */
+  .ink__sim::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--paper-fibres), var(--paper-grain);
+    background-size: 640px 640px, 220px 220px;
+    pointer-events: none;
+  }
+  :global(html[data-motion='off']) .ink__sim {
+    display: none;
+  }
+  .ink__content {
+    position: relative;
+    z-index: 2;
+    /* Let the cursor reach the ink; links and buttons opt back in. */
+    pointer-events: none;
+  }
+  .ink__content :global(a),
+  .ink__content :global(button),
+  .ink__content :global(img),
+  .ink__content :global(p),
+  .ink__content :global(h1) {
+    pointer-events: auto;
+  }
+</style>

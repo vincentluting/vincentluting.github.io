@@ -9,11 +9,11 @@ interface Props {
 const { href, variant = 'primary', external = false, download = false, class: className = '' } = Astro.props;
 
 const base =
-  'group inline-flex items-center gap-2 rounded-full text-sm font-medium transition-all duration-300 ease-out-soft focus-visible:outline-none';
+  'group inline-flex items-center gap-2 rounded-full font-mono text-[0.82rem] tracking-wide transition-all duration-300 ease-out-soft focus-visible:outline-none';
 const variants = {
-  primary: 'px-5 py-2.5 bg-ink text-paper hover:bg-accent hover:text-paper shadow-sm',
-  secondary: 'px-5 py-2.5 border border-line bg-transparent text-ink hover:border-ink',
-  ghost: 'px-1 py-2.5 text-ink underline-offset-4 hover:underline',
+  primary: 'px-5 py-2.5 bg-ink text-paper hover:bg-accent hover:text-paper hover:-rotate-1 shadow-sm',
+  secondary: 'px-5 py-2.5 border border-ink/25 bg-paper/60 text-ink hover:border-ink hover:bg-paper',
+  ghost: 'px-1 py-2.5 text-ink underline decoration-accent/60 decoration-[1.5px] underline-offset-4 hover:text-accent',
 };
 ---
 

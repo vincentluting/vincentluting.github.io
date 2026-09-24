@@ -3,9 +3,22 @@
 Personal site of Ting (Vincent) Lu — project manager & product owner in the Netherlands.
 Live at **https://vincentluting.github.io**.
 
-Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Fraunces + Inter).
-No client-side framework; the only JavaScript is the theme toggle, the mobile menu and a small
-scroll-reveal script.
+Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Newsreader +
+IBM Plex Mono). The design is "ink on handmade paper": a static paper grain, deckled photo edges,
+a vermilion VL seal, and a few small pieces of motion. There is no client-side framework; about
+7 KB of JavaScript (gzipped) runs on the home page:
+
+| Effect | Where | Code |
+|---|---|---|
+| Ink drifting through water behind the hero (WebGL, desktop only) | Home | `src/scripts/fluid-ink.ts`, adapted from [astro-sumi](https://github.com/kpab/astro-sumi) (MIT, © 2026 kpab) |
+| Ink-bleed title reveal, brush strokes under headings, signature, seal stamp, scroll reveal | All pages | `src/scripts/motion.ts`, `src/styles/global.css` |
+| Hand-drawn circles around key numbers | Stories | `src/scripts/annotate.ts` ([rough-notation](https://roughnotation.com), MIT) |
+| Page transitions | All pages | CSS `@view-transition` (Chrome, Edge, Safari) |
+
+Everything is decoration on top of a complete page. Visitors can switch it off with the wave
+button in the header (saved in their browser), and it is off by default for people whose system
+asks for reduced motion. The brush strokes and signature are fixed SVG paths in
+`src/lib/shapes.ts` (made once with perfect-freehand and the OFL font Mrs Saint Delafield).
 
 ## Develop
 
@@ -27,7 +40,8 @@ All text on the site lives in plain YAML and Markdown files, and the repo has a
 1. Go to https://app.pagescms.org and sign in with GitHub.
 2. Install the Pages CMS GitHub App for this repository (one-time).
 3. Open the repo. You get sections for Profile & contact, About, Experience,
-   Projects, Skills & numbers and Writing, plus image and CV uploads.
+   Stories, How I work, Now, Testimonials, Skills & numbers and Writing, plus image and
+   CV uploads.
 4. Save. Each save is a commit to `main`, and the site rebuilds in about a minute.
 
 You can also edit the same files directly on github.com (pencil icon on a file).
@@ -37,10 +51,13 @@ You can also edit the same files directly on github.com (pencil icon on a file).
 | What | Where |
 |---|---|
 | Name, headline, contact links, availability / work-authorisation lines, portrait, CV | `src/data/site.yaml` |
-| Work history, education, certifications | `src/data/experience.yaml` — `featured: true` and `highlightIdx` control what the home page shows |
-| Projects and the Deep Dive case study | `src/data/projects.yaml` — the project with `featured: true` becomes the case study |
-| Skill groups and the key-number tiles | `src/data/skills.yaml` |
-| About page story and hobbies | `src/data/about.yaml` |
+| Work stories (case studies), including Deep Dive | `src/content/stories/<slug>.md` — `order` sets the order; the first 4 are on the home page |
+| Work history, education, certifications | `src/data/experience.yaml` — the short CV-style version on `/experience/` |
+| Skill groups and the key-number tiles | `src/data/skills.yaml` (shown on `/experience/`) |
+| About page story and hobbies | `src/data/about.yaml` — paragraphs 1, 3 and 5 also appear on the home page |
+| Now page | `src/data/now.yaml` — update the date when you change it |
+| How I work page | `src/content/pages/how-i-work.md` |
+| Testimonials | `src/data/testimonials.yaml` — the home page section is hidden while it is empty |
 | Blog posts | `src/content/posts/<slug>.md` |
 | Uploaded images (portrait, post covers) | `src/assets/uploads/` — referenced as `/src/assets/uploads/<file>` |
 | CV PDF | `public/cv/` — referenced as `/cv/<file>.pdf` |
@@ -50,6 +67,14 @@ You can also edit the same files directly on github.com (pencil icon on a file).
 The YAML files are validated at build time (`src/data/types.ts`). If a value is
 missing or malformed, `npm run build` (and the GitHub Action) fails with a message
 naming the file and field.
+
+## Adding a story
+
+In Pages CMS: Stories → Add. Start the title with the result ("Cutting X from 18 days to 8"),
+fill the "In short" box (the first number gets a hand-drawn circle), and write the body with
+these headings: The situation, The hard part, What I did, What came out of it, What I would do
+differently. Set `job` to the matching ID in `experience.yaml` to link it from the Experience page.
+Notes like `<!-- TODO(Vincent): ... -->` are HTML comments: they never show on the site.
 
 ## Adding a post
 

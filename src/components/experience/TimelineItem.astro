@@ -5,19 +5,21 @@ import type { Experience } from '../../data/types';
 interface Props {
   job: Experience;
   index: number;
+  /** Link to the story that tells this job in full, if there is one. */
+  story?: { href: string; title: string };
 }
-const { job, index } = Astro.props;
+const { job, index, story } = Astro.props;
 ---
 
-<li class="relative grid gap-4 pb-12 pl-8 md:grid-cols-12 md:gap-8 md:pl-0" data-reveal style={`--d: ${index * 50}ms`}>
+<li id={job.id} class="relative grid scroll-mt-24 gap-4 pb-12 pl-8 md:grid-cols-12 md:gap-8 md:pl-0" data-reveal style={`--d: ${index * 50}ms`}>
   <span aria-hidden="true" class="absolute left-0 top-2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-paper md:left-[25%]"></span>
   <div class="md:col-span-3 md:pr-10 md:text-right">
-    <p class="text-sm font-medium text-ink">{job.start} – {job.end}</p>
-    <p class="text-sm text-muted">{job.location}</p>
+    <p class="font-mono text-[0.78rem] text-ink">{job.start} – {job.end}</p>
+    <p class="font-mono text-[0.78rem] text-muted">{job.location}</p>
   </div>
   <div class="md:col-span-9 md:pl-10">
     <h3 class="font-display text-2xl font-medium">{job.company}</h3>
-    <p class="mt-1 text-base font-medium text-ink">{job.role}</p>
+    <p class="mt-1 text-lg italic text-ink">{job.role}</p>
     <p class="mt-3 text-muted">{job.summary}</p>
     <ul class="mt-4 space-y-2 text-muted">
       {job.bullets.map((b) => (
@@ -27,6 +29,11 @@ const { job, index } = Astro.props;
         </li>
       ))}
     </ul>
+    {story && (
+      <a href={story.href} title={story.title} class="group mt-5 inline-flex items-baseline gap-2 font-mono text-[0.8rem] ink-link">
+        Read the full story <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    )}
     {job.tags && (
       <div class="mt-5 flex flex-wrap gap-2">
         {job.tags.map((t) => <Tag>{t}</Tag>)}

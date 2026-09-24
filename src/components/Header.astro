@@ -1,21 +1,24 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import MotionToggle from './MotionToggle.astro';
+import Seal from './ink/Seal.astro';
 import { site, cvUrl } from '../data';
 
 const nav = [
-  { label: 'Experience', href: '/experience/' },
-  { label: 'Projects', href: '/projects/' },
+  { label: 'Stories', href: '/stories/' },
   { label: 'Writing', href: '/posts/' },
   { label: 'About', href: '/about/' },
+  { label: 'Now', href: '/now/' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
-<header class="sticky top-0 z-40 border-b border-line/70 bg-paper/80 backdrop-blur-md">
+<header class="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
   <div class="container-page flex h-16 items-center justify-between gap-4">
-    <a href="/" class="font-display text-lg font-medium tracking-tight text-ink">
-      {site.name}<span class="text-accent">.</span>
+    <a href="/" class="group flex items-center gap-2.5 text-ink" aria-label={`${site.name}, home`}>
+      <Seal size={30} class="transition-transform duration-500 ease-stamp group-hover:rotate-[-12deg]" />
+      <span class="font-display text-lg font-medium tracking-tight">{site.name}</span>
     </a>
 
     <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
@@ -23,7 +26,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
         <a
           href={item.href}
           class:list={[
-            'text-sm transition-colors hover:text-ink',
+            'font-mono text-[0.8rem] tracking-wide transition-colors hover:text-ink',
             isActive(item.href) ? 'text-ink underline decoration-accent decoration-2 underline-offset-8' : 'text-muted',
           ]}
           aria-current={isActive(item.href) ? 'page' : undefined}
@@ -37,11 +40,12 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       {cvUrl && <a
         href={cvUrl}
         download
-        class="hidden items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-ink sm:inline-flex"
+        class="hidden items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 font-mono text-[0.8rem] text-ink transition-colors hover:border-ink sm:inline-flex"
       >
         <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg>
         CV
       </a>}
+      <MotionToggle />
       <ThemeToggle />
       <button
         type="button"

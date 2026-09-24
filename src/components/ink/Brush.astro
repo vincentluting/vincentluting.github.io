@@ -1,0 +1,16 @@
+---
+import { brushStrokes } from '../../lib/shapes';
+
+interface Props {
+  /** Which of the hand-drawn strokes to use (wraps around). */
+  variant?: number;
+  center?: boolean;
+  class?: string;
+}
+const { variant = 0, center = false, class: className = '' } = Astro.props;
+const d = brushStrokes[variant % brushStrokes.length];
+---
+
+<svg class:list={['brush', center && 'brush-center', className]} viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path d={d} fill="currentColor"></path>
+</svg>

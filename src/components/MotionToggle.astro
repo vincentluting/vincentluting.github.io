@@ -1,0 +1,25 @@
+---
+/** Turns the site's animations on or off. The choice is saved; see src/scripts/motion.ts. */
+---
+
+<button
+  type="button"
+  data-motion-toggle
+  class="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-surface"
+  aria-label="Turn animations off"
+  title="Turn animations off"
+>
+  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 14c2.5-4 5-4 7.5 0s5 4 7.5 0 2.5-2 3-2"></path>
+    <path class="motion-off-slash" d="M4 4l16 16"></path>
+  </svg>
+</button>
+
+<style>
+  .motion-off-slash {
+    display: none;
+  }
+  :global(html[data-motion='off']) .motion-off-slash {
+    display: inline;
+  }
+</style>

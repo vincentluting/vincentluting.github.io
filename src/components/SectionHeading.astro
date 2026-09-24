@@ -1,16 +1,21 @@
 ---
+import Brush from './ink/Brush.astro';
+
 interface Props {
   eyebrow?: string;
   title: string;
   intro?: string;
   align?: 'left' | 'center';
   class?: string;
+  /** Pick a different hand-drawn stroke so neighbouring sections don't match. */
+  brush?: number;
 }
-const { eyebrow, title, intro, align = 'left', class: className = '' } = Astro.props;
+const { eyebrow, title, intro, align = 'left', class: className = '', brush = 0 } = Astro.props;
 ---
 
 <div class:list={['mb-10 max-w-2xl md:mb-14', align === 'center' && 'mx-auto text-center', className]} data-reveal>
   {eyebrow && <p class="eyebrow mb-3">{eyebrow}</p>}
-  <h2 class="text-3xl font-medium leading-tight md:text-4xl">{title}</h2>
-  {intro && <p class="mt-4 text-base leading-relaxed text-muted md:text-lg">{intro}</p>}
+  <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]">{title}</h2>
+  <Brush variant={brush} center={align === 'center'} />
+  {intro && <p class="mt-5 text-lg leading-relaxed text-muted">{intro}</p>}
 </div>

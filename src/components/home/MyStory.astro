@@ -1,0 +1,32 @@
+---
+import Section from '../Section.astro';
+import Brush from '../ink/Brush.astro';
+import Signature from '../ink/Signature.astro';
+import { about } from '../../data';
+
+// The personal parts of the About story: where I come from, what I like, where I want to go.
+const picks = [0, 2, 4].map((i) => about.intro[i]).filter(Boolean);
+---
+
+<Section id="story">
+  <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4" data-reveal>
+      <p class="eyebrow mb-3">My story, short</p>
+      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]">Two years became nine.</h2>
+      <Brush variant={0} />
+    </div>
+    <div class="lg:col-span-8">
+      <div class="space-y-6 text-xl leading-[1.7] md:text-[1.35rem]">
+        {picks.map((p, i) => (
+          <p data-reveal style={`--d: ${i * 80}ms`} class:list={[i === 0 && 'first-letter:float-left first-letter:mr-2 first-letter:font-display first-letter:text-[3.6em] first-letter:leading-[0.85] first-letter:text-accent']}>{p}</p>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-wrap items-end justify-between gap-6">
+        <Signature class="h-16 w-auto md:h-20" />
+        <a href="/about/" class="group font-mono text-[0.82rem] ink-link">
+          Read the whole story <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</Section>

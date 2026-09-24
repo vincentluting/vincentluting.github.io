@@ -36,9 +36,9 @@ content:
       - { name: preferredName, label: Preferred name, type: string }
       - { name: fullName, label: Full display name, type: string, description: 用于浏览器标题和页脚，例如 "Ting (Vincent) Lu" }
       - { name: role, label: Job title, type: string, description: 页脚和搜索引擎里显示的职位 }
-      - { name: tagline, label: Hero eyebrow line, type: string, description: 首页姓名上方的小字 }
-      - { name: headline, label: Hero headline, type: text, description: 首页姓名下方的斜体大字 }
-      - { name: lead, label: Hero paragraph, type: text }
+      - { name: tagline, label: Hero eyebrow line, type: string, description: 首页标题上方的小字 }
+      - { name: headline, label: Hero headline, type: text, description: 首页 "Hi, I'm Vincent." 下面的一句话 }
+      - { name: lead, label: Hero paragraph (not shown now), type: text, description: 改版后首页不再显示这一段，保留备用 }
       - { name: location, label: Location, type: string }
       - { name: availability, label: Availability line, type: string, description: 例如 "Open to new roles"，留空则隐藏 }
       - { name: workAuthorization, label: Work authorisation line, type: string, description: 例如 "Permanent resident, no visa sponsorship needed"，留空则隐藏 }
@@ -72,7 +72,7 @@ content:
         fields:
           - { name: name, label: Language, type: string }
           - { name: level, label: Level, type: string }
-      - { name: companies, label: "Worked with (logos row)", type: string, list: true }
+      - { name: companies, label: Companies, type: string, list: true, description: "首页 10 秒速览里的 Companies 一行（名字里带 University 的会自动跳过）" }
 
   - name: about
     label: About page
@@ -105,8 +105,8 @@ content:
           - { name: end, label: End, type: string, description: 例如 "Jun 2026" 或 "Present" }
           - { name: summary, label: One-line summary, type: text }
           - { name: bullets, component: bullets }
-          - { name: featured, label: Show on home page, type: boolean }
-          - { name: highlightIdx, label: Bullets to show on home page, type: number, list: true, description: 从 0 开始数的序号，例如 0 和 2 }
+          - { name: featured, label: Featured (not used now), type: boolean, description: 改版后首页不再列出工作经历，保留备用 }
+          - { name: highlightIdx, label: Highlighted bullets (not used now), type: number, list: true, description: 改版后未使用，保留备用 }
           - { name: tags, label: Tags, type: string, list: true }
       - name: education
         label: Education
@@ -131,50 +131,6 @@ content:
           - { name: issuer, label: Issuer, type: string }
           - { name: year, label: Year, type: string }
 
-  - name: projects
-    label: Projects
-    type: file
-    path: src/data/projects.yaml
-    format: yaml
-    fields:
-      - name: projects
-        label: Projects
-        type: object
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{fields.title}"
-        description: 勾选 Featured 的那个会成为首页专题和 Projects 页的案例研究（只能有一个）。
-        fields:
-          - { name: id, label: ID, type: string, pattern: "^[a-z0-9-]+$" }
-          - { name: title, label: Title, type: string, required: true }
-          - { name: kicker, label: Kicker, type: string, description: 标题下的小字，例如 "Tencent · PUBG Mobile Esports" }
-          - { name: period, label: Period, type: string }
-          - { name: summary, label: Summary, type: text }
-          - { name: featured, label: Featured, type: boolean }
-          - name: metrics
-            label: Metrics
-            type: object
-            list: true
-            fields:
-              - { name: value, label: Value, type: string }
-              - { name: label, label: Label, type: string }
-          - { name: stack, label: Tools / stack, type: string, list: true }
-          - name: links
-            label: Links
-            type: object
-            list: true
-            fields:
-              - { name: label, label: Label, type: string }
-              - { name: href, label: URL, type: string }
-          - name: caseStudy
-            label: Case study
-            type: object
-            fields:
-              - { name: problem, label: The problem, type: text }
-              - { name: approach, label: What I did, type: text, list: true }
-              - { name: outcome, label: Outcome, type: text, list: true }
-
   - name: skills
     label: Skills & numbers
     type: file
@@ -192,7 +148,7 @@ content:
           - { name: title, label: Group title, type: string }
           - { name: items, label: Items, type: string, list: true }
       - name: highlights
-        label: Key numbers (home page)
+        label: Key numbers (Experience page)
         type: object
         list:
           collapsible:
@@ -201,6 +157,116 @@ content:
           - { name: value, label: Number, type: string, description: 例如 "8+" }
           - { name: label, label: Label, type: string }
           - { name: sub, label: Small print, type: string }
+
+  - name: stories
+    label: Stories (work case studies)
+    type: collection
+    path: src/content/stories
+    filename: "{primary}.md"
+    view:
+      primary: title
+      sort: order
+      order: asc
+      fields: [title, company, order, draft]
+    fields:
+      - { name: title, label: Title, type: string, required: true, description: 标题直接写结果，例如 "Cutting ticket resolution from 18 days to 8" }
+      - { name: summary, label: Summary, type: text, required: true, description: 卡片和页面顶部的两三句话，忙的人只看这一段 }
+      - { name: company, label: Company, type: string, required: true }
+      - { name: role, label: My role / title, type: string, required: true }
+      - { name: period, label: Period, type: string, description: 例如 "2019 – 2021" }
+      - { name: order, label: Order, type: number, description: 数字越小越靠前，首页显示前 4 个 }
+      - { name: draft, label: Draft (hide from site), type: boolean, default: false }
+      - { name: job, label: Matching job ID, type: string, description: "对应 Experience 里的 ID（例如 amazon），经历页会出现 “Read the full story” 链接" }
+      - name: tldr
+        label: In short (TL;DR box)
+        type: object
+        fields:
+          - { name: context, label: The situation, type: text, required: true }
+          - { name: myRole, label: What I owned, type: text, required: true }
+          - { name: team, label: Team, type: text }
+          - { name: stakeholders, label: Worked with, type: text }
+          - name: numbers
+            label: Key numbers
+            type: object
+            list: true
+            description: 第一个数字会被手绘红圈圈出，也会显示在首页卡片上。最多 3 个。
+            fields:
+              - { name: value, label: Number, type: string, description: 例如 "18 → 8" 或 "$91k" }
+              - { name: label, label: What it means, type: string }
+          - { name: skills, label: Skills shown, type: string, list: true }
+      - name: links
+        label: Links
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: URL, type: string }
+      - name: body
+        label: Story
+        type: rich-text
+        description: "建议小标题：The situation / The hard part / What I did / What came out of it / What I would do differently"
+        options: { format: markdown, media: images, path: stories }
+
+  - name: how-i-work
+    label: How I work page
+    type: file
+    path: src/content/pages/how-i-work.md
+    format: yaml-frontmatter
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: SEO description, type: text }
+      - name: updated
+        label: Last updated
+        type: date
+        options: { format: "yyyy-MM-dd" }
+      - name: body
+        label: Page text
+        type: rich-text
+        options: { format: markdown }
+
+  - name: now
+    label: Now page
+    type: file
+    path: src/data/now.yaml
+    format: yaml
+    fields:
+      - name: updated
+        label: Last updated
+        type: date
+        options: { format: "yyyy-MM-dd" }
+        description: 每次修改时更新日期
+      - { name: intro, label: Intro, type: text }
+      - name: sections
+        label: Sections
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.title}"
+        description: 前 3 个分区的第一条会显示在首页的 Now 卡片里
+        fields:
+          - { name: title, label: Section title, type: string }
+          - { name: items, label: Items, type: text, list: true }
+
+  - name: testimonials
+    label: Testimonials
+    type: file
+    path: src/data/testimonials.yaml
+    format: yaml
+    fields:
+      - name: items
+        label: Quotes
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.name}"
+        description: 同事或客户的一两句推荐（可以从 LinkedIn 推荐里摘）。至少有一条时首页才会显示这一块。
+        fields:
+          - { name: quote, label: Quote, type: text, required: true }
+          - { name: name, label: Name, type: string, required: true }
+          - { name: title, label: Their job title, type: string, required: true }
+          - { name: company, label: Company, type: string }
+          - { name: relation, label: How we worked together, type: string, description: 例如 "My manager at Tencent, 2023–2025" }
+          - { name: link, label: LinkedIn URL, type: string }
 
   - name: posts
     label: Writing

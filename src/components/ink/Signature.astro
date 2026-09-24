@@ -1,0 +1,12 @@
+---
+import { signature } from '../../lib/shapes';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<svg class:list={['signature text-ink', className]} viewBox="0 0 290 100" role="img" aria-label="Signed, Vincent">
+  <path d={signature} fill="currentColor"></path>
+</svg>

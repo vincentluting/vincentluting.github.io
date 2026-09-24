@@ -5,6 +5,8 @@ import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Tag from '../components/Tag.astro';
 import JsonLd from '../components/JsonLd.astro';
+import Brush from '../components/ink/Brush.astro';
+import Seal from '../components/ink/Seal.astro';
 import { site } from '../data';
 import { resolveImage } from '../lib/images';
 
@@ -38,14 +40,15 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
     }}
   />
   <article class="container-page py-14 md:py-20">
-    <header class="mx-auto max-w-3xl" data-reveal>
-      <p class="text-sm text-muted">
+    <header class="mx-auto max-w-3xl">
+      <p class="eyebrow">
         <a href="/posts/" class="hover:text-ink">Writing</a>
         <span aria-hidden="true"> / </span>
         <FormattedDate date={date} /> · {minutes} min read
       </p>
-      <h1 class="mt-4 text-4xl font-medium leading-tight md:text-5xl">{title}</h1>
-      <p class="mt-5 text-lg leading-relaxed text-muted">{description}</p>
+      <h1 class="mt-5 text-4xl font-medium leading-[1.08] md:text-[3.4rem]" data-ink-title>{title}</h1>
+      <Brush variant={1} />
+      <p class="mt-6 text-xl leading-relaxed text-muted">{description}</p>
       {tags.length > 0 && (
         <div class="mt-5 flex flex-wrap gap-2">
           {tags.map((t) => <Tag>#{t}</Tag>)}
@@ -55,7 +58,7 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
 
     {cover && (
       <figure class="mx-auto mt-10 max-w-4xl" data-reveal style="--d: 80ms">
-        <Image src={cover} alt={coverAlt ?? ''} width={1400} densities={[1, 2]} class="aspect-[16/9] w-full rounded-2xl object-cover" />
+        <Image src={cover} alt={coverAlt ?? ''} width={1400} densities={[1, 2]} class="deckle aspect-[16/9] w-full object-cover" />
       </figure>
     )}
 
@@ -64,12 +67,15 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
     </div>
 
     <footer class="mx-auto mt-16 max-w-3xl border-t border-line pt-8">
-      <p class="text-sm text-muted">
-        Written by <a href="/about/" class="text-ink underline decoration-accent decoration-2 underline-offset-4">{site.fullName}</a>.
-      </p>
+      <div class="flex items-center gap-4">
+        <Seal size={40} stamp />
+        <p class="text-muted">
+          Written by <a href="/about/" class="ink-link">{site.fullName}</a>.
+        </p>
+      </div>
       <nav class="mt-8 grid gap-4 sm:grid-cols-2" aria-label="Other posts">
         {prev ? (
-          <a href={`/posts/${prev.id}/`} class="group rounded-2xl border border-line p-5 transition-colors hover:border-ink/40">
+          <a href={`/posts/${prev.id}/`} class="group sheet p-5 transition-transform hover:-translate-y-0.5">
             <span class="eyebrow">Older</span>
             <span class="mt-2 block font-medium leading-snug group-hover:text-accent">{prev.data.title}</span>
           </a>
@@ -77,7 +83,7 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
           <span></span>
         )}
         {next && (
-          <a href={`/posts/${next.id}/`} class="group rounded-2xl border border-line p-5 text-right transition-colors hover:border-ink/40">
+          <a href={`/posts/${next.id}/`} class="group sheet p-5 text-right transition-transform hover:-translate-y-0.5">
             <span class="eyebrow">Newer</span>
             <span class="mt-2 block font-medium leading-snug group-hover:text-accent">{next.data.title}</span>
           </a>

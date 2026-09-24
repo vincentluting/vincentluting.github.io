@@ -12,12 +12,14 @@ import type { z } from 'astro/zod';
 import siteRaw from './site.yaml?raw';
 import aboutRaw from './about.yaml?raw';
 import experienceRaw from './experience.yaml?raw';
-import projectsRaw from './projects.yaml?raw';
 import skillsRaw from './skills.yaml?raw';
+import nowRaw from './now.yaml?raw';
+import testimonialsRaw from './testimonials.yaml?raw';
 import {
   AboutSchema,
   ExperienceFileSchema,
-  ProjectsFileSchema,
+  NowSchema,
+  TestimonialsFileSchema,
   SiteSchema,
   SkillsFileSchema,
 } from './types';
@@ -58,13 +60,11 @@ export const education = experienceFile.education;
 export const certifications = experienceFile.certifications;
 export const featuredExperience = experience.filter((e) => e.featured);
 
-const projectsFile = load('projects.yaml', ProjectsFileSchema, projectsRaw);
-export const projects = projectsFile.projects;
-export const featuredProject = projects.find((p) => p.featured) ?? projects[0];
-export const otherProjects = projects.filter((p) => p !== featuredProject);
-
 const skillsFile = load('skills.yaml', SkillsFileSchema, skillsRaw);
 export const skills = skillsFile.groups;
 export const highlights = skillsFile.highlights;
+
+export const now = load('now.yaml', NowSchema, nowRaw);
+export const testimonials = load('testimonials.yaml', TestimonialsFileSchema, testimonialsRaw).items;
 
 export type * from './types';

@@ -1,0 +1,27 @@
+---
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import StoryCard from '../stories/StoryCard.astro';
+import { getStories } from '../../lib/stories';
+
+const stories = (await getStories()).slice(0, 4);
+---
+
+{stories.length > 0 && (
+  <Section id="stories" class="border-t border-line">
+    <SectionHeading
+      eyebrow="Stories from work"
+      title="What I actually did, in more than one line."
+      intro="My CV has room for one number per job. Here is the longer version: the problem, what I did, what came out of it and what I would do differently."
+      brush={1}
+    />
+    <div class="grid gap-8 md:grid-cols-2">
+      {stories.map((s, i) => <StoryCard story={s} index={i} />)}
+    </div>
+    <div class="mt-10" data-reveal>
+      <a href="/stories/" class="group font-mono text-[0.82rem] ink-link">
+        All stories <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </Section>
+)}

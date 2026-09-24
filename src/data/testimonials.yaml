@@ -1,0 +1,12 @@
+# Short quotes from people I have worked with. The section on the home page
+# stays hidden until there is at least one item.
+#
+# Example:
+# items:
+#   - quote: "Vincent made sure ..."
+#     name: Jane Doe
+#     title: Head of IT
+#     company: Example B.V.
+#     relation: My manager at Example, 2023–2025
+#     link: https://www.linkedin.com/in/...
+items: []

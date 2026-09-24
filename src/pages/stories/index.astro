@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import Brush from '../../components/ink/Brush.astro';
+import StoryCard from '../../components/stories/StoryCard.astro';
+import { getStories } from '../../lib/stories';
+
+const stories = await getStories();
+---
+
+<BaseLayout
+  title="Stories"
+  description="The longer version of Ting (Vincent) Lu's CV: what the problem was, what he actually did, what came out of it and what he would do differently."
+>
+  <Section class="pb-10 md:pb-14">
+    <div class="max-w-3xl">
+      <p class="eyebrow mb-4">Stories</p>
+      <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>What I actually did.</h1>
+      <Brush variant={1} />
+      <p class="mt-6 text-xl leading-relaxed text-muted">
+        A CV line has room for one number. These are the longer versions: what the problem was, the choices I
+        made, what came out of it, and what I would do differently next time. Each one starts with a short
+        summary, so you can stop there if you are busy.
+      </p>
+    </div>
+  </Section>
+  <Section tight class="pt-0 pb-24">
+    <div class="grid gap-8 md:grid-cols-2">
+      {stories.map((s, i) => <StoryCard story={s} index={i} />)}
+    </div>
+  </Section>
+</BaseLayout>

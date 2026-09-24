@@ -1,0 +1,50 @@
+---
+import type { Story } from '../../lib/stories';
+
+interface Props {
+  story: Story;
+  minutes: number;
+}
+const { story, minutes } = Astro.props;
+const { tldr, company, role, period } = story.data;
+const rows = [
+  ['Where', `${company} · ${period}`],
+  ['My role', `${role}. ${tldr.myRole}`],
+  ['The situation', tldr.context],
+  ['Team', tldr.team],
+  ['Worked with', tldr.stakeholders],
+].filter((r): r is [string, string] => Boolean(r[1]));
+---
+
+<aside class="sheet relative p-6 md:p-8" aria-label="Story in short">
+  <p class="eyebrow flex items-center justify-between">
+    <span>In short</span>
+    <span>{minutes} min read</span>
+  </p>
+
+  {tldr.numbers.length > 0 && (
+    <ul class="mt-6 grid gap-6 sm:grid-cols-3">
+      {tldr.numbers.map((n, i) => (
+        <li>
+          <span class="inline-block font-display text-4xl font-medium leading-none text-ink" data-annotate={i === 0 ? 'circle' : 'underline'}>{n.value}</span>
+          <span class="mt-3 block text-sm leading-snug text-muted">{n.label}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <dl class="mt-8 grid gap-x-8 gap-y-4 border-t border-line pt-6 md:grid-cols-[9rem_1fr]">
+    {rows.map(([k, v]) => (
+      <>
+        <dt class="font-mono text-[0.72rem] uppercase tracking-wider text-muted md:pt-1">{k}</dt>
+        <dd class="leading-relaxed">{v}</dd>
+      </>
+    ))}
+  </dl>
+
+  {tldr.skills.length > 0 && (
+    <p class="mt-6 border-t border-line pt-5 font-mono text-[0.75rem] leading-relaxed text-muted">
+      {tldr.skills.join(' · ')}
+    </p>
+  )}
+</aside>

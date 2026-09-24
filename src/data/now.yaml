@@ -1,0 +1,25 @@
+# What I am doing now. Update the date whenever you change something.
+# Idea from nownownow.com: what you would tell a friend you had not seen in a year.
+updated: 2026-09-24
+intro: This page is about what I am doing now. If you are reading this long after the date above, I have probably forgotten to update it.
+sections:
+  - title: Looking for
+    items:
+      - A project manager role with customers or suppliers, ideally in high-tech hardware, semiconductors or energy.
+      - Somewhere in the Utrecht region or around Eindhoven, where I can stay for many years.
+      - Dutch citizen, so no visa sponsorship is needed.
+  - title: Working on
+    items:
+      - Rebuilding this website, and writing down the stories behind my CV.
+      - Keeping Deep Dive running and fixing what test users find.
+      # TODO(Vincent): add or remove items.
+  - title: Learning
+    items:
+      - How semiconductor equipment and high-tech manufacturing work, from suppliers to service.
+      - Improving my Dutch at work level, step by step.
+      # TODO(Vincent): add a course, book or certificate you are working on.
+  - title: Outside work
+    items:
+      - Hiking and swimming when the weather allows, which in the Netherlands is not always.
+      - Reading a mix of non-fiction and fantasy.
+      # TODO(Vincent): what are you reading, playing or planning right now?

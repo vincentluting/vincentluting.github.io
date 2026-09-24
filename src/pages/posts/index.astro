@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Section from '../../components/Section.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
+import Brush from '../../components/ink/Brush.astro';
 import PostCard from '../../components/blog/PostCard.astro';
 
 const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
@@ -10,13 +10,16 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
 );
 ---
 
-<BaseLayout title="Writing" description="Essays on AI, data and how to think about both, by Ting (Vincent) Lu.">
+<BaseLayout title="Writing" description="Writing by Ting (Vincent) Lu: about work, moving countries, and AI.">
   <Section class="pb-24">
-    <SectionHeading
-      eyebrow="Writing"
-      title="Some things I have written."
-      intro="I write now and then, mostly about AI and how it actually works underneath. Here are the pieces so far."
-    />
+    <div class="mb-12 max-w-3xl md:mb-16">
+      <p class="eyebrow mb-4">Writing</p>
+      <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>Some things I have written.</h1>
+      <Brush variant={2} />
+      <p class="mt-6 text-xl leading-relaxed text-muted">
+        I write now and then: about work, about moving between countries, and about AI and how it actually works underneath.
+      </p>
+    </div>
     <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post, i) => <PostCard post={post} index={i} />)}
     </div>

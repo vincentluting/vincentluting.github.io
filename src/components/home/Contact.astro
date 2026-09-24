@@ -1,23 +1,25 @@
 ---
 import Button from '../Button.astro';
+import Seal from '../ink/Seal.astro';
 import { site, cvUrl } from '../../data';
 ---
 
 <section id="contact" class="border-t border-line">
   <div class="container-page py-20 md:py-28">
-    <div class="max-w-3xl" data-reveal>
+    <div class="relative max-w-3xl" data-reveal>
       <p class="eyebrow mb-4">Contact</p>
       <h2 class="text-4xl font-medium leading-tight md:text-6xl">
         If you think I could be a good fit for your team,
-        <span class="text-accent">I would love to hear from you.</span>
+        <em class="font-normal text-accent">I would love to hear from you.</em>
       </h2>
       <p class="mt-6 max-w-xl text-lg text-muted">
         I live in Utrecht. Happy to meet in Utrecht, around Eindhoven, or on a call.
       </p>
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="mt-8 flex flex-wrap items-center gap-3">
         <Button href={`mailto:${site.email}`}>Email me</Button>
         <Button href={site.linkedin} variant="secondary" external>Connect on LinkedIn</Button>
         {cvUrl && <Button href={cvUrl} variant="secondary" download>Download CV</Button>}
+        <Seal size={56} stamp class="ml-2" />
       </div>
     </div>
   </div>

@@ -2,12 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Hero from '../components/home/Hero.astro';
-import Highlights from '../components/home/Highlights.astro';
+import MyStory from '../components/home/MyStory.astro';
+import StoriesTeaser from '../components/home/StoriesTeaser.astro';
+import WritingAndNow from '../components/home/WritingAndNow.astro';
 import LookingFor from '../components/home/LookingFor.astro';
-import SelectedExperience from '../components/home/SelectedExperience.astro';
-import FeaturedProject from '../components/home/FeaturedProject.astro';
-import Skills from '../components/home/Skills.astro';
-import WritingTeaser from '../components/home/WritingTeaser.astro';
+import Testimonials from '../components/home/Testimonials.astro';
 import Contact from '../components/home/Contact.astro';
 import { site } from '../data';
 import { education } from '../data';
@@ -31,11 +30,10 @@ const person = {
 <BaseLayout title={`${site.fullName} · ${site.role} in the Netherlands`} description={site.description}>
   <JsonLd slot="head" data={person} />
   <Hero />
-  <Highlights />
+  <MyStory />
+  <StoriesTeaser />
+  <WritingAndNow />
   <LookingFor />
-  <SelectedExperience />
-  <FeaturedProject />
-  <Skills />
-  <WritingTeaser />
+  <Testimonials />
   <Contact />
 </BaseLayout>

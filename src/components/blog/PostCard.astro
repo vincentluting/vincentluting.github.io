@@ -16,21 +16,21 @@ const cover = resolveImage(post.data.cover);
 ---
 
 <article class="group flex flex-col" data-reveal style={`--d: ${index * 70}ms`}>
-  <a href={href} class="block overflow-hidden rounded-2xl border border-line bg-surface">
+  <a href={href} class="deckle block overflow-hidden bg-surface" tabindex="-1" aria-hidden="true">
     {cover ? (
       <Image
         src={cover}
         alt={post.data.coverAlt ?? ''}
         width={720}
         densities={[1, 2]}
-        class="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+        class="aspect-[16/10] w-full object-cover sepia-[0.25] transition-[scale,filter] duration-700 ease-out-soft group-hover:scale-[1.03] group-hover:sepia-0"
       />
     ) : (
       <div class="aspect-[16/10] w-full"></div>
     )}
   </a>
   <div class="mt-5">
-    <p class="text-xs text-muted">
+    <p class="font-mono text-[0.72rem] text-muted">
       <FormattedDate date={post.data.date} /> · {minutes} min read
     </p>
     <h3 class="mt-2 text-xl font-medium leading-snug">

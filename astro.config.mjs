@@ -16,6 +16,7 @@ export default defineConfig({
     '/notes': '/posts',
     '/tags': '/posts',
     '/tags/ai': '/posts',
+    '/projects': '/stories',
   },
   markdown: {
     shikiConfig: {

@@ -32,14 +32,21 @@ const fullTitle = Astro.url.pathname === '/' ? title : `${title} · ${site.name}
     var root = document.documentElement;
     root.classList.toggle('dark', dark);
     root.classList.add('js');
+    // Motion: the visitor's own choice wins, then the OS reduced-motion setting.
+    var motion = null;
+    try { motion = localStorage.getItem('motion'); } catch (e) {}
+    if (motion !== 'on' && motion !== 'off') {
+      motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'off' : 'on';
+    }
+    root.dataset.motion = motion;
   })();
 </script>
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <meta name="author" content={site.fullName} />
 <link rel="canonical" href={canonical} />
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf9f6" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#17181d" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f0e6" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#16140f" />
 <meta name="color-scheme" content="light dark" />
 
 <link rel="icon" href="/favicon.ico" sizes="any" />
