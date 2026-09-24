@@ -5,7 +5,7 @@ Live at **https://vincentluting.github.io**.
 
 Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Newsreader +
 IBM Plex Mono). The design is "ink on handmade paper": a static paper grain, deckled photo edges,
-a vermilion VL seal, and a few small pieces of motion. There is no client-side framework; about
+a vermilion TL seal, and a few small pieces of motion. There is no client-side framework; about
 7 KB of JavaScript (gzipped) runs on the home page:
 
 | Effect | Where | Code |

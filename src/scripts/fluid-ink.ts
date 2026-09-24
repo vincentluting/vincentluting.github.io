@@ -56,8 +56,12 @@ void main(){
   float r=1.-exp(-d.g*gran*2.8);
   vec3 col=uRed*r+ink*a*(1.-r);
   float alpha=r+a*(1.-r);
-  // Keep the painting off the text column: fade out towards the left.
-  float keep=smoothstep(uFade,uFade+.22,vUv.x+(pa.r-.5)*.08);
+  // Keep the text column readable: ink behind the text shows as a faint
+  // wash, while the left margin and the space above and below it get full ink.
+  float jitter=(pa.r-.5)*.08;
+  float column=smoothstep(.07,.12,vUv.x+jitter)*(1.-smoothstep(uFade,uFade+.2,vUv.x+jitter));
+  column*=smoothstep(.06,.14,vUv.y+jitter)*(1.-smoothstep(.86,.93,vUv.y+jitter));
+  float keep=1.-column*.68;
   col*=keep*uOpacity;alpha*=keep*uOpacity;
   alpha=clamp(alpha+(h(vUv*vec2(1441.,911.))-.5)*uDither*step(.004,alpha),0.,1.);
   gl_FragColor=vec4(col,alpha);
@@ -115,11 +119,14 @@ function parseCssColor(value: string, fallback: Rgb): Rgb {
 const random = (min: number, max: number) => min + Math.random() * (max - min);
 
 /**
- * Where ink may appear, in canvas uv (y up). The portrait covers the middle
- * of the right half, so the painting lives in the space around it: the gap
- * next to the text, the right margin, and above and below the photo.
+ * Where ink may appear, in canvas uv (y up). The text sits on the left and
+ * the portrait in the middle of the right half, so the painting lives in the
+ * space around them: the left margin, under the text, the gap between text
+ * and photo, the right margin, and above and below the photo.
  */
 const ZONES = [
+  { x: [0.01, 0.08], y: [0.1, 0.9], weight: 2 },
+  { x: [0.1, 0.42], y: [0.02, 0.09], weight: 1 },
   { x: [0.47, 0.57], y: [0.22, 0.86], weight: 3 },
   { x: [0.89, 0.99], y: [0.12, 0.9], weight: 3 },
   { x: [0.6, 0.95], y: [0.87, 0.97], weight: 1 },
@@ -357,7 +364,8 @@ class FluidInk extends HTMLElement {
     // ---- splats --------------------------------------------------------
     const strength = Number(this.dataset.strength ?? "1") || 1;
     const autoFlow = this.dataset.auto !== "0";
-    // Fraction of the width, from the left, that is kept free of ink.
+    // Where the text column ends, as a fraction of the width. Ink behind
+    // the text is kept to a faint wash so it stays easy to read.
     const fadeLeft = Number(this.dataset.clear ?? "0.4");
     const queue: Splat[] = [];
     // Splats scheduled for later, so a brush stroke is laid down over time.
@@ -437,6 +445,7 @@ class FluidInk extends HTMLElement {
     // a lighter one below the photo, and one vermilion drop, like a seal.
     const opening = () => {
       stroke(0.94, 0.92, -Math.PI / 2 - 0.08, 0.8, 1, 150);
+      stroke(0.045, 0.2, Math.PI / 2 + 0.06, 0.65, 0.85, 600);
       drop(0.52, 0.62, 0.9, false, 900);
       drop(0.74, 0.08, 0.5, false, 1400);
       drop(0.9, 0.93, 0.6, true, 2000);
@@ -549,11 +558,12 @@ class FluidInk extends HTMLElement {
         }
         if (elapsed > nextStroke) {
           nextStroke = elapsed + random(6500, 10000);
-          // Either a vertical stroke down one of the side gaps, or a
-          // horizontal sweep under the photo.
+          // Either a vertical stroke down the left margin or one of the
+          // gaps on the right, or a horizontal sweep under the photo.
           if (Math.random() < 0.65) {
-            const right = Math.random() < 0.5;
-            stroke(right ? random(0.9, 0.97) : random(0.49, 0.55), random(0.75, 0.9), -Math.PI / 2 + random(-0.15, 0.15), random(0.4, 0.65), random(0.7, 1));
+            const side = Math.random();
+            const x = side < 0.34 ? random(0.02, 0.07) : side < 0.67 ? random(0.49, 0.55) : random(0.9, 0.97);
+            stroke(x, random(0.75, 0.9), -Math.PI / 2 + random(-0.15, 0.15), random(0.4, 0.65), random(0.7, 1));
           } else {
             stroke(random(0.58, 0.66), random(0.06, 0.12), random(-0.1, 0.12), random(0.5, 0.75), random(0.6, 0.9));
           }
