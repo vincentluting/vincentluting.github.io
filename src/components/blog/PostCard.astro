@@ -8,14 +8,14 @@ interface Props {
   post: CollectionEntry<'posts'>;
   index?: number;
 }
-const { post, index = 0 } = Astro.props;
+const { post } = Astro.props;
 const href = `/posts/${post.id}/`;
 const words = post.body?.split(/\s+/).length ?? 0;
 const minutes = Math.max(1, Math.ceil(words / 200));
 const cover = resolveImage(post.data.cover);
 ---
 
-<article class="group flex flex-col" data-reveal style={`--d: ${index * 70}ms`}>
+<article class="group flex flex-col" data-drop data-cursor="Read">
   <a href={href} class="deckle block overflow-hidden bg-surface" tabindex="-1" aria-hidden="true">
     {cover ? (
       <Image
@@ -23,7 +23,7 @@ const cover = resolveImage(post.data.cover);
         alt={post.data.coverAlt ?? ''}
         width={720}
         densities={[1, 2]}
-        class="aspect-[16/10] w-full object-cover sepia-[0.25] transition-[scale,filter] duration-700 ease-out-soft group-hover:scale-[1.03] group-hover:sepia-0"
+        class="aspect-[16/10] w-full object-cover grayscale-[0.7] sepia-[0.3] contrast-[1.05] transition-[scale,filter] duration-1000 ease-out-soft group-hover:scale-[1.04] group-hover:grayscale-0 group-hover:sepia-0 group-hover:contrast-100"
       />
     ) : (
       <div class="aspect-[16/10] w-full"></div>

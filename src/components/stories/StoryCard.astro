@@ -13,10 +13,11 @@ const href = `/stories/${story.id}/`;
 const tilt = ['-0.4deg', '0.35deg', '-0.2deg', '0.5deg'][index % 4];
 ---
 
-<div class="h-full" data-reveal style={`--d: ${index * 90}ms`}>
+<div class="h-full" data-drop data-tilt>
 <article
-  class="group sheet relative flex h-full flex-col p-6 transition-[rotate,translate] duration-500 ease-out-soft hover:-translate-y-1 hover:rotate-0 md:p-7"
+  class="group sheet relative flex h-full flex-col p-6 transition-[rotate,translate,box-shadow] duration-500 ease-out-soft hover:-translate-y-1 hover:rotate-0 hover:shadow-[0_1px_0_rgb(0_0_0/0.04),0_28px_50px_-26px_rgb(0_0_0/0.4)] md:p-7"
   style={`rotate: ${tilt}`}
+  data-cursor="Read"
 >
   <p class="eyebrow">{company} · {period}</p>
   <h3 class="mt-3 text-2xl font-medium leading-snug" style={`view-transition-name: ${storyTransition(story.id)}`}>

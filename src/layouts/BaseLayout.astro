@@ -7,6 +7,7 @@ import '../styles/global.css';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import InkCursor from '../components/InkCursor.astro';
 
 interface Props {
   title: string;
@@ -47,12 +48,18 @@ const props = Astro.props;
           <feFuncA type="table" tableValues="0 0 0.9 1 1" />
         </feComponentTransfer>
       </filter>
+      <!-- A torn, wicking edge for the cursor's wash. Static. -->
+      <filter id="ink-edge" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
     </svg>
     <Header />
     <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />
+    <InkCursor />
     <script src="../scripts/motion.ts"></script>
   </body>
 </html>

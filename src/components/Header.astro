@@ -14,7 +14,7 @@ const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
-<header class="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
+<header class="site-header sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md" data-header>
   <div class="container-page flex h-16 items-center justify-between gap-4">
     <a href="/" class="group flex items-center gap-2.5 text-ink" aria-label={`${site.name}, home`}>
       <Seal size={30} class="transition-transform duration-500 ease-stamp group-hover:rotate-[-12deg]" />

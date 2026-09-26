@@ -5,15 +5,19 @@ Live at **https://vincentluting.github.io**.
 
 Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Newsreader +
 IBM Plex Mono). The design is "ink on handmade paper": a static paper grain, deckled photo edges,
-a vermilion TL seal, and a few small pieces of motion. There is no client-side framework; about
-7 KB of JavaScript (gzipped) runs on the home page:
+a vermilion TL seal, and motion that feels like ink and paper. There is no client-side framework.
+About 7 KB of JavaScript (gzipped) runs on first load; a further ~53 KB cinematic layer
+(GSAP + Lenis) is fetched afterwards, and only while motion is on:
 
 | Effect | Where | Code |
 |---|---|---|
 | Ink drifting through water behind the hero (WebGL, desktop only) | Home | `src/scripts/fluid-ink.ts`, adapted from [astro-sumi](https://github.com/kpab/astro-sumi) (MIT, © 2026 kpab) |
 | Ink-bleed title reveal, brush strokes under headings, signature, seal stamp, scroll reveal | All pages | `src/scripts/motion.ts`, `src/styles/global.css` |
 | Hand-drawn circles around key numbers | Stories | `src/scripts/annotate.ts` ([rough-notation](https://roughnotation.com), MIT) |
-| Page transitions | All pages | CSS `@view-transition` (Chrome, Edge, Safari) |
+| Page transitions: the new page spreads out like ink on wet paper | All pages | CSS `@view-transition` (Chrome, Edge, Safari) |
+| Smooth scrolling, headings revealed line by line, cards dropped onto the page, hero parallax, signature written as you scroll, header that tucks away | All pages | `src/scripts/cinema.ts` ([GSAP](https://gsap.com) SplitText + ScrollTrigger, [Lenis](https://lenis.dev)) |
+| Ink cursor, magnetic buttons, cards that tip towards the pointer (mouse only) | All pages | `src/scripts/cursor.ts`, `src/components/InkCursor.astro` |
+| Hero portrait unrolled like a hanging scroll, drop cap drying into ink, reading progress thread | Home, stories, posts | `src/styles/global.css` (CSS only) |
 
 Everything is decoration on top of a complete page. Visitors can switch it off with the wave
 button in the header (saved in their browser), and it is off by default for people whose system

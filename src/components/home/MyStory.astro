@@ -12,13 +12,13 @@ const picks = [0, 2, 4].map((i) => about.intro[i]).filter(Boolean);
   <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
     <div class="lg:col-span-4" data-reveal>
       <p class="eyebrow mb-3">My story, short</p>
-      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]">Two years became nine.</h2>
+      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>Two years became nine.</h2>
       <Brush variant={0} />
     </div>
     <div class="lg:col-span-8">
       <div class="space-y-6 text-xl leading-[1.7] md:text-[1.35rem]">
         {picks.map((p, i) => (
-          <p data-reveal style={`--d: ${i * 80}ms`} class:list={[i === 0 && 'first-letter:float-left first-letter:mr-2 first-letter:font-display first-letter:text-[3.6em] first-letter:leading-[0.85] first-letter:text-accent']}>{p}</p>
+          <p data-reveal style={`--d: ${i * 80}ms`} class:list={[i === 0 && 'dropcap']} data-split={i === 0 ? undefined : 'body'}>{p}</p>
         ))}
       </div>
       <div class="mt-8 flex flex-wrap items-end justify-between gap-6">

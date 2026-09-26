@@ -8,7 +8,9 @@ const motionOn = () => root.dataset.motion === 'on';
 
 // ---- reveal on scroll -------------------------------------------------------
 const REVEAL = '[data-reveal], .brush, .signature, .seal-stamp';
-const revealAll = () => document.querySelectorAll(REVEAL).forEach((el) => el.classList.add('is-visible'));
+// Cards marked [data-drop] are placed by the cinematic layer (cinema.ts).
+const revealAll = () =>
+  document.querySelectorAll(`${REVEAL}, [data-drop]`).forEach((el) => el.classList.add('is-visible'));
 
 if (!motionOn() || !('IntersectionObserver' in window)) {
   revealAll();
@@ -65,10 +67,25 @@ toggles.forEach((btn) =>
       revealAll();
       title?.classList.remove('is-bleeding');
     }
+    cinema(next === 'on');
     syncToggles();
     window.dispatchEvent(new CustomEvent('motionchange', { detail: next }));
   }),
 );
+
+// ---- the cinematic layer (GSAP, Lenis, ink cursor) ------------------------------
+// Loaded only while motion is on. If it cannot load, the cards it would have
+// placed are simply shown.
+type Cinema = typeof import('./cinema');
+let cinemaModule: Promise<Cinema> | null = null;
+function cinema(on: boolean) {
+  if (!on && !cinemaModule) return;
+  cinemaModule ??= import('./cinema');
+  cinemaModule
+    .then((m) => (on ? m.start() : m.stop()))
+    .catch(() => document.querySelectorAll('[data-drop]').forEach((el) => el.classList.add('is-visible')));
+}
+if (motionOn()) cinema(true);
 
 // ---- page transitions ---------------------------------------------------------
 // The CSS @view-transition rule only checks the OS setting; respect the toggle too.

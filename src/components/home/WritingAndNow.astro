@@ -16,7 +16,7 @@ const nowPreview = now.sections.slice(0, 3).map((s) => ({ title: s.title, first:
     <div class="lg:col-span-7">
       <div data-reveal>
         <p class="eyebrow mb-3">Writing</p>
-        <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]">Things I have written.</h2>
+        <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>Things I have written.</h2>
         <Brush variant={2} />
       </div>
       <ol class="mt-8 divide-y divide-line border-y border-line">
@@ -39,8 +39,8 @@ const nowPreview = now.sections.slice(0, 3).map((s) => ({ title: s.title, first:
       </div>
     </div>
 
-    <aside class="lg:col-span-5" data-reveal style="--d: 120ms">
-      <a href="/now/" class="group sheet block rotate-[0.6deg] p-6 transition-transform duration-500 ease-out-soft hover:rotate-0 md:p-8">
+    <aside class="lg:col-span-5" data-reveal data-tilt style="--d: 120ms">
+      <a href="/now/" class="group sheet block rotate-[0.6deg] p-6 transition-[rotate] duration-500 ease-out-soft hover:rotate-0 md:p-8" data-cursor="Now">
         <p class="eyebrow flex items-center justify-between">
           <span>Now</span>
           <span>updated <FormattedDate date={now.updated} /></span>

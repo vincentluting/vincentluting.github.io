@@ -19,9 +19,9 @@ const facts = [
 ---
 
 <InkWash class="border-b border-line">
-  <section class="container-page pt-12 pb-16 md:pt-20 md:pb-24">
+  <section class="container-page pt-12 pb-16 md:pt-20 md:pb-24" data-hero>
     <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
-      <div class="lg:col-span-7">
+      <div class="lg:col-span-7" data-hero-text>
         <p class="eyebrow mb-6">{site.tagline}</p>
         <h1 class="text-6xl font-medium leading-[0.98] sm:text-7xl md:text-[5.6rem]" data-ink-title>
           Hi, I’m <em class="font-normal text-accent">{site.preferredName}</em>.
@@ -63,8 +63,8 @@ const facts = [
       </div>
 
       <div class="lg:col-span-5">
-        <figure class="relative mx-auto max-w-sm rotate-[1.2deg] lg:max-w-none">
-          <div class="deckle bg-paper p-3 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.45)]">
+        <figure class="relative mx-auto max-w-sm rotate-[1.2deg] lg:max-w-none" data-hero-sheet>
+          <div class="scroll-unroll deckle bg-paper p-3 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.45)]">
             <Image
               src={portrait}
               alt={`Portrait of ${site.fullName}`}

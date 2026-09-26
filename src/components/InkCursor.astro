@@ -1,0 +1,105 @@
+---
+/**
+ * Markup for the ink cursor. It stays hidden until src/scripts/cursor.ts
+ * sees a mouse move, and only when motion is on and the pointer is fine.
+ */
+---
+
+<div class="ink-cursor" data-ink-cursor aria-hidden="true">
+  <div class="ink-cursor__wash"><span class="ink-cursor__label"></span></div>
+  <div class="ink-cursor__dot"></div>
+</div>
+
+<style>
+  .ink-cursor {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    display: none;
+  }
+  :global(html[data-cursor-on]) .ink-cursor {
+    display: block;
+  }
+  .ink-cursor.is-away {
+    opacity: 0;
+  }
+  .ink-cursor__dot,
+  .ink-cursor__wash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    will-change: transform;
+  }
+  .ink-cursor__dot {
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    background: var(--ink);
+    transition: scale 0.35s var(--ease-stamp), background-color 0.25s ease, opacity 0.25s ease;
+  }
+  /* The wash: a soft ring with a torn, wicking edge (static filter). */
+  .ink-cursor__wash {
+    width: 38px;
+    height: 38px;
+    margin: -19px 0 0 -19px;
+    display: grid;
+    place-items: center;
+    border: 1px solid color-mix(in oklab, var(--ink) 38%, transparent);
+    background: color-mix(in oklab, var(--ink-wash) 6%, transparent);
+    filter: url(#ink-edge);
+    transition:
+      width 0.5s var(--ease-ink),
+      height 0.5s var(--ease-ink),
+      margin 0.5s var(--ease-ink),
+      background-color 0.4s ease,
+      border-color 0.4s ease,
+      opacity 0.3s ease;
+  }
+  .ink-cursor__label {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  /* Over links and buttons the wash spreads and takes on the seal's colour. */
+  [data-state='link'] .ink-cursor__wash {
+    width: 58px;
+    height: 58px;
+    margin: -29px 0 0 -29px;
+    border-color: color-mix(in oklab, var(--accent) 70%, transparent);
+    background: color-mix(in oklab, var(--accent) 14%, transparent);
+  }
+  [data-state='link'] .ink-cursor__dot {
+    background: var(--accent);
+    scale: 0.6;
+  }
+  /* Over cards: a full drop of vermilion with a word in it. */
+  [data-state='label'] .ink-cursor__wash {
+    width: 78px;
+    height: 78px;
+    margin: -39px 0 0 -39px;
+    border-color: transparent;
+    background: color-mix(in oklab, var(--accent) 92%, transparent);
+  }
+  [data-state='label'] .ink-cursor__label {
+    opacity: 1;
+  }
+  [data-state='label'] .ink-cursor__dot,
+  [data-state='text'] .ink-cursor__dot,
+  [data-state='text'] .ink-cursor__wash {
+    opacity: 0;
+  }
+  .is-pressed .ink-cursor__dot {
+    scale: 0.4;
+  }
+  .is-pressed .ink-cursor__wash {
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+  }
+</style>

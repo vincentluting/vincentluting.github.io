@@ -51,6 +51,7 @@
   --color-accent-2: var(--accent-2);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-ink: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ---------- Base ---------- */
@@ -69,6 +70,18 @@
     background-image: var(--paper-fibres), var(--paper-grain);
     background-size: 640px 640px, 220px 220px;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  /* Light falling on a sheet: the edges of the page sit a shade darker. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(120% 95% at 50% 38%, transparent 58%, color-mix(in oklab, var(--ink-pigment) 7%, transparent));
+  }
+  .dark body::before {
+    background: radial-gradient(120% 95% at 50% 38%, transparent 55%, rgb(0 0 0 / 0.35));
   }
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
@@ -181,21 +194,115 @@
 .seal-stamp { rotate: -4deg; }
 html[data-motion="off"] .animate-ping { animation: none; }
 
+/* Cards that the cinematic layer drops onto the page (src/scripts/cinema.ts).
+   Without it they fade in like everything else. */
+.js[data-motion="on"] [data-drop]:not(.is-visible) { opacity: 0; }
+.js[data-motion="on"]:not([data-cinema]) [data-drop] { transition: opacity 0.9s var(--ease-out-soft); }
+
+/* Split lines keep descenders and italics inside their mask. */
+.split-line { padding-bottom: 0.08em; margin-bottom: -0.08em; }
+
+/* Drop cap: a wet blot of vermilion that dries into a crisp letter. */
+.dropcap::first-letter {
+  float: left;
+  margin-right: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 3.6em;
+  line-height: 0.85;
+  color: var(--accent);
+}
+.js[data-motion="on"] .dropcap::first-letter {
+  color: transparent;
+  text-shadow: 0 0 18px color-mix(in oklab, var(--accent) 80%, transparent);
+  transition: color 1.4s var(--ease-ink) 0.2s, text-shadow 1.6s var(--ease-ink) 0.2s;
+}
+.js[data-motion="on"] .dropcap.is-visible::first-letter {
+  color: var(--accent);
+  text-shadow: 0 0 0 transparent;
+}
+
+/* Hero portrait: unrolled from the top like a hanging scroll. Pure CSS, so it
+   starts with the first paint and never waits for JavaScript. */
+.js[data-motion="on"] .scroll-unroll {
+  animation: unroll 1.5s var(--ease-ink) 0.25s both;
+}
+.js[data-motion="on"] .scroll-unroll img {
+  animation: unroll-img 2s var(--ease-ink) 0.25s both;
+}
+.js[data-motion="on"] .scroll-unroll ~ .seal-stamp {
+  transition-delay: 1.35s;
+}
+@keyframes unroll {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes unroll-img {
+  from { scale: 1.14; filter: grayscale(0.6) blur(2px); }
+}
+
+/* Reading progress: a thin vermilion thread down the right edge. Driven by
+   the scroll position itself, no JavaScript. */
+.read-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .js[data-motion="on"] .read-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 30;
+    width: 2px;
+    height: 100vh;
+    background: var(--accent);
+    transform-origin: 50% 0;
+    animation: read-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes read-progress {
+  from { scale: 1 0; }
+  to { scale: 1 1; }
+}
+
+/* Header: paper darkens once the page moves, and it tucks away while
+   reading downwards (classes set in cinema.ts). */
+.site-header {
+  transition: translate 0.5s var(--ease-ink), background-color 0.4s ease, box-shadow 0.4s ease;
+}
+.site-header.is-scrolled {
+  background-color: color-mix(in oklab, var(--paper) 94%, transparent);
+  box-shadow: 0 10px 30px -24px color-mix(in oklab, var(--ink) 60%, transparent);
+}
+.site-header.is-tucked { translate: 0 -100%; }
+
+/* The ink cursor replaces the pointer only while it is actually showing. */
+html[data-cursor-on],
+html[data-cursor-on] * { cursor: none; }
+html[data-cursor-on] :is(input, textarea, select, [contenteditable="true"]) { cursor: text; }
+
 /* Paper page transitions (Chromium and Safari; Firefox loads normally). */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
 }
+/* The old sheet softens and sinks; the new one spreads out from the middle
+   like ink soaking into wet paper. */
+@property --ink-r {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 150%;
+}
 ::view-transition-old(root) {
-  animation: 0.28s var(--ease-out-soft) both page-out;
+  animation: 0.5s var(--ease-out-soft) both page-out;
 }
 ::view-transition-new(root) {
-  animation: 0.45s var(--ease-out-soft) both page-in;
+  mask-image: radial-gradient(circle at 50% 42%, #000 var(--ink-r), transparent calc(var(--ink-r) + 18%));
+  animation: 0.75s var(--ease-ink) both page-in;
 }
 @keyframes page-out {
-  to { opacity: 0; translate: -1.5% 0; filter: blur(2px); }
+  to { opacity: 0; scale: 0.985; filter: blur(3px); }
 }
 @keyframes page-in {
-  from { opacity: 0; translate: 2% 0; filter: blur(2px); }
+  from { --ink-r: 0%; opacity: 0.4; filter: blur(2px); }
+  to { --ink-r: 150%; opacity: 1; filter: blur(0); }
 }
 
 /* ---------- Utilities ---------- */
@@ -217,14 +324,27 @@ html[data-motion="off"] .animate-ping { animation: none; }
 @utility hairline {
   border-color: var(--line);
 }
+/* A faint rule under the link; on hover a vermilion stroke is drawn over it
+   from the left, and on leaving it is lifted off to the right. */
 @utility ink-link {
   color: var(--ink);
   text-decoration-line: underline;
-  text-decoration-color: color-mix(in oklab, var(--accent) 70%, transparent);
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 4px;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
-  &:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 100% calc(100% - 0.02em);
+  background-size: 0% 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-bottom: 0.1em;
+  transition: color 0.3s ease, background-size 0.6s var(--ease-ink);
+  &:hover {
+    color: var(--accent);
+    background-position: 0% calc(100% - 0.02em);
+    background-size: 100% 2px;
+  }
 }
 
 /* ---------- Prose (posts, stories, pages) ---------- */
