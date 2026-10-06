@@ -1,12 +1,12 @@
 ---
-title: How I work
-description: "A short manual for working with Ting (Vincent) Lu: how he runs projects, communicates, handles problems and works between Chinese and Dutch teams."
-updated: 2026-09-24
+title: How I run a project
+description: "How I run projects, communicate, handle problems and work between Chinese and Dutch teams. What a new manager or teammate can expect from me."
+updated: 2026-09-28
 ---
 
-<!-- TODO(Vincent): Claude drafted this page from your About text and CV. It is written as "a user manual for working with me". Please read every line and change anything that does not sound like you. -->
+<!-- TODO(Vincent): Claude drafted this page from your About text and CV. Please read every line and change anything that does not sound like you, or delete it. -->
 
-This page is a short manual for working with me. It is what I would tell a new manager or teammate in our first week, so we can skip a few months of finding out.
+This page is about how I run projects and work with people. It is what I would tell a new manager or teammate in our first week, so we can skip a few months of finding out.
 
 ## What you can count on me for
 
@@ -17,7 +17,7 @@ This page is a short manual for working with me. It is what I would tell a new m
 
 ## How I run a project
 
-I start by agreeing on what "done" means, who decides, and who needs to be kept informed. Then I make the work visible: usually one tracker with owners and dates, reviewed every week. <!-- TODO(Vincent): true? -->
+I start by agreeing on what "done" means, who decides, and who needs to be kept informed. Then I make the work visible: usually one tracker with owners and dates, reviewed every week, like the readiness tracker in the [mailbox migration](/stories/mailbox-migration/). <!-- TODO(Vincent): true? -->
 
 I prefer short, regular check-ins over long status meetings. A good status update fits on one screen: what changed, what is at risk, and what I need from whom.
 
@@ -25,7 +25,7 @@ When a plan comes from far away, such as headquarters or a partner in another ti
 
 ## How I communicate
 
-- **Direct and friendly.** Living in the Netherlands for nine years has made me more direct. Growing up in China means I also notice what is not being said.
+- **Direct and friendly.** Living in the Netherlands since 2015 has made me more direct. Growing up in China means I also notice what is not being said.
 - **In writing first, then a call.** I like to send a short written summary before a meeting, so the meeting is for deciding, not for reading.
 - **In three languages.** I work in English, speak Dutch at B2 level (NT2 Staatsexamen II), and Mandarin is my native language. With Chinese suppliers or colleagues I can switch to Mandarin when it helps, and I can explain what a message really means to both sides.
 
@@ -41,8 +41,7 @@ I stay calm and start with facts: what happened, who is affected, and what we do
 
 ## What I am still working on
 
-- **Saying no sooner.** I like helping people, and sometimes I take on too much. I now write down what I agreed to, so it is easier to see when my plate is full.
-- **Staying longer in one place.** I have changed jobs more often than I would like. For my next role I want to go deep, stay for years and get really good at one field. <!-- TODO(Vincent): keep these two honest points, or replace them with your own. -->
+- **Saying no sooner.** I like helping people, and sometimes I take on too much. I now write down what I agreed to, so it is easier to see when my plate is full. <!-- TODO(Vincent): keep this honest point, or replace it with your own. -->
 
 ## What gives me energy
 

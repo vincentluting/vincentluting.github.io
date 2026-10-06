@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
   );
   return rss({
     title: `${site.fullName} · Writing`,
-    description: 'Essays on AI, data and how to think about both.',
+    description: 'Notes by Ting (Vincent) Lu.',
     site: context.site!,
     items: posts.map((post) => ({
       title: post.data.title,

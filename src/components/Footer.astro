@@ -4,12 +4,11 @@ import { site, cvUrl } from '../data';
 const year = new Date().getFullYear();
 
 const links = [
+  { label: 'About', href: '/about/' },
   { label: 'Stories', href: '/stories/' },
   { label: 'Writing', href: '/posts/' },
-  { label: 'About', href: '/about/' },
   { label: 'Now', href: '/now/' },
   { label: 'How I work', href: '/how-i-work/' },
-  { label: 'Experience', href: '/experience/' },
 ];
 ---
 
@@ -19,11 +18,9 @@ const links = [
       <Seal size={44} stamp />
       <div>
         <p class="font-display text-lg">{site.fullName}</p>
-        <p class="mt-1 text-muted">{site.role} · {site.location}</p>
+        <p class="mt-1 text-muted">{site.location}</p>
         <p class="mt-3 font-mono text-xs text-muted">
           Utrecht <span data-clock="Europe/Amsterdam">--:--</span>
-          <span aria-hidden="true" class="mx-1.5">·</span>
-          Shanghai <span data-clock="Asia/Shanghai">--:--</span>
         </p>
       </div>
     </div>
@@ -42,6 +39,6 @@ const links = [
     </ul>
   </div>
   <div class="container-page pb-8 font-mono text-[0.7rem] text-muted">
-    © {year} {site.name}. Made in Utrecht, with Astro.
+    © {year} {site.fullName}. Made in Utrecht, with Astro.
   </div>
 </footer>

@@ -17,7 +17,7 @@ const { Content } = await render(page);
   <Section class="pb-24">
     <div class="mx-auto max-w-3xl">
       <p class="eyebrow mb-4">
-        A manual for working with me{page.data.updated && <> · updated <FormattedDate date={page.data.updated} /></>}
+        How I work{page.data.updated && <> · updated <FormattedDate date={page.data.updated} /></>}
       </p>
       <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>{page.data.title}.</h1>
       <Brush variant={1} />
@@ -28,6 +28,7 @@ const { Content } = await render(page);
         <Seal size={40} stamp />
         <Button href={`mailto:${site.email}`}>Email me</Button>
         <Button href="/stories/" variant="secondary">Read my stories</Button>
+        <Button href={site.linkedin} variant="ghost" external>LinkedIn</Button>
       </div>
     </div>
   </Section>

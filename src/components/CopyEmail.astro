@@ -1,0 +1,42 @@
+---
+/**
+ * The email address as plain, selectable text with a small Copy button.
+ * A mailto link alone dead-ends for people without a mail app; the text and
+ * the link keep working with JavaScript off, the button only adds copying.
+ */
+import { site } from '../data';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<p class:list={['flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.84rem]', className]} data-copy-email>
+  <a class="ink-link" href={`mailto:${site.email}`}>{site.email}</a>
+  <button
+    type="button"
+    class="hidden rounded-full border border-line px-2.5 py-0.5 text-[0.75rem] text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    data-copy={site.email}
+  >
+    Copy
+  </button>
+  <span class="text-[0.75rem] text-muted" aria-live="polite" data-copy-status></span>
+</p>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    if (!navigator.clipboard) return;
+    btn.classList.remove('hidden');
+    const status = btn.parentElement?.querySelector<HTMLElement>('[data-copy-status]');
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+        if (status) status.textContent = 'Copied';
+      } catch {
+        if (status) status.textContent = 'Select the address to copy it';
+      }
+      window.setTimeout(() => status && (status.textContent = ''), 2500);
+    });
+  });
+</script>

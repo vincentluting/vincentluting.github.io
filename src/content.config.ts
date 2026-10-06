@@ -12,6 +12,8 @@ const posts = defineCollection({
     draft: z.boolean().default(false),
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
+    /** Shown at the top of the post, e.g. "Written in 2024, in the first months of my MBA." */
+    note: z.string().nullish(),
   }),
 });
 
@@ -23,6 +25,8 @@ const stories = defineCollection({
   loader: glob({ base: './src/content/stories', pattern: '**/*.md' }),
   schema: z.object({
     title: z.string(),
+    /** Short title for the browser tab and Google (about 45 characters). */
+    shortTitle: z.string().nullish(),
     summary: z.string(),
     company: z.string(),
     role: z.string(),
@@ -37,7 +41,9 @@ const stories = defineCollection({
       myRole: z.string(),
       team: z.string().nullish(),
       stakeholders: z.string().nullish(),
-      numbers: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
+      numbers: z
+        .array(z.object({ value: z.string(), label: z.string(), how: z.string().nullish() }))
+        .default([]),
       skills: z.array(z.string()).default([]),
     }),
     links: z.array(z.object({ label: z.string(), href: z.string() })).nullish().transform((v) => v ?? []),

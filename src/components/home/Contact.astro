@@ -1,26 +1,27 @@
 ---
 import Button from '../Button.astro';
+import CopyEmail from '../CopyEmail.astro';
 import Seal from '../ink/Seal.astro';
-import { site, cvUrl } from '../../data';
+import { site } from '../../data';
 ---
 
-<section id="contact" class="border-t border-line">
+<section id="contact" class="scroll-mt-20 border-t border-line">
   <div class="container-page py-20 md:py-28">
     <div class="relative max-w-3xl" data-reveal>
-      <p class="eyebrow mb-4">Contact</p>
+      <p class="eyebrow mb-4">Say hello</p>
       <h2 class="text-4xl font-medium leading-tight md:text-6xl" data-settle>
-        If you think I could be a good fit for your team,
-        <em class="font-normal text-accent">I would love to hear from you.</em>
+        If something here made you think of something,
+        <em class="font-normal text-accent">I would be glad to hear it.</em>
       </h2>
       <p class="mt-6 max-w-xl text-lg text-muted">
-        I live in Utrecht. Happy to meet in Utrecht, around Eindhoven, or on a call.
+        You can write to me in English, Dutch or Chinese. I live in Utrecht, so a coffee there is also an option.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3">
         <Button href={`mailto:${site.email}`}>Email me</Button>
-        <Button href={site.linkedin} variant="secondary" external>Connect on LinkedIn</Button>
-        {cvUrl && <Button href={cvUrl} variant="secondary" download>Download CV</Button>}
+        <Button href={site.linkedin} variant="secondary" external>LinkedIn</Button>
         <Seal size={56} stamp class="ml-2" />
       </div>
+      <CopyEmail class="mt-5" />
     </div>
   </div>
 </section>

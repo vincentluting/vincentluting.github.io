@@ -7,15 +7,17 @@ import { resolveImage } from '../../lib/images';
 interface Props {
   post: CollectionEntry<'posts'>;
   index?: number;
+  headingLevel?: 2 | 3;
 }
-const { post } = Astro.props;
+const { post, headingLevel = 3 } = Astro.props;
+const H = headingLevel === 2 ? 'h2' : 'h3';
 const href = `/posts/${post.id}/`;
 const words = post.body?.split(/\s+/).length ?? 0;
 const minutes = Math.max(1, Math.ceil(words / 200));
 const cover = resolveImage(post.data.cover);
 ---
 
-<article class="group flex flex-col" data-drop data-cursor="Read">
+<article class="group flex flex-col" data-drop>
   <a href={href} class="deckle block overflow-hidden bg-surface" tabindex="-1" aria-hidden="true">
     {cover ? (
       <Image
@@ -30,12 +32,12 @@ const cover = resolveImage(post.data.cover);
     )}
   </a>
   <div class="mt-5">
-    <p class="font-mono text-[0.72rem] text-muted">
+    <p class="font-mono text-[0.75rem] text-muted">
       <FormattedDate date={post.data.date} /> · {minutes} min read
     </p>
-    <h3 class="mt-2 text-xl font-medium leading-snug">
+    <H class="mt-2 text-xl font-medium leading-snug">
       <a href={href} class="transition-colors group-hover:text-accent">{post.data.title}</a>
-    </h3>
+    </H>
     <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
   </div>
 </article>

@@ -1,7 +1,8 @@
 /**
- * The cinematic layer: smooth scrolling (Lenis), line-by-line text reveals
- * (GSAP SplitText) and scroll-linked scenes (GSAP ScrollTrigger), plus the
- * ink cursor on fine pointers.
+ * The cinematic layer: line-by-line text reveals (GSAP SplitText) and
+ * scroll-linked scenes (GSAP ScrollTrigger), plus the ink cursor on fine
+ * pointers. Scrolling itself is left to the browser: smooth-scroll libraries
+ * make reading and keyboard scrolling harder, so there is none.
  *
  * motion.ts loads this module only while motion is on, so visitors who turn
  * motion off (or ask their OS for less) never download it. Everything here is
@@ -11,8 +12,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
 import { startCursor } from './cursor';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -20,25 +19,15 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const root = document.documentElement;
 const EASE = 'expo.out';
 
-let lenis: Lenis | null = null;
+let running = false;
 let mm: gsap.MatchMedia | null = null;
 let stopCursor: (() => void) | null = null;
 const splits: SplitText[] = [];
-
-const raf = (time: number) => lenis?.raf(time * 1000);
 
 const inView = (el: Element) => {
   const r = el.getBoundingClientRect();
   return r.top < innerHeight * 0.92 && r.bottom > 0;
 };
-
-// ---- smooth scroll ------------------------------------------------------------
-function startLenis() {
-  lenis = new Lenis({ lerp: 0.09, anchors: true, autoRaf: false });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(raf);
-  gsap.ticker.lagSmoothing(0);
-}
 
 // ---- headings and paragraphs, line by line -----------------------------------
 // Only text that is still below the fold is split, so nothing the visitor is
@@ -54,9 +43,9 @@ function splitLines() {
       linesClass: 'split-line',
       onSplit(self) {
         return gsap.from(self.lines, {
+          // Body text only moves; it is never hidden, so it can always be read.
           yPercent: body ? 0 : 105,
           y: body ? 14 : 0,
-          opacity: body ? 0 : 1,
           duration: body ? 0.9 : 1.1,
           stagger: body ? 0.05 : 0.08,
           ease: EASE,
@@ -144,10 +133,13 @@ function headerScene() {
   return () => header.classList.remove('is-scrolled', 'is-tucked');
 }
 
+// Reading pages keep a plain pointer: no trail over the text people read.
+const readingPage = () => /^\/(stories|posts)\/./.test(location.pathname);
+
 export function start() {
-  if (lenis) return;
+  if (running) return;
+  running = true;
   root.dataset.cinema = '';
-  startLenis();
   mm = gsap.matchMedia();
   let resetHeader: (() => void) | undefined;
   mm.add('all', () => {
@@ -159,20 +151,18 @@ export function start() {
     return () => resetHeader?.();
   });
   mm.add('(min-width: 1024px)', () => heroScene());
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) stopCursor = startCursor();
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !readingPage()) stopCursor = startCursor();
   // Fonts change line breaks; measure again once they are in.
   document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
 
 export function stop() {
-  if (!lenis) return;
+  if (!running) return;
+  running = false;
   delete root.dataset.cinema;
   stopCursor?.();
   stopCursor = null;
   splits.splice(0).forEach((s) => s.revert());
   mm?.revert();
   mm = null;
-  gsap.ticker.remove(raf);
-  lenis.destroy();
-  lenis = null;
 }

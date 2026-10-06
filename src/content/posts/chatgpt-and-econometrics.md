@@ -3,6 +3,7 @@ title: "The Connection Between ChatGPT and Econometrics: Data, Models, and the F
 description: "What a language model and a regression have in common: data, probability and optimisation, and where causal inference sets them apart."
 date: 2024-10-31
 tags: ["ai"]
+note: "Written in 2024, in the first months of my MBA."
 cover: /src/assets/uploads/posts/chatgpt-and-econometrics.webp
 coverAlt: "Illustration linking language models and econometric charts"
 ---

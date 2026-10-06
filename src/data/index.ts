@@ -11,18 +11,9 @@ import { join } from 'node:path';
 import type { z } from 'astro/zod';
 import siteRaw from './site.yaml?raw';
 import aboutRaw from './about.yaml?raw';
-import experienceRaw from './experience.yaml?raw';
-import skillsRaw from './skills.yaml?raw';
 import nowRaw from './now.yaml?raw';
 import testimonialsRaw from './testimonials.yaml?raw';
-import {
-  AboutSchema,
-  ExperienceFileSchema,
-  NowSchema,
-  TestimonialsFileSchema,
-  SiteSchema,
-  SkillsFileSchema,
-} from './types';
+import { AboutSchema, NowSchema, TestimonialsFileSchema, SiteSchema } from './types';
 
 function load<T extends z.ZodTypeAny>(file: string, schema: T, raw: string): z.infer<T> {
   let data: unknown;
@@ -54,15 +45,6 @@ export const cvUrl: string | undefined = (() => {
 })();
 export const about = load('about.yaml', AboutSchema, aboutRaw);
 
-const experienceFile = load('experience.yaml', ExperienceFileSchema, experienceRaw);
-export const experience = experienceFile.jobs;
-export const education = experienceFile.education;
-export const certifications = experienceFile.certifications;
-export const featuredExperience = experience.filter((e) => e.featured);
-
-const skillsFile = load('skills.yaml', SkillsFileSchema, skillsRaw);
-export const skills = skillsFile.groups;
-export const highlights = skillsFile.highlights;
 
 export const now = load('now.yaml', NowSchema, nowRaw);
 export const testimonials = load('testimonials.yaml', TestimonialsFileSchema, testimonialsRaw).items;

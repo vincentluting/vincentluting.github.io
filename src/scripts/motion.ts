@@ -17,8 +17,21 @@ if (!motionOn() || !('IntersectionObserver' in window)) {
 } else {
   // Elements that start fully clipped (brush strokes, the signature) never
   // count as intersecting, so watch their parent and reveal them through it.
+  // Fail open: anything already on screen is marked visible before the hidden
+  // state is armed, so text the visitor can see is never hidden, and if this
+  // script never runs nothing is hidden at all.
+  const onScreen = (el: Element) => {
+    const r = el.getBoundingClientRect();
+    return r.top < innerHeight && r.bottom > 0;
+  };
+  document.querySelectorAll(REVEAL).forEach((el) => {
+    const watch = el.matches('.brush, .signature') && el.parentElement ? el.parentElement : el;
+    if (onScreen(watch)) el.classList.add('is-visible');
+  });
+  root.dataset.revealArmed = '';
   const targets = new Map<Element, Element[]>();
   document.querySelectorAll(REVEAL).forEach((el) => {
+    if (el.classList.contains('is-visible')) return;
     const watch = el.matches('.brush, .signature') && el.parentElement ? el.parentElement : el;
     targets.set(watch, [...(targets.get(watch) ?? []), el]);
   });
@@ -73,7 +86,7 @@ toggles.forEach((btn) =>
   }),
 );
 
-// ---- the cinematic layer (GSAP, Lenis, ink cursor) ------------------------------
+// ---- the cinematic layer (GSAP line reveals, scroll scenes, ink cursor) ----------
 // Loaded only while motion is on. If it cannot load, the cards it would have
 // placed are simply shown.
 type Cinema = typeof import('./cinema');
@@ -97,7 +110,7 @@ const skipIfOff = (event: Event) => {
 window.addEventListener('pageswap', skipIfOff);
 window.addEventListener('pagereveal', skipIfOff);
 
-// ---- two clocks in the footer -------------------------------------------------
+// ---- clock in the footer -------------------------------------------------
 const clocks = document.querySelectorAll<HTMLElement>('[data-clock]');
 if (clocks.length) {
   const tick = () =>
@@ -110,10 +123,4 @@ if (clocks.length) {
     });
   tick();
   window.setInterval(tick, 30_000);
-}
-
-// ---- hand-drawn marks on key numbers (stories only) -----------------------------
-const marks = document.querySelectorAll<HTMLElement>('[data-annotate]');
-if (marks.length) {
-  import('./annotate').then((m) => m.annotate(marks, motionOn()));
 }

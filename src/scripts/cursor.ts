@@ -1,7 +1,7 @@
 /**
  * The ink cursor (fine pointers only): a drop of ink that follows the pointer
  * and a wash around it that trails behind. Over links the wash spreads and
- * turns vermilion; over cards it carries a small label. Buttons marked
+ * turns vermilion. The system pointer always stays visible. Buttons marked
  * [data-magnetic] lean towards the pointer, and cards marked [data-tilt]
  * tip slightly like a sheet lifted by one corner.
  *
@@ -52,9 +52,6 @@ export function startCursor(): () => void {
       const target = e.target as Element | null;
       if (target?.closest(TEXT_INPUT)) return setState('text');
       const hit = target?.closest<HTMLElement>(INTERACTIVE);
-      if (hit?.dataset.cursor) return setState('label', hit.dataset.cursor);
-      const labelled = target?.closest<HTMLElement>('[data-cursor]');
-      if (labelled) return setState('label', labelled.dataset.cursor);
       setState(hit ? 'link' : '');
     },
     on,

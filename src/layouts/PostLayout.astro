@@ -17,7 +17,7 @@ interface Props {
   minutes: number;
 }
 const { post, prev, next, minutes } = Astro.props;
-const { title, description, date, tags, coverAlt } = post.data;
+const { title, description, date, tags, coverAlt, note } = post.data;
 const cover = resolveImage(post.data.cover);
 
 const og = cover ? await getImage({ src: cover, format: 'jpg', width: 1200, quality: 82 }) : undefined;
@@ -36,7 +36,7 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
       image: new URL(ogPath, site.url).toString(),
       url: canonical,
       mainEntityOfPage: canonical,
-      author: { '@type': 'Person', name: site.fullName, url: site.url },
+      author: { '@id': `${site.url}/#person` },
     }}
   />
   <div class="read-progress" aria-hidden="true"></div>
@@ -50,6 +50,7 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
       <h1 class="mt-5 text-4xl font-medium leading-[1.08] md:text-[3.4rem]" data-ink-title>{title}</h1>
       <Brush variant={1} />
       <p class="mt-6 text-xl leading-relaxed text-muted">{description}</p>
+      {note && <p class="mt-4 border-l-2 border-accent pl-3 font-mono text-[0.8rem] text-muted">{note}</p>}
       {tags.length > 0 && (
         <div class="mt-5 flex flex-wrap gap-2">
           {tags.map((t) => <Tag>#{t}</Tag>)}

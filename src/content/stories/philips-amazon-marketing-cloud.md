@@ -1,10 +1,11 @@
 ---
-title: "Working with Amazon Ads and AWS to build three new features our media teams needed"
-summary: "As Product Owner at Philips, I sat between our media teams and two very large partners. We shipped three new features on the Amazon Marketing Cloud platform and four dashboards, and campaigns became faster to set up and performed better."
+title: "Asking Amazon for the features our media teams needed"
+shortTitle: "Asking Amazon for new features"
+summary: "As Product Owner at Philips, I sat between our media teams and two very large partners. We shipped three new features on the Amazon Marketing Cloud platform and four dashboards. Campaign activation became 15% more productive, and campaign performance improved by 10%."
 company: Philips
 role: Product Owner, Amazon Ads Dashboards
 period: 2021 – 2023
-order: 4
+order: 5
 job: philips
 tldr:
   context: "Philips runs a lot of advertising on Amazon. The media teams needed better data on their audiences and campaigns than the standard tools gave them."
@@ -14,28 +15,31 @@ tldr:
   numbers:
     - value: "3"
       label: new features on Amazon Marketing Cloud
+      how: ""
     - value: "+15%"
       label: campaign activation productivity
+      how: ""
     - value: "+10%"
       label: campaign performance
+      how: ""
   skills:
-    - Product ownership
     - Partner management
     - Requirements
+    - Delivery with engineers
     - Dashboards and SQL
 ---
 
-<!-- TODO(Vincent): Claude drafted this from your CV. Facts: Product Owner, 3 new AMC features designed and launched with Amazon Ads and AWS, 4 marketing dashboards built with engineers (+15% campaign activation productivity), insights on audience segmentation and ad frequency (+10% campaign performance), worked with media and analytics teams on targeting and ROI. Everything else is a guess and marked TODO. -->
+<!-- TODO(Vincent): Claude drafted this from your CV. Facts: Product Owner, 3 new AMC features designed and launched with Amazon Ads and AWS, 4 marketing dashboards built with engineers (+15% campaign activation productivity), insights on audience segmentation and ad frequency (+10% campaign performance), worked with media and analytics teams on targeting and ROI. Everything else is a guess. -->
 
 ## The situation
 
-Amazon Marketing Cloud (AMC) is a place where advertisers can analyse how their campaigns on Amazon really perform. In 2021 it was still young. Philips had big plans for advertising on Amazon, but our media teams kept running into things the platform could not do yet.
+Amazon Marketing Cloud (AMC) is a place where advertisers can analyse how their campaigns on Amazon really perform. In 2021 it was still young. Philips had big plans for advertising on Amazon, but our media teams kept running into things the platform could not do yet. <!-- TODO(Vincent): confirm. -->
 
-I was the Product Owner for our Amazon Ads dashboards. That meant two directions of work: build what we could ourselves, and get Amazon to build what only they could.
+I was the Product Owner for our Amazon Ads dashboards. That meant two directions of work: build what we could ourselves, and work with Amazon on what only they could build.
 
 ## The hard part
 
-When your partner is Amazon, you are one customer among thousands. Asking for a new feature is not like asking a supplier. You need a very clear case, you need to show why it matters to more than just you, and you need patience.
+Philips was one advertiser among many, so a feature request to Amazon needed a very clear case and patience. <!-- TODO(Vincent): true? -->
 
 Inside Philips, the media teams spoke the language of campaigns and budgets. The engineers spoke the language of data models and queries. Somebody had to translate in both directions without losing the point.
 
@@ -52,13 +56,3 @@ Inside Philips, the media teams spoke the language of campaigns and budgets. The
 ## What came out of it
 
 Three new features on the AMC platform, built together with Amazon Ads and AWS. Four dashboards that made campaign activation about 15% more productive. And campaign performance improved by about 10% after the targeting and frequency changes.
-
-## What I would do differently
-
-<!-- TODO(Vincent): this reflection is Claude's guess. Replace it with what you really learned. -->
-
-I would involve the media teams in the review of every release, not only at the start. When they saw the dashboards early, they gave the best feedback. When they only saw the final version, some small things had to be changed afterwards.
-
-## Why this matters for the work I want to do next
-
-Working with a large partner is a skill. You need a clear case, a good relationship with the people on their side, and the patience to follow up. It is the same whether the partner is a tech platform or a supplier of machine parts.

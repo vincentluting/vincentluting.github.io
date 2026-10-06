@@ -78,18 +78,8 @@
     background: var(--accent);
     scale: 0.6;
   }
-  /* Over cards: a full drop of vermilion with a word in it. */
-  [data-state='label'] .ink-cursor__wash {
-    width: 78px;
-    height: 78px;
-    margin: -39px 0 0 -39px;
-    border-color: transparent;
-    background: color-mix(in oklab, var(--accent) 92%, transparent);
-  }
-  [data-state='label'] .ink-cursor__label {
-    opacity: 1;
-  }
-  [data-state='label'] .ink-cursor__dot,
+  /* The real pointer sits where the dot would be, so the dot stays hidden. */
+  .ink-cursor__dot,
   [data-state='text'] .ink-cursor__dot,
   [data-state='text'] .ink-cursor__wash {
     opacity: 0;

@@ -3,6 +3,7 @@ title: "Exploring Core AI Technologies: Applications and Frontline Innovations"
 description: "A tour of the AI technologies beyond large language models: computer vision, NLP and speech, reinforcement learning, and where each is already changing industries."
 date: 2024-11-03
 tags: ["ai"]
+note: "Written in 2024, in the first months of my MBA."
 cover: /src/assets/uploads/posts/ai-core-techs.webp
 coverAlt: "Abstract illustration of interconnected AI systems"
 ---

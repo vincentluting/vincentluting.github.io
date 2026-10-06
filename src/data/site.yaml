@@ -2,38 +2,24 @@ name: Ting Lu
 preferredName: Ting
 fullName: Ting (Vincent) Lu
 role: Project Manager
-tagline: Project Manager · Customers, suppliers and delivery
-headline: I work with customers, suppliers and delivery teams until the thing is
-  live and being used.
-lead: Hi, I’m Ting. For eight years I have worked in the Netherlands at Huawei,
-  Amazon, Philips and Tencent. I helped external vendors grow on Amazon,
-  launched new platform features with Amazon Ads and AWS, and was the IT partner
-  for three game studios at Tencent. I speak Mandarin, English and Dutch, and I
-  have an MBA in AI. Now I am looking for a place to stay for the long run,
-  ideally in high-tech hardware.
+tagline: Utrecht, the Netherlands
+headline: I grew up in China, came to the Netherlands in 2015 to study Dutch, and stayed. I work on projects with people in many countries. This is where I keep a few stories, some notes, and what I am doing now.
 location: Utrecht, the Netherlands
-availability: Open to new roles
-workAuthorization: no visa sponsorship required
 email: vincentluting@gmail.com
 linkedin: https://www.linkedin.com/in/vincentluting
 deepDive: https://www.deepdivecareer.com
 portrait: /src/assets/uploads/portrait.webp
-cvPath: /cv/Ting Lu_CV.pdf
+cvPath: ""
 url: https://vincentluting.github.io
-description: Ting (Vincent) Lu is a project manager in Utrecht, the Netherlands.
-  Eight years in the Netherlands at Huawei, Amazon, Philips and Tencent, working
-  with customers, suppliers and delivery teams. Mandarin, English and Dutch. MBA
-  in AI, and builder of the Deep Dive career platform.
+description: Personal website of Ting (Vincent) Lu in Utrecht. Stories from work and from moving countries, notes, and what I am doing now.
+googleSiteVerification: ""
 languages:
-  - name: English
-    level: C1
-  - name: Dutch
-    level: B2 · NT2 Staatsexamen II · MA Dutch Linguistics
   - name: Mandarin
     level: Native
-companies:
-  - Huawei
-  - Amazon
-  - Philips
-  - Tencent
-  - University of Amsterdam
+    short: native
+  - name: English
+    level: C1
+    short: C1
+  - name: Dutch
+    level: B2 · NT2 Staatsexamen II · MA Dutch Linguistics
+    short: B2, NT2 II

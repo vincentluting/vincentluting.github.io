@@ -1,39 +1,54 @@
 ---
+import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Hero from '../components/home/Hero.astro';
 import MyStory from '../components/home/MyStory.astro';
 import StoriesTeaser from '../components/home/StoriesTeaser.astro';
 import WritingAndNow from '../components/home/WritingAndNow.astro';
-import LookingFor from '../components/home/LookingFor.astro';
-import Testimonials from '../components/home/Testimonials.astro';
 import Contact from '../components/home/Contact.astro';
+import { resolveImage } from '../lib/images';
 import { site } from '../data';
-import { education } from '../data';
 
-const person = {
-  '@type': 'Person',
-  name: site.fullName,
-  givenName: 'Ting',
-  familyName: 'Lu',
-  alternateName: 'Vincent Lu',
-  jobTitle: site.role,
-  url: site.url,
-  image: new URL('/og-default.png', site.url).toString(),
-  sameAs: [site.linkedin, site.deepDive],
-  knowsLanguage: ['en', 'zh', 'nl'],
-  address: { '@type': 'PostalAddress', addressLocality: 'Utrecht', addressCountry: 'NL' },
-  alumniOf: education.map((e) => ({ '@type': 'CollegeOrUniversity', name: e.school })),
+// One Person entity for the whole site. /about/ and every story refer to it
+// by its @id, so search engines see one person, not several.
+const portrait = await getImage({ src: resolveImage(site.portrait), width: 800, format: 'jpg' });
+const personId = `${site.url}/#person`;
+const graph = {
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      name: site.fullName,
+      alternateName: ['Ting Lu', 'Vincent Lu'],
+      url: `${site.url}/`,
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.fullName,
+      givenName: 'Ting',
+      familyName: 'Lu',
+      alternateName: ['Ting Lu', 'Vincent Lu'],
+      jobTitle: site.role,
+      description: site.description,
+      url: `${site.url}/`,
+      image: new URL(portrait.src, site.url).toString(),
+      email: `mailto:${site.email}`,
+      sameAs: [site.linkedin, 'https://github.com/vincentluting', site.deepDive],
+      knowsLanguage: ['zh', 'en', 'nl'],
+      address: { '@type': 'PostalAddress', addressLocality: 'Utrecht', addressCountry: 'NL' },
+    },
+  ],
 };
 ---
 
-<BaseLayout title={`${site.fullName} · ${site.role} in the Netherlands`} description={site.description}>
-  <JsonLd slot="head" data={person} />
+<BaseLayout title={`${site.fullName} · Utrecht`} description={site.description}>
+  <JsonLd slot="head" data={graph} />
   <Hero />
   <MyStory />
-  <StoriesTeaser />
   <WritingAndNow />
-  <LookingFor />
-  <Testimonials />
+  <StoriesTeaser />
   <Contact />
 </BaseLayout>

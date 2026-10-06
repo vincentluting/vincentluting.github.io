@@ -149,6 +149,14 @@ class FluidInk extends HTMLElement {
   private booted = false;
   private started = false;
   private paused = false;
+  /** Restarts the frame loop after it went to sleep (off-screen, hidden tab, idle). */
+  private wake: () => void = () => {};
+
+  /** Weak laptops and data-saver mode keep the static wash instead. */
+  private static lowPower(): boolean {
+    const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+    return (nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4 || Boolean(nav.connection?.saveData);
+  }
 
   connectedCallback(): void {
     if (this.booted) return;
@@ -159,14 +167,15 @@ class FluidInk extends HTMLElement {
     const onMotion = (event: Event) => {
       const on = (event as CustomEvent<string>).detail === "on";
       this.paused = !on;
-      if (on && !this.started && !window.matchMedia(SMALL_SCREEN).matches) this.schedule();
+      if (on && !this.started && !window.matchMedia(SMALL_SCREEN).matches && !FluidInk.lowPower()) this.schedule();
+      if (on) this.wake();
     };
     window.addEventListener("motionchange", onMotion);
     this.cleanups.push(() => window.removeEventListener("motionchange", onMotion));
 
     // On phones the hero is one column of text, so the ink would sit right
     // behind it; the static wash is enough there, and it saves battery.
-    if (window.matchMedia(SMALL_SCREEN).matches) return;
+    if (window.matchMedia(SMALL_SCREEN).matches || FluidInk.lowPower()) return;
 
     if (document.documentElement.dataset.motion === "off") {
       this.paused = true;
@@ -460,6 +469,8 @@ class FluidInk extends HTMLElement {
       };
       const onPointerMove = (event: PointerEvent) => {
         const { x, y } = toUv(event);
+        lastInput = performance.now();
+        this.wake();
         if (last) {
           const dx = (x - last.x) * 900;
           const dy = (y - last.y) * 900;
@@ -477,6 +488,8 @@ class FluidInk extends HTMLElement {
         const target = event.target as Element | null;
         if (target?.closest("a, button, img, h1, p, dl")) return;
         const { x, y } = toUv(event);
+        lastInput = performance.now();
+        this.wake();
         clicks += 1;
         drop(x, y, 0.9, clicks % 4 === 0);
       };
@@ -492,12 +505,24 @@ class FluidInk extends HTMLElement {
     }
 
     // ---- frame loop ----------------------------------------------------
+    // The loop sleeps (no requestAnimationFrame at all) while the hero is
+    // off-screen, the tab is hidden, motion is off, or nobody has touched the
+    // ink for a while after the opening. The last frame stays on screen.
     let visible = true;
+    let lastInput = performance.now();
     const visibility = new IntersectionObserver((entries) => {
       visible = entries[0]?.isIntersecting ?? false;
+      if (visible) this.wake();
     });
     visibility.observe(this);
     this.observers.push(visibility);
+    const onVisibility = () => {
+      if (!document.hidden) this.wake();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    this.cleanups.push(() => document.removeEventListener("visibilitychange", onVisibility));
+    const IDLE_AFTER = 14000; // ms since the opening began
+    const IDLE_INPUT = 9000; // ms without pointer input
 
     const resize = (): boolean => {
       const rect = this.getBoundingClientRect();
@@ -523,18 +548,21 @@ class FluidInk extends HTMLElement {
     let started = lastFrame;
 
     const frame = (now: number) => {
-      this.frameHandle = requestAnimationFrame(frame);
+      this.frameHandle = 0;
 
       if (!compiled) {
-        if (!programsReady()) {
-          lastFrame = now;
-          return;
-        }
+        lastFrame = now;
+        this.frameHandle = requestAnimationFrame(frame);
+        if (!programsReady()) return;
         compiled = true;
         started = now;
+        return;
       }
 
-      if (this.paused || !resize() || !visible) {
+      if (this.paused || !visible || document.hidden) return;
+      if (now - started > IDLE_AFTER && now - lastInput > IDLE_INPUT) return;
+      this.frameHandle = requestAnimationFrame(frame);
+      if (!resize()) {
         lastFrame = now;
         return;
       }
@@ -646,6 +674,11 @@ class FluidInk extends HTMLElement {
       blit(null);
     };
 
+    this.wake = () => {
+      if (this.frameHandle || !this.isConnected) return;
+      lastFrame = performance.now();
+      this.frameHandle = requestAnimationFrame(frame);
+    };
     this.frameHandle = requestAnimationFrame(frame);
   }
 

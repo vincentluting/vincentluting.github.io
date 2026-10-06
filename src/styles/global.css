@@ -11,6 +11,7 @@
   --line: #d9cfbd;
   --accent: #b8452f; /* vermilion seal */
   --accent-soft: #f0dccf;
+  --accent-ink: #a63d29; /* vermilion for small text: 5.2:1 on sheets */
   --accent-2: #2f4a6b; /* indigo */
   /* Ink painting in the hero (src/scripts/fluid-ink.ts, InkMountains) */
   --ink-pigment: #17140f; /* dense sumi */
@@ -28,6 +29,7 @@
   --line: #36312a;
   --accent: #e0694f;
   --accent-soft: #3a2119;
+  --accent-ink: var(--accent);
   --accent-2: #7f9cc2;
   --ink-pigment: #d8cfbd;
   --ink-wash: #6c7888;
@@ -48,6 +50,7 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-2: var(--accent-2);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -134,14 +137,14 @@
    Motion is on unless the visitor turned it off with the toggle, or the OS
    asks for reduced motion and they have not chosen otherwise. The inline
    script in BaseHead sets data-motion on <html> before first paint. */
-.js[data-motion="on"] [data-reveal] {
+.js[data-motion="on"][data-reveal-armed] [data-reveal] {
   opacity: 0;
   translate: 0 12px;
   filter: blur(3px);
   transition: opacity 0.9s var(--ease-out-soft), translate 0.9s var(--ease-out-soft), filter 1.1s var(--ease-out-soft);
   transition-delay: var(--d, 0ms);
 }
-.js[data-motion="on"] [data-reveal].is-visible {
+.js[data-motion="on"][data-reveal-armed] [data-reveal].is-visible {
   opacity: 1;
   translate: 0 0;
   filter: blur(0);
@@ -161,32 +164,32 @@
   color: var(--accent);
 }
 .brush-center { margin-inline: auto; }
-.js[data-motion="on"] .brush {
+.js[data-motion="on"][data-reveal-armed] .brush {
   clip-path: inset(0 100% 0 0);
   transition: clip-path 1.1s var(--ease-out-soft) 0.15s;
 }
-.js[data-motion="on"] .is-visible .brush,
-.js[data-motion="on"] .brush.is-visible {
+.js[data-motion="on"][data-reveal-armed] .is-visible .brush,
+.js[data-motion="on"][data-reveal-armed] .brush.is-visible {
   clip-path: inset(0 0 0 0);
 }
 
 /* Handwritten signature: revealed left to right like a pen stroke. */
-.js[data-motion="on"] .signature {
+.js[data-motion="on"][data-reveal-armed] .signature {
   clip-path: inset(0 100% 0 0);
   transition: clip-path 2.2s cubic-bezier(0.45, 0.05, 0.35, 1) 0.2s;
 }
-.js[data-motion="on"] .signature.is-visible {
+.js[data-motion="on"][data-reveal-armed] .signature.is-visible {
   clip-path: inset(0 0 0 0);
 }
 
 /* Seal: pressed onto the paper with a small overshoot. */
-.js[data-motion="on"] .seal-stamp {
+.js[data-motion="on"][data-reveal-armed] .seal-stamp {
   opacity: 0;
   scale: 1.5;
   rotate: -14deg;
   transition: opacity 0.25s ease 0.2s, scale 0.55s var(--ease-stamp) 0.2s, rotate 0.55s var(--ease-stamp) 0.2s;
 }
-.js[data-motion="on"] .seal-stamp.is-visible {
+.js[data-motion="on"][data-reveal-armed] .seal-stamp.is-visible {
   opacity: 1;
   scale: 1;
   rotate: -4deg;
@@ -196,8 +199,8 @@ html[data-motion="off"] .animate-ping { animation: none; }
 
 /* Cards that the cinematic layer drops onto the page (src/scripts/cinema.ts).
    Without it they fade in like everything else. */
-.js[data-motion="on"] [data-drop]:not(.is-visible) { opacity: 0; }
-.js[data-motion="on"]:not([data-cinema]) [data-drop] { transition: opacity 0.9s var(--ease-out-soft); }
+.js[data-motion="on"][data-reveal-armed] [data-drop]:not(.is-visible) { opacity: 0; }
+.js[data-motion="on"][data-reveal-armed]:not([data-cinema]) [data-drop] { transition: opacity 0.9s var(--ease-out-soft); }
 
 /* Split lines keep descenders and italics inside their mask. */
 .split-line { padding-bottom: 0.08em; margin-bottom: -0.08em; }
@@ -211,20 +214,29 @@ html[data-motion="off"] .animate-ping { animation: none; }
   line-height: 0.85;
   color: var(--accent);
 }
-.js[data-motion="on"] .dropcap::first-letter {
+.js[data-motion="on"][data-reveal-armed] .dropcap::first-letter {
   color: transparent;
   text-shadow: 0 0 18px color-mix(in oklab, var(--accent) 80%, transparent);
   transition: color 1.4s var(--ease-ink) 0.2s, text-shadow 1.6s var(--ease-ink) 0.2s;
 }
-.js[data-motion="on"] .dropcap.is-visible::first-letter {
+.js[data-motion="on"][data-reveal-armed] .dropcap.is-visible::first-letter {
   color: var(--accent);
   text-shadow: 0 0 0 transparent;
 }
 
 /* Hero portrait: unrolled from the top like a hanging scroll. Pure CSS, so it
    starts with the first paint and never waits for JavaScript. */
-.js[data-motion="on"] .scroll-unroll {
-  animation: unroll 1.5s var(--ease-ink) 0.25s both;
+.scroll-unroll { position: relative; }
+/* A sheet of paper rolls up off the portrait. The image itself is painted
+   from the first frame, so it never delays Largest Contentful Paint. */
+.js[data-motion="on"] .scroll-unroll::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  animation: unroll-cover 1.5s var(--ease-ink) 0.25s both;
 }
 .js[data-motion="on"] .scroll-unroll img {
   animation: unroll-img 2s var(--ease-ink) 0.25s both;
@@ -232,12 +244,12 @@ html[data-motion="off"] .animate-ping { animation: none; }
 .js[data-motion="on"] .scroll-unroll ~ .seal-stamp {
   transition-delay: 1.35s;
 }
-@keyframes unroll {
-  from { clip-path: inset(0 0 100% 0); }
-  to { clip-path: inset(0 0 0 0); }
+@keyframes unroll-cover {
+  from { scale: 1 1; }
+  to { scale: 1 0; }
 }
 @keyframes unroll-img {
-  from { scale: 1.14; filter: grayscale(0.6) blur(2px); }
+  from { scale: 1.14; filter: grayscale(0.6); }
 }
 
 /* Reading progress: a thin vermilion thread down the right edge. Driven by
@@ -274,14 +286,17 @@ html[data-motion="off"] .animate-ping { animation: none; }
 }
 .site-header.is-tucked { translate: 0 -100%; }
 
-/* The ink cursor replaces the pointer only while it is actually showing. */
-html[data-cursor-on],
-html[data-cursor-on] * { cursor: none; }
-html[data-cursor-on] :is(input, textarea, select, [contenteditable="true"]) { cursor: text; }
+/* The ink cursor is a soft wash that trails the real pointer. The system
+   pointer always stays visible, so OS pointer-size settings keep working. */
 
 /* Paper page transitions (Chromium and Safari; Firefox loads normally). */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
+}
+html[data-motion="off"]::view-transition-old(root),
+html[data-motion="off"]::view-transition-new(root) {
+  animation: none;
+  mask-image: none;
 }
 /* The old sheet softens and sinks; the new one spreads out from the middle
    like ink soaking into wet paper. */
@@ -316,7 +331,7 @@ html[data-cursor-on] :is(input, textarea, select, [contenteditable="true"]) { cu
 }
 @utility eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -384,4 +399,31 @@ html[data-cursor-on] :is(input, textarea, select, [contenteditable="true"]) { cu
 .dark .astro-code span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
+}
+
+/* ---------- Print ----------
+   Hiring managers print or save a story or the CV page before an interview.
+   Print shows everything in black on white, without the paper and the ink. */
+@media print {
+  .site-header, footer, [data-ink-cursor], fluid-ink, .read-progress,
+  [data-motion-toggle], [data-theme-toggle], [data-nav-toggle], [data-copy-email] {
+    display: none !important;
+  }
+  :root, .dark {
+    --paper: #fff; --surface: #fff; --ink: #000; --muted: #333; --line: #bbb;
+    --accent: #8a2f1f; --accent-ink: #8a2f1f;
+    --paper-grain: none; --paper-fibres: none;
+  }
+  body { background: #fff !important; color: #000; font-size: 11pt; }
+  body::before { display: none; }
+  [data-reveal], [data-drop], .split-line, .brush, .signature, .seal-stamp, .dropcap::first-letter {
+    opacity: 1 !important; translate: none !important; transform: none !important;
+    filter: none !important; clip-path: none !important; color: inherit;
+  }
+  .scroll-unroll::after { display: none; }
+  .sheet { box-shadow: none; background: #fff; }
+  .sheet, li[id], figure { break-inside: avoid; }
+  h1, h2, h3 { break-after: avoid; }
+  a[href^="mailto:"]::after, a[href*="linkedin.com"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
+  @page { margin: 18mm; }
 }

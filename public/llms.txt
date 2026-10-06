@@ -1,0 +1,15 @@
+# Ting (Vincent) Lu
+
+> Personal website of Ting (Vincent) Lu, who grew up in China and has lived in the Netherlands since 2015. Stories from work and from moving countries, notes, and what I am doing now.
+
+## Pages
+
+- [About](https://vincentluting.github.io/about/): where I come from and what I like doing
+- [Stories](https://vincentluting.github.io/stories/): a few stories from work
+- [Writing](https://vincentluting.github.io/posts/): notes
+- [Now](https://vincentluting.github.io/now/): what I am doing now
+
+## Contact
+
+- Email: vincentluting@gmail.com
+- LinkedIn: https://www.linkedin.com/in/vincentluting

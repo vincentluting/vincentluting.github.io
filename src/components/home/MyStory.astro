@@ -2,17 +2,18 @@
 import Section from '../Section.astro';
 import Brush from '../ink/Brush.astro';
 import Signature from '../ink/Signature.astro';
+import Tag from '../Tag.astro';
 import { about } from '../../data';
 
-// The personal parts of the About story: where I come from, what I like, where I want to go.
-const picks = [0, 2, 4].map((i) => about.intro[i]).filter(Boolean);
+// The personal parts of the About story: where I come from and what I like.
+const picks = [0, 3].map((i) => about.intro[i]).filter(Boolean);
 ---
 
 <Section id="story">
   <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
     <div class="lg:col-span-4" data-reveal>
       <p class="eyebrow mb-3">My story, short</p>
-      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>Two years became nine.</h2>
+      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>From Leiden to here.</h2>
       <Brush variant={0} />
     </div>
     <div class="lg:col-span-8">
@@ -21,6 +22,14 @@ const picks = [0, 2, 4].map((i) => about.intro[i]).filter(Boolean);
           <p data-reveal style={`--d: ${i * 80}ms`} class:list={[i === 0 && 'dropcap']} data-split={i === 0 ? undefined : 'body'}>{p}</p>
         ))}
       </div>
+      {about.hobbies.length > 0 && (
+        <div class="mt-10" data-reveal>
+          <p class="eyebrow mb-3">Outside work</p>
+          <div class="flex flex-wrap gap-2">
+            {about.hobbies.map((h) => <Tag>{h}</Tag>)}
+          </div>
+        </div>
+      )}
       <div class="mt-8 flex flex-wrap items-end justify-between gap-6">
         <Signature class="h-20 w-auto md:h-24" />
         <a href="/about/" class="group font-mono text-[0.82rem] ink-link">

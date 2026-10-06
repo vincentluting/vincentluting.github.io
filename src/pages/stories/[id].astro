@@ -5,7 +5,6 @@ import JsonLd from '../../components/JsonLd.astro';
 import Brush from '../../components/ink/Brush.astro';
 import Seal from '../../components/ink/Seal.astro';
 import Button from '../../components/Button.astro';
-import Tldr from '../../components/stories/Tldr.astro';
 import { getStories, readingMinutes, storyTransition, type Story } from '../../lib/stories';
 import { site } from '../../data';
 
@@ -23,12 +22,12 @@ interface Props {
 }
 const { story, next } = Astro.props;
 const { Content } = await render(story);
-const { title, summary, company, period, job, links } = story.data;
+const { title, shortTitle, summary, company, period, links } = story.data;
 const minutes = readingMinutes(story.body);
 const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
 ---
 
-<BaseLayout title={title} description={summary} type="article">
+<BaseLayout title={shortTitle || title} description={summary} type="article">
   <JsonLd
     slot="head"
     data={{
@@ -37,7 +36,7 @@ const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
       description: summary,
       url: canonical,
       mainEntityOfPage: canonical,
-      author: { '@type': 'Person', name: site.fullName, url: site.url },
+      author: { '@id': `${site.url}/#person` },
     }}
   />
   <div class="read-progress" aria-hidden="true"></div>
@@ -56,11 +55,8 @@ const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
       </h1>
       <Brush variant={2} />
       <p class="mt-6 text-xl leading-relaxed text-muted">{summary}</p>
+      <p class="mt-4 font-mono text-[0.8rem] text-muted">{minutes} min read</p>
     </header>
-
-    <div class="mx-auto mt-10 max-w-3xl">
-      <Tldr story={story} minutes={minutes} />
-    </div>
 
     <div class="prose prose-lg mx-auto mt-14 max-w-3xl">
       <Content />
@@ -71,7 +67,6 @@ const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
         <Seal size={40} stamp />
         <p class="text-muted">
           Written by <a href="/about/" class="ink-link">{site.fullName}</a>.
-          {job && <> The short version is on my <a href={`/experience/#${job}`} class="ink-link">experience page</a>.</>}
         </p>
       </div>
       {links.length > 0 && (
@@ -86,8 +81,8 @@ const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
         </a>
       )}
       <div class="mt-10 flex flex-wrap items-center gap-3">
-        <Button href={`mailto:${site.email}`}>Talk to me about this</Button>
-        <Button href="/stories/" variant="ghost">All stories</Button>
+        <Button href="/stories/" variant="secondary">All stories</Button>
+        <Button href={`mailto:${site.email}`} variant="ghost">Write to me about this</Button>
       </div>
     </footer>
   </article>

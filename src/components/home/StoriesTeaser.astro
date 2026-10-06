@@ -1,27 +1,33 @@
 ---
 import Section from '../Section.astro';
-import SectionHeading from '../SectionHeading.astro';
-import StoryCard from '../stories/StoryCard.astro';
+import Brush from '../ink/Brush.astro';
 import { getStories } from '../../lib/stories';
 
-const stories = (await getStories()).slice(0, 4);
+// A quiet list, not a showcase: the stories are there for whoever is curious.
+const stories = await getStories();
 ---
 
 {stories.length > 0 && (
   <Section id="stories" class="border-t border-line">
-    <SectionHeading
-      eyebrow="Stories from work"
-      title="What I actually did, in more than one line."
-      intro="My CV has room for one number per job. Here is the longer version: the problem, what I did, what came out of it and what I would do differently."
-      brush={1}
-    />
-    <div class="grid gap-8 md:grid-cols-2">
-      {stories.map((s, i) => <StoryCard story={s} index={i} />)}
-    </div>
-    <div class="mt-10" data-reveal>
-      <a href="/stories/" class="group font-mono text-[0.82rem] ink-link">
-        All stories <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
-      </a>
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="eyebrow mb-3">From work</p>
+        <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>A few stories from work.</h2>
+        <Brush variant={1} />
+        <p class="mt-5 text-lg leading-relaxed text-muted">
+          Some things that happened at work, and what I learned from them.
+        </p>
+      </div>
+      <ol class="divide-y divide-line border-y border-line lg:col-span-8">
+        {stories.map((s, i) => (
+          <li data-reveal style={`--d: ${i * 60}ms`}>
+            <a href={`/stories/${s.id}/`} class="group grid gap-1 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <span class="font-mono text-[0.8rem] text-muted sm:pt-1.5">{s.data.company} · {s.data.period}</span>
+              <span class="block font-display text-xl font-medium leading-snug transition-colors group-hover:text-accent">{s.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </div>
   </Section>
 )}
