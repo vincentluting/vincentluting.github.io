@@ -5,7 +5,7 @@ import JsonLd from '../../components/JsonLd.astro';
 import Brush from '../../components/ink/Brush.astro';
 import Seal from '../../components/ink/Seal.astro';
 import Button from '../../components/Button.astro';
-import { getStories, readingMinutes, storyTransition, type Story } from '../../lib/stories';
+import { getStories, storyTransition, type Story } from '../../lib/stories';
 import { site } from '../../data';
 
 export async function getStaticPaths() {
@@ -23,7 +23,6 @@ interface Props {
 const { story, next } = Astro.props;
 const { Content } = await render(story);
 const { title, shortTitle, summary, company, period, links } = story.data;
-const minutes = readingMinutes(story.body);
 const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
 ---
 
@@ -55,7 +54,6 @@ const canonical = new URL(`/stories/${story.id}/`, site.url).toString();
       </h1>
       <Brush variant={2} />
       <p class="mt-6 text-xl leading-relaxed text-muted">{summary}</p>
-      <p class="mt-4 font-mono text-[0.8rem] text-muted">{minutes} min read</p>
     </header>
 
     <div class="prose prose-lg mx-auto mt-14 max-w-3xl">

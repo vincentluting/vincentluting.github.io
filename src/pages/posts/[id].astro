@@ -20,9 +20,8 @@ interface Props {
 }
 const { post, prev, next } = Astro.props;
 const { Content } = await render(post);
-const minutes = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 0) / 200));
 ---
 
-<PostLayout post={post} prev={prev} next={next} minutes={minutes}>
+<PostLayout post={post} prev={prev} next={next}>
   <Content />
 </PostLayout>

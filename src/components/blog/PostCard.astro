@@ -12,8 +12,6 @@ interface Props {
 const { post, headingLevel = 3 } = Astro.props;
 const H = headingLevel === 2 ? 'h2' : 'h3';
 const href = `/posts/${post.id}/`;
-const words = post.body?.split(/\s+/).length ?? 0;
-const minutes = Math.max(1, Math.ceil(words / 200));
 const cover = resolveImage(post.data.cover);
 ---
 
@@ -33,7 +31,7 @@ const cover = resolveImage(post.data.cover);
   </a>
   <div class="mt-5">
     <p class="font-mono text-[0.75rem] text-muted">
-      <FormattedDate date={post.data.date} /> · {minutes} min read
+      <FormattedDate date={post.data.date} />
     </p>
     <H class="mt-2 text-xl font-medium leading-snug">
       <a href={href} class="transition-colors group-hover:text-accent">{post.data.title}</a>

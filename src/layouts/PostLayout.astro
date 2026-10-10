@@ -14,9 +14,8 @@ interface Props {
   post: CollectionEntry<'posts'>;
   prev?: CollectionEntry<'posts'>;
   next?: CollectionEntry<'posts'>;
-  minutes: number;
 }
-const { post, prev, next, minutes } = Astro.props;
+const { post, prev, next } = Astro.props;
 const { title, description, date, tags, coverAlt, note } = post.data;
 const cover = resolveImage(post.data.cover);
 
@@ -45,7 +44,7 @@ const canonical = new URL(`/posts/${post.id}/`, site.url).toString();
       <p class="eyebrow">
         <a href="/posts/" class="hover:text-ink">Writing</a>
         <span aria-hidden="true"> / </span>
-        <FormattedDate date={date} /> · {minutes} min read
+        <FormattedDate date={date} />
       </p>
       <h1 class="mt-5 text-4xl font-medium leading-[1.08] md:text-[3.4rem]" data-ink-title>{title}</h1>
       <Brush variant={1} />

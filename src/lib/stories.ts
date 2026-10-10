@@ -9,9 +9,5 @@ export async function getStories(): Promise<Story[]> {
   );
 }
 
-export function readingMinutes(body: string | undefined): number {
-  return Math.max(1, Math.round((body?.split(/\s+/).length ?? 0) / 220));
-}
-
 /** Unique view-transition name so a card title can morph into the story's h1. */
 export const storyTransition = (id: string) => `story-${id.replace(/[^a-z0-9-]/gi, '-')}`;
