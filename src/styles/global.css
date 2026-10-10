@@ -391,6 +391,24 @@ html[data-motion="off"]::view-transition-new(root) {
 .prose :where(p, li) {
   text-wrap: pretty;
 }
+.prose :where(p:has(> img)) {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.prose :where(p:has(> img)) img {
+  margin: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+/* Source line right under a figure */
+.prose :where(p:has(> img) + p > em:only-child) {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
 .prose :where(blockquote) {
   font-style: italic;
   font-weight: 400;

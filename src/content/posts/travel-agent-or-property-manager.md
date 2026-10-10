@@ -35,6 +35,10 @@ The first four are things AI already helps me with. I use it every day for exact
 
 And here is the uncomfortable part. The first four are also the tasks that look most like what I studied. I did an MBA in AI, Data and Analytics. The analysis, the cost case, the clean summary: that is what a business degree trains you for. According to the report, that is also exactly what AI is used for most. Tasks people bring to Claude need on average about one year more education than the average task in the economy (14.4 years against 13.2). The report's own conclusion is that, for most jobs, taking out the AI tasks would leave work that needs less education, not more.
 
+![Histogram of the years of education needed for all tasks in the economy, compared with the tasks Claude covers](../../assets/uploads/posts/ei-fig-4-5-task-education.webp)
+
+*Figure 4.5 of the report: the blue bars are all tasks in the economy (average 13.2 years of education), the orange bars are the tasks people bring to Claude (average 14.4 years). Source: Appel, Massenkoff, McCrory et al., [The Anthropic Economic Index report: Economic Primitives](https://www.anthropic.com/research/anthropic-economic-index-january-2026-report), Anthropic, January 2026.*
+
 So for most people, the travel agent is the normal case. The property manager is the lucky one.
 
 ## Not how many tasks, but which ones
@@ -47,6 +51,10 @@ Microbiologists are the opposite. AI covers half of their tasks, but not the one
 
 I like this way of thinking because it is very practical. The question is not "how many of my tasks can AI do?" It is "can AI do the thing that fills my Tuesday?" For a lot of project managers, the honest answer is: some of it. A big part of a normal week is writing things down and sending them to people. That part is getting smaller.
 
+![Scatter plot of effective AI coverage against task coverage for each occupation, with data entry keyers above the line and microbiologists below it](../../assets/uploads/posts/ei-fig-4-4-effective-coverage.webp)
+
+*Figure 4.4 of the report: each dot is one occupation. Above the dashed line, AI covers more of the working day than the number of tasks suggests (data entry keyers). Below it, less (microbiologists). Source: Appel, Massenkoff, McCrory et al., [The Anthropic Economic Index report: Economic Primitives](https://www.anthropic.com/research/anthropic-economic-index-january-2026-report), Anthropic, January 2026.*
+
 ## The third that does not work
 
 There is one number in the report that I think gets too little attention. When people use Claude in the normal chat app, the report estimates that it succeeds on the task about 67% of the time. When companies use it automatically through the API, it is 49%. And the harder the task, the lower the success rate.
@@ -56,6 +64,10 @@ The report then does something I respect. It takes its own earlier estimate, tha
 The econometrics part of my MBA also makes me want to add one note: Claude was also the one judging whether Claude succeeded. The authors say this openly. They call the measures "directionally accurate", not exact. I think that is fair, but it is worth knowing when you read a number like 67%.
 
 What does a 67% success rate mean in real work? It means someone has to check. And the report says something I agree with completely: the hardest tasks, where AI fails most, are also the tasks where you need an expert to see that it failed. To check a cost case, you need to know how to build one. To check a summary of a meeting, you need to have been in the meeting.
+
+![Scatter plot showing that Claude's task success rate falls as the task takes a human longer, faster for API use than for Claude.ai](../../assets/uploads/posts/ei-fig-4-3-success-vs-duration.webp)
+
+*Figure 4.3 of the report: the longer a task would take a person, the less often Claude succeeds, and the drop is steeper in automated API use (blue) than in the chat app (orange). Source: Appel, Massenkoff, McCrory et al., [The Anthropic Economic Index report: Economic Primitives](https://www.anthropic.com/research/anthropic-economic-index-january-2026-report), Anthropic, January 2026.*
 
 So maybe the analysis part of my job does not disappear. Maybe it changes from doing it to checking it. That only works if I keep being able to do it myself.
 
@@ -76,3 +88,7 @@ For now, I think I am closer to the property manager. The parts of my work that 
 But I wrote "for now" for a reason. This report is one week of data from November 2025. I am reading it more than half a year later, and the models have changed again since then. Every new report will move the line a little.
 
 So my plan is not to guess where the line will be. My plan is to stay good at checking the work, and to get even better at the part that needs a person. The travel agent in the report keeps the tickets and the payments. I would rather keep the people.
+
+---
+
+*Source: Ruth Appel, Maxim Massenkoff, Peter McCrory and others, [The Anthropic Economic Index report: Economic Primitives](https://www.anthropic.com/research/anthropic-economic-index-january-2026-report), Anthropic, 15 January 2026. The figures above are taken from the report as published. All numbers in this post come from it.*
