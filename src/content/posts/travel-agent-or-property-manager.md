@@ -61,6 +61,10 @@ There is one number in the report that I think gets too little attention. When p
 
 The report then does something I respect. It takes its own earlier estimate, that AI could add 1.8 percentage points a year to US labour productivity growth over the next ten years, and corrects it for these success rates. The number goes down to between 1.0 and 1.2. Still big, the authors say, but a lot smaller.
 
+![Line chart of the implied yearly growth in labour productivity, with and without adjusting for task success, for Claude.ai and API use](../../assets/uploads/posts/ei-fig-4-6-productivity.webp)
+
+*Figure 4.6 of the report: the solid lines are the first estimate. The dashed lines are the same estimate after correcting for how often the tasks succeed. At the middle setting (σ = 1) the first estimate is about 1.8 points a year, and the corrected one is about 1.0 for API use and 1.2 for the chat app. Source: Appel, Massenkoff, McCrory et al., [The Anthropic Economic Index report: Economic Primitives](https://www.anthropic.com/research/anthropic-economic-index-january-2026-report), Anthropic, January 2026.*
+
 The econometrics part of my MBA also makes me want to add one note: Claude was also the one judging whether Claude succeeded. The authors say this openly. They call the measures "directionally accurate", not exact. I think that is fair, but it is worth knowing when you read a number like 67%.
 
 What does a 67% success rate mean in real work? It means someone has to check. And the report says something I agree with completely: the hardest tasks, where AI fails most, are also the tasks where you need an expert to see that it failed. To check a cost case, you need to know how to build one. To check a summary of a meeting, you need to have been in the meeting.
