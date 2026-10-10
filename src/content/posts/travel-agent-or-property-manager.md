@@ -1,7 +1,7 @@
 ---
 title: "Am I a travel agent or a property manager?"
 description: "A new report on AI and work asks a simple question: when AI takes the tasks it can do, what is left of your job? For some jobs the hard part goes first. For others the boring part does. I tried it on my own job."
-date: 2026-10-10
+date: 2026-08-18
 tags: ["ai", "work"]
 note: "About The Anthropic Economic Index report: Economic Primitives (January 2026), based on one million Claude conversations from one week in November 2025."
 ---
@@ -73,6 +73,6 @@ That is also why the report ends with a sentence that I think is the most import
 
 For now, I think I am closer to the property manager. The parts of my work that AI does well are the parts I was always happy to do faster. The parts it cannot do yet, being in the room, building trust between two groups who do not fully understand each other, are the parts I like most anyway.
 
-But I wrote "for now" for a reason. This report is one week of data from November 2025. I am reading it almost a year later, and the models have changed again since then. Every new report will move the line a little.
+But I wrote "for now" for a reason. This report is one week of data from November 2025. I am reading it more than half a year later, and the models have changed again since then. Every new report will move the line a little.
 
 So my plan is not to guess where the line will be. My plan is to stay good at checking the work, and to get even better at the part that needs a person. The travel agent in the report keeps the tickets and the payments. I would rather keep the people.

@@ -1,7 +1,7 @@
 ---
 title: "Alone is not the same as lonely"
 description: "In 2017 a Chinese career app asked ten thousand office workers how much they spend on loneliness. Most of them had an answer. I read the report years later, as someone who left home the same way."
-date: 2026-10-10
+date: 2025-11-30
 tags: ["life", "cross-cultural"]
 note: "About 孤独经济 (The Loneliness Economy), a 2017 white paper by Maimai, a Chinese career network. The quotes are my own translations."
 ---
@@ -50,7 +50,7 @@ The second list is products that sell a feeling of company. Live streaming, onli
 
 On page 30 there is a short story about a man who logged into an old game from his university days. His friends were all gone, the maps had changed, and he walked around the empty game world and suddenly felt very lonely. Right after it come Tencent's numbers. In the third quarter of 2017, online games brought Tencent 26.8 billion yuan, 48% more than a year before.
 
-From 2023 to 2025 I worked at Tencent, in IT for three of its game studios in Europe. My days were about accounts, security tools and Perforce licences. Loneliness never came up.
+Since 2023 I have worked at Tencent, in IT for three of its game studios in Europe. My days are about accounts, security tools and Perforce licences. Loneliness never came up.
 
 I don't want to make games the bad guy here. Some of my best evenings were around a board game with friends, and a lot of people play online with friends they also know in real life. But the report made me look at a revenue number from the other side. Part of those 26.8 billion yuan came from people playing at two in the morning because there was nobody else to talk to. I think both things are true at the same time.
 
