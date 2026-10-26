@@ -1,62 +1,57 @@
 ---
-title: "Building my own career test, from the first question to the last line of code"
-shortTitle: "Building my own career test"
-summary: "My MBA thesis became a live product: a career assessment with 147 questions and 30 career archetypes I designed myself, plus an AI coach that works from your own results. I did everything, which taught me a lot about scope."
-company: Deep Dive · University of Amsterdam
-role: Founder and builder, MBA thesis
-period: 2025 – 2026
+title: "I am not a programmer, but I directed one to build my career test"
+shortTitle: "Directing AI to build my career test"
+summary: "For my MBA thesis I designed Deep Dive, a career self-discovery platform. I made the product and assessment decisions. Claude Code, an AI coding assistant, wrote the code under my direction. Learning to check its work was the real lesson."
+company: Deep Dive · MBA thesis, University of Amsterdam
+role: Designer and product owner
+period: "2026"
 order: 6
 links:
-  - label: Try it at deepdivecareer.com
+  - label: Open deepdivecareer.com
     href: https://www.deepdivecareer.com
 tldr:
-  context: "Most career tests give you a label and stop there, and few of them ask about the cross-cultural side of who you are."
-  myRole: "Everything: research, questionnaire, scoring model, product design, code and launch."
-  team: "Just me, with feedback from test users and my thesis supervisor."
-  stakeholders: "Test users, my MBA programme at the University of Amsterdam."
+  context: "I have lived in the Netherlands since 2015 and spent years unsure which careers fit someone working across cultures. For my MBA in AI, Data and Analytics I wanted a tool that helps people in that situation understand themselves."
+  myRole: "Product, assessment design, user flow, quality control and scope. Claude Code wrote the code under my direction."
+  team: "Me and an AI coding assistant."
+  stakeholders: "My MBA programme at the University of Amsterdam."
   numbers:
-    - value: "147"
-      label: assessment questions
-    - value: "30"
-      label: original career archetypes
-    - value: "2"
-      label: languages, English and Chinese
+    - value: "38 + 86"
+      label: questions in the Quick Dive and the Deep Dive
+    - value: "12"
+      label: career archetypes
+    - value: "1,141"
+      label: career directions in the library
   skills:
     - Product design
-    - Next.js and TypeScript
-    - PostgreSQL
-    - Claude API
-    - Psychometrics
+    - Assessment design
+    - Working with AI coding tools
+    - Quality control
 ---
 
-## The problem
+## Why I made it
 
-I have taken a lot of career tests. Most of them give you a label and stop there. You are an "INTJ" or a "Builder", and then what?
+I have lived in the Netherlands since 2015. For years I felt that my career options were limited by language, culture and network, and I did not know what really fitted me.
 
-As someone who moved from China to the Netherlands, I also noticed that they rarely ask about the cross-cultural side of who you are. For me that was the biggest factor in every career decision I made. So for my MBA thesis in AI, Data and Analytics at the University of Amsterdam, I decided to build something that goes further and helps you decide what to do next.
+From 2024 I tried to find out properly. I took more than ten assessments and worked with career consultants. So when I needed a thesis project for my MBA in AI, Data and Analytics at the University of Amsterdam, I chose to design the tool I had wanted: one place that helps you understand yourself, especially if you work across cultures.
 
-## What I built
+## Who did what
 
-**A questionnaire with 147 questions.** It covers personality, what kind of work you are interested in, how you think, and your cross-cultural identity. It draws on well-known frameworks such as Holland RIASEC, the Big Five, Career Anchors, CliftonStrengths, MBTI Step II, DISC and HBDI.
+I am not a software engineer. I made the decisions: what the product is, how the assessment works, what the user sees, what is good enough, and what we leave out. Claude Code, an AI coding assistant, wrote the code under my direction.
 
-**Thirty career archetypes of my own.** From my research I designed 30 archetypes, in English and Chinese, that describe patterns you can recognise yourself in.
+That sounds easy. It is not. The AI writes a lot of code very fast, and some of it is wrong in ways that are hard to see. My job was to decide what to build, explain it clearly, and then check what came back.
 
-**A scoring pipeline in five layers.** It turns raw answers into a career profile. I wrote down the rules for every layer, so the scoring stays consistent and can be explained.
+## What it is now
 
-**An AI coach.** It gives advice based on your own results instead of general tips.
+Deep Dive is in English and Chinese. It has a short Quick Dive of 38 questions and a longer Deep Dive of 86 questions. Your answers lead to one of 12 career archetypes, based on the Holland RIASEC model, and to matches from a library of 1,141 career directions.
 
-**A real product.** Next.js, TypeScript and PostgreSQL, running on Vercel. Bilingual from day one. <!-- TODO(Vincent): which AI tools helped you write the code, and what did you design and check yourself? One honest sentence here makes the story stronger. -->
+After the test you get a written report, a personal profile and an AI coach that works from your own results. It runs on Next.js, TypeScript and PostgreSQL, with more than 650 automated tests to catch mistakes.
 
-## The hard part
+## The day it finally worked
 
-Scope. When you are the only person on a project, every idea sounds possible, and there is nobody to say no. The first version of my plan was far too big.
+On 4 March 2026 I spent a full day, from morning to night, debugging until every step connected: the landing page, the questionnaire, the report, the profile and the AI coach. By the end of that day, the whole flow worked for the first time. That same day I also chose the colours for the site.
 
-I had to act as my own project manager: write down what "done" means for the thesis, cut features that were nice but not needed, and test with real people early, even when it felt too soon.
-
-## What came out of it
-
-Deep Dive is live at [deepdivecareer.com](https://www.deepdivecareer.com), and it was my thesis for the MBA. <!-- TODO(Vincent): how many people have completed the assessment so far? -->
+Then I wrote down what was next: polish it, find people to test it, and decide what data my thesis needed. It was a small moment, but it was the day I finished something I had wanted to build for a long time.
 
 ## What I learned
 
-Building it alone gave me a lot of respect for every engineer and designer I have worked with. It also changed how I work as a project manager. I understand much better what "a small change" costs, why testing with real users matters, and why a clear scope is kind to the people doing the work.
+Working this way taught me a lot about AI. It is very good at producing things, and not very good at knowing when it is wrong. The useful skill is not typing code. It is knowing what you want, saying it clearly, and checking the result honestly.

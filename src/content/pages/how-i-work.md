@@ -17,7 +17,7 @@ This page is about how I run projects and work with people. It is what I would t
 
 ## How I run a project
 
-I start by agreeing on what "done" means, who decides, and who needs to be kept informed. Then I make the work visible: usually one tracker with owners and dates, reviewed every week, like the readiness tracker in the [mailbox migration](/stories/mailbox-migration/). <!-- TODO(Vincent): true? -->
+I start by agreeing on what "done" means, who decides, and who needs to be kept informed. Then I make the work visible: usually one tracker with owners and dates, like the ones I built for the [game studios at Tencent](/stories/tencent-studios/).
 
 I prefer short, regular check-ins over long status meetings. A good status update fits on one screen: what changed, what is at risk, and what I need from whom.
 

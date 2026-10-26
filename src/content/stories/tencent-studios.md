@@ -1,64 +1,55 @@
 ---
-title: "Being the IT person for three game studios"
-shortTitle: "IT person for three game studios"
-summary: "Three Tencent game studios in Europe had their own ways of working, and central IT had tools they did not know or trust. I was their contact in central IT, learned what each studio needed, and got the right tools adopted. The studios saved an estimated $91,000 a year."
+title: "Being the IT contact for two game studios"
+shortTitle: "IT contact for two game studios"
+summary: "At Tencent I was the contact in central IT for game studios in Europe that Tencent had invested in. Most of the work was small: meetings, trackers, checking a quote. Over time it added up to trust, and to tools the studios actually took up."
 company: Tencent
-role: Customer Relationship IT Project Manager
-period: 2023 – 2025
+role: Project Manager, Europe IT Center
+period: 2023 – 2024
 order: 2
 job: tencent-it
 tldr:
-  context: "Tencent's overseas IT team offered tools and services to its game studios in Europe. The studios are part of Tencent, but they work independently and choose what they use."
-  myRole: "Main IT contact for three European studios, and EU Product Owner for Security and Foundation IT products."
-  team: "Tencent Overseas IT, with colleagues in EMEA, Asia and the US."
-  stakeholders: "Studio leadership and IT contacts in three internal studios, product teams in the US and Asia, and HR and Finance for onboarding."
+  context: "Tencent's central IT offered group deals and services to studios it had invested in, such as Perforce and security services. The deals were negotiated centrally."
+  myRole: "Customer relationship project manager for Yager and Tequila Works (Yager until mid-2024), and local contact in Europe for the security, cloud and software offerings."
+  team: "The Europe IT Center and the EU customer relationship team, with central product teams mostly in the US."
+  stakeholders: "IT, HR and leadership at the studios, and the central product teams."
   numbers:
-    - value: "$91k"
-      label: estimated yearly savings for the studios
-      how: ""
-    - value: "3"
-      label: internal game studios I looked after
-      how: ""
-    - value: "6"
-      label: products adopted (Perforce and 5 security products)
-      how: ""
+    - value: "245"
+      label: Perforce licences taken up by two studios in 2023 (172 + 73)
+    - value: "5"
+      label: security services taken up in 2023
+    - value: "11+"
+      label: studio requirements passed to product teams in 2024
   skills:
-    - Internal customer management
+    - Stakeholder relationships
     - Adoption
-    - Escalation management
-    - Product ownership
+    - Requirements
+    - Tracking and follow-up
 ---
-
-<!-- TODO(Vincent): Claude drafted this from your CVs. Facts: 3 European studios, customer relationship IT PM, estimated $91k annual savings through adoption of Perforce and 5 security offerings, EU Product Owner for Security and Foundation IT, IT PMO across 3 regions, worked with HR and Finance on onboarding, coached 2 juniors and 4 interns, a "Studio Adoption Playbook" (from a cover letter). The studios are internal clients: never describe them as external. Everything else is a guess. Please confirm each marked sentence, or delete it. -->
 
 ## The situation
 
-Tencent owns game studios around the world. Three of them in Europe were my internal clients. <!-- TODO(Vincent): can you name them, or should they stay anonymous? --> They are part of the same company, but they work like independent businesses. They have their own IT people, their own tools and their own opinions.
+In August 2023 I joined Tencent's Europe IT Center in Amsterdam. Part of my job was to be the contact for two game studios that Tencent had invested in: Yager in Berlin and Tequila Works in Madrid. In 2024 I also became project manager for LightSpeed UK, an internal studio.
 
-Central IT, where I worked, had tools and services that could help them: for version control, for security, for everyday IT. But "we have a tool for that" does not mean anyone will use it. A studio in the middle of making a game does not want to change tools because headquarters says so.
+Central IT had good offers for the studios: a group deal for Perforce, the version-control tool game studios use for large files, and a set of security services. The deals were negotiated centrally. My part was to make sure the studios knew about them, could use them, and had someone to ask.
 
-I was the studios' contact in central IT, and central IT's contact in the studios.
+## Small things, done every week
 
-## The hard part
+Most of the work was not dramatic. I held regular meetings with the studios to hear what was hard for them and what they needed. With the Tequila Works IT manager I had a monthly check-in and sent a weekly update. I helped their IT contacts on Slack when they got stuck with Perforce or a security service. And I built three trackers myself, one of them semi-automated, so I always knew where each studio stood.
 
-The studios decided for themselves what they used, so nothing could be pushed on them. <!-- TODO(Vincent): true? -->
+One small example I still like: when Yager took up the Perforce deal, I checked the quote and found a calculation error. Correcting it saved the studio $3,000.
 
-The product teams were also far away, in Asia and the US, in different time zones. <!-- TODO(Vincent): did this slow things down? --> As EU Product Owner for Security and Foundation IT (the basic IT every office needs, such as accounts, devices and networks), I was responsible for making sure European needs showed up in the product roadmaps.
+In 2023 the two studios took up 245 Perforce licences (172 for Yager, 73 for Tequila Works) and five security services, from security alerts to phishing simulation.
 
-## What I did
+## Meeting people in person
 
-**I started by listening.** I met each studio to understand how they worked, what hurt, and what they were already paying for. <!-- TODO(Vincent): how did you do this? Regular syncs, interviews, a user journey map? There is a "Weekly Studio Support Sync" tracker in your Drive. --> Only then did I suggest anything.
+In August 2024 I went to Gamescom in Cologne. I hosted meetings with studios, including Tequila Works, and helped the CES team with their happy hour for more than 100 external customers.
 
-**I matched tools to real problems.** Where a studio was paying for its own tools and central IT had an equal or better option, I made the case with numbers. That is how Perforce, a version-control tool that game studios use for large files, and five security products were adopted. Together they saved the studios an estimated $91,000 a year.
+Meeting in person made a difference. Gamescom is where I earned the trust of the Tequila Works COO. At Yager I helped the HR team with remote IT questions, which built trust with both their IT and HR people.
 
-**I wrote down how adoption should work.** Every studio asked similar questions: who to contact, how long it takes, what happens to their data. I turned the answers into a Studio Adoption Playbook, so the next adoption would be faster. <!-- TODO(Vincent): confirm what the playbook contained. -->
+## Carrying the studios' voice
 
-**I brought European needs into global roadmaps.** As EU Product Owner, I collected requirements from the studios and discussed priorities with the product teams in the US and Asia. <!-- TODO(Vincent): one concrete example of a change you got into a roadmap would be great here. -->
+The product teams were mostly in the US. In 2024 I collected more than 11 requirements from the studios and passed them on. The security team improved more than six of their products with that input. I also aligned two roadmaps with studio leaders.
 
-**I helped with the parts between systems and people.** I worked with HR and Finance on onboarding, so the IT side of a new person's start was ready. <!-- TODO(Vincent): confirm what exactly you did here. -->
+## What I took from it
 
-**I coached the people around me.** I coached two junior IT specialists and four interns in daily IT operations.
-
-## What came out of it
-
-Six products were adopted, with an estimated $91,000 in yearly savings for the studios, and the playbook meant the next adoption did not start from zero.
+One colleague described me as "the gateway between studio PM and product owner". I like that description. I did not own the products, and I did not negotiate the deals. My work was to keep both sides talking, keep track of everything, and check the details before they went out.

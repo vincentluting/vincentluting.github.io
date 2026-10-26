@@ -1,61 +1,53 @@
 ---
-title: "Why vendors on Amazon waited so long for an answer"
-shortTitle: "Why vendors waited so long"
-summary: "Vendors on Amazon were waiting weeks for answers. I analysed the tickets myself with SQL, rebuilt how they were handled, and wrote the process down. The time to resolve 90% of tickets went from 18 days to 8, and the process stayed in use after I left."
+title: "Our Dutch tickets were slow, and another country had already solved it"
+shortTitle: "Slow tickets, and a solution next door"
+summary: "At Amazon our Dutch ticket process took more than 18 days against a goal of 14. Before inventing anything new, I looked at how other countries did it. The fix already existed. We brought it to the Netherlands, and within five weeks it took 7.9 days."
 company: Amazon
-role: Vendor Service Consultant
-period: 2019 – 2021
+role: Acting SME, catalog team
+period: "2020"
 order: 1
 job: amazon
 tldr:
-  context: "External vendors selling on Amazon in Europe raised support tickets for problems with their products and listings. Too many tickets took too long, and many came back again."
-  myRole: "I did the analysis, proposed the new way of working, and rolled it out with the teams handling the tickets."
-  team: "Vendor service teams across four European marketplaces."
-  stakeholders: "External vendors, internal operations teams, and my manager, who had to approve the change."
+  context: "From week 39 of 2020, the Dutch Andon Cord team needed 18.18 days to close 90% of its tickets (TP90). The goal was 14 days. Assigning tickets, bin checks and prior-pull checks were all done by hand."
+  myRole: "I did the benchmark, met the contacts in other countries, wrote the SQL query for the Dutch warehouses and set up the tool. An engineer implemented the automations."
+  team: "A software development engineer and the automation contacts, plus contacts in other marketplaces."
+  stakeholders: "The Dutch Andon Cord team and the worldwide contacts for these automations."
   numbers:
-    - value: "18 → 8"
-      label: days to resolve 90% of tickets (TP90)
-      how: ""
-    - value: "−21%"
-      label: tickets coming in
-      how: ""
-    - value: "4"
-      label: European marketplaces
-      how: ""
+    - value: "18.18 → 7.9"
+      label: days to close 90% of tickets (TP90), weeks 45 to 50 of 2020
+      how: "From my promotion document."
+    - value: "9 min"
+      label: saved per ticket
+      how: "1 minute on prior pull, 8 minutes from fully automatic bin checks."
   skills:
-    - Supplier management
-    - Root-cause analysis
-    - Process improvement
-    - KPIs
+    - Benchmarking
     - SQL
+    - Working with engineers
+    - Process improvement
 ---
-
-<!-- TODO(Vincent): Claude drafted this from your CV. Facts from the CV: own SQL analysis, ticket handling rebuilt across 4 European marketplaces, TP90 from 18 to 8 days, inflow down 21%, SOP stayed in use after you left. Also from the CV: 10+ vendors advised, Amazon.nl launch with 2 web tools and SOPs, 10+ new hires trained. Everything else is a guess. The TL;DR "team" line is also a guess. Please confirm each marked sentence, or delete it. -->
 
 ## The situation
 
-At Amazon I worked with external vendors: companies that sell their products to Amazon, which then sells them to customers. When something went wrong with their products, prices or listings, they opened a ticket, and teams like mine had to solve it.
+In 2020 I worked in Amazon's catalog team in the Netherlands. One of the ticket queues we handled for the Dutch store was called Andon Cord. Every ticket had to be checked and closed by someone on the team.
 
-The problem was time. It took around 18 days before 90% of tickets were resolved. We called this number TP90. For a vendor that is a long time. A wrong listing or a blocked product can mean weeks of lost sales, and a vendor who waits that long stops trusting you.
+In the autumn the process got slow. From week 39, it took us 18.18 days to close 90% of the tickets. The goal was 14 days. Everything was done by hand: giving tickets to people, checking the warehouse bins, checking earlier cases.
 
-It was also the time when Amazon was getting ready to launch its Dutch marketplace, Amazon.nl. I was part of that work too: I helped build two web tools and the standard operating procedures (SOPs) for choosing which products to offer and removing defects. More vendors were coming, so the ticket problem was only going to get bigger.
+## First, look around
 
-## The hard part
+My first question was simple: is this only our problem, or everybody's?
 
-Nobody had looked at the ticket data across all four marketplaces together. <!-- TODO(Vincent): true? --> Each marketplace also had its own habits, so a change meant asking experienced people to work differently. <!-- TODO(Vincent): true? -->
+So I compared our numbers with the US, the big European stores and Turkey. Turkey was the most interesting one. Like the Netherlands, it was a new marketplace, and it had the same 14-day goal. Turkey closed 90% of its tickets in 8 days.
 
-## What I did
+The big difference: other countries already had automations for the steps we did by hand. We just did not use them yet.
 
-**I looked at the data myself.** I wrote SQL queries on the ticket data to see where the time went: which types of tickets took longest, where they waited, and which ones came back after being closed. <!-- TODO(Vincent): what did you find? E.g. a few ticket types causing most of the delay, or tickets bouncing between teams? The real finding would make this story much stronger. -->
+## Then, bring it home
 
-**I focused on the tickets that should never exist.** A large part of the inflow was the same problems again and again. <!-- TODO(Vincent): confirm, and give an example. --> Fixing the cause, or giving vendors a clear answer the first time, was better than handling the same ticket faster.
+I collected what I could about these automations and met the contacts in other countries, so that the Dutch setup would work the same way as theirs. A software engineer and the automation contacts did the implementation with me.
 
-**I redesigned the flow and wrote it down.** I proposed a new way to sort and handle tickets and wrote it as an SOP, with clear steps that any new team member could follow. <!-- TODO(Vincent): what were the main changes? Routing, templates, ownership, escalation rules? Who approved the change? -->
-
-**I rolled it out with the teams.** I trained people in the four marketplaces and adjusted the process based on their feedback. <!-- TODO(Vincent): true? --> I also trained more than ten new hires at Amazon, so I knew how to explain a process so it sticks.
+One part did not fit straight away. The Netherlands had a large local selection, and the automatic bin check did not cover all the warehouses we used. I wrote an SQL query to separate the Dutch retail warehouses from the third-party ones, so the automation could cover them. I also set up the skills, agents and profiles in our ticket tool, Zeus.
 
 ## What came out of it
 
-The time to resolve 90% of tickets went from 18 days to 8. The number of tickets coming in dropped by 21%, because more problems were solved properly the first time.
+With the new workflow, people saved 9 minutes per ticket: 1 minute on the prior-pull check and 8 minutes because the bin checks were now fully automatic. Between week 45 and week 50, the time to close 90% of tickets went from 18.18 days to 7.9 days, well under the goal.
 
-The SOP stayed in use after I left Amazon. For me that is the real test of a process change: it keeps working when the person who designed it is gone.
+That is five weeks of data, and I do not have the numbers from after that. But I still think about this story when a problem looks new. The best fix was not something I designed. It was something another team had already built, and my job was to notice it and bring it home.

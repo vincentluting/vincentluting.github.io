@@ -1,58 +1,53 @@
 ---
-title: "Asking Amazon for the features our media teams needed"
-shortTitle: "Asking Amazon for new features"
-summary: "As Product Owner at Philips, I sat between our media teams and two very large partners. We shipped three new features on the Amazon Marketing Cloud platform and four dashboards. Campaign activation became 15% more productive, and campaign performance improved by 10%."
-company: Philips
-role: Product Owner, Amazon Ads Dashboards
+title: "I was hired to build dashboards on a platform that could not feed them"
+shortTitle: "Dashboards on the wrong platform"
+summary: "At Philips, through OMD, I was asked to build media dashboards on Amazon Marketing Cloud. It turned out the data we needed had to come from somewhere else. What started as a small idea became four dashboards, built by engineers in India with me as product owner."
+company: Philips (via OMD)
+role: Analyst (contract via OMD), functional product owner for Amazon Ads dashboards
 period: 2021 – 2023
 order: 5
 job: philips
 tldr:
-  context: "Philips runs a lot of advertising on Amazon. The media teams needed better data on their audiences and campaigns than the standard tools gave them."
-  myRole: "Product Owner: I collected what the media teams needed, turned it into requirements, and worked with engineers and partners to deliver it."
-  team: "Our own engineers and analysts, plus product and engineering people at Amazon Ads and AWS."
-  stakeholders: "Media and analytics teams at Philips, Amazon Ads, AWS."
+  context: "Employed by OMD and placed in Philips' global Amazon media team. The team wanted better data on its Amazon advertising."
+  myRole: "Functional product owner: requirements, roadmap and data flow. Engineers in India built the dashboards. I also wrote SQL on Amazon Marketing Cloud for ad-hoc analyses."
+  team: "A small offshore developer team, the analytics lead, and the Amazon media team."
+  stakeholders: "Global marketing and media teams at Philips, with Amazon Ads and AWS on the platform side."
   numbers:
-    - value: "3"
-      label: new features on Amazon Marketing Cloud
-      how: ""
-    - value: "+15%"
-      label: campaign activation productivity
-      how: ""
-    - value: "+10%"
-      label: campaign performance
-      how: ""
+    - value: "4"
+      label: dashboards delivered by the developer team
   skills:
-    - Partner management
     - Requirements
-    - Delivery with engineers
-    - Dashboards and SQL
+    - Working with engineers
+    - Root-cause analysis
+    - SQL
 ---
-
-<!-- TODO(Vincent): Claude drafted this from your CV. Facts: Product Owner, 3 new AMC features designed and launched with Amazon Ads and AWS, 4 marketing dashboards built with engineers (+15% campaign activation productivity), insights on audience segmentation and ad frequency (+10% campaign performance), worked with media and analytics teams on targeting and ROI. Everything else is a guess. -->
 
 ## The situation
 
-Amazon Marketing Cloud (AMC) is a place where advertisers can analyse how their campaigns on Amazon really perform. In 2021 it was still young. Philips had big plans for advertising on Amazon, but our media teams kept running into things the platform could not do yet. <!-- TODO(Vincent): confirm. -->
+From November 2021 I worked in Philips' global Amazon media team. Formally I was employed by OMD, the media agency, on a fixed-term contract. I started as an outsider, working remotely. About three months in, my director pulled me into the team's daily catch-up, and in autumn 2022 OMD extended my contract by twelve months.
 
-I was the Product Owner for our Amazon Ads dashboards. That meant two directions of work: build what we could ourselves, and work with Amazon on what only they could build.
+My manager hired me to build media dashboards on Amazon Marketing Cloud (AMC), a place where advertisers can analyse their Amazon campaigns.
+
+## The surprise
+
+Soon I found out that AMC could not give us the data in real time. For the dashboards the team wanted, the data had to come from the Amazon Ads APIs instead.
+
+So the plan changed. I worked out the data flow with the developers: pull the Amazon Ads reports from the API on a schedule, and store them in Azure (Delta Lake and Synapse), where the dashboards could read them.
+
+## Product owner, not builder
+
+I did not write the dashboards myself. A small team of engineers in India built them. My job was to understand what the marketing and media people needed, and turn that into something the engineers could build. Two examples were a global media dashboard and a checker for campaign naming rules.
+
+With the analytics lead I planned the AMC roadmap for 2022 and asked for developer time. When the DSP dashboard went live, I wrote the launch email and thanked each person who had helped.
+
+AMC was still useful in other ways. I wrote my own SQL queries on it for quick analyses: customer journeys, audiences, how often people should see an ad, and how people converted around Prime Day. On the customer side I also worked with AWS and Amazon Ads. We explored AWS Clean Rooms, though it stayed an exploration, and I helped test the new Ads API V3 and Amazon Marketing Stream.
 
 ## The hard part
 
-Philips was one advertiser among many, so a feature request to Amazon needed a very clear case and patience. <!-- TODO(Vincent): true? -->
+At one point the dashboards had data-quality problems, and the business side and IT blamed each other. When I looked closer, both were partly right. Campaigns were often not named according to the rules, and some server scripts failed, so data arrived late.
 
-Inside Philips, the media teams spoke the language of campaigns and budgets. The engineers spoke the language of data models and queries. Somebody had to translate in both directions without losing the point.
-
-## What I did
-
-**I turned complaints into requirements.** The media teams told me what annoyed them. I asked why, again and again, until I understood the decision they were trying to make. Then I wrote that down as something an engineer could build. <!-- TODO(Vincent): one example would help, e.g. frequency or audience overlap. -->
-
-**I built the case with Amazon Ads and AWS.** For the features that had to live in the platform, I worked with Amazon's product and engineering people. We designed three new features together, and they were launched on AMC. <!-- TODO(Vincent): can you describe the three features in one line each, if it is not confidential? -->
-
-**I delivered what we could build ourselves.** With our own engineers, I built four marketing dashboards. They made it faster for the media teams to set up and check campaigns.
-
-**I made the data useful for decisions.** From AMC data we found insights about audience segments and how often people should see an ad. The media and analytics teams used them to change targeting.
+I explained both causes to both sides and proposed a longer-term fix: two extra data refreshes, an alert when a script failed, a joint clean-up of naming, a small tool to flag wrongly named campaigns, and a quality report. I have no record of how much of it was carried out.
 
 ## What came out of it
 
-Three new features on the AMC platform, built together with Amazon Ads and AWS. Four dashboards that made campaign activation about 15% more productive. And campaign performance improved by about 10% after the targeting and frequency changes.
+The developer team delivered four dashboards. When I left in August 2023, a colleague wrote that what "started with a simple idea to optimize SA dashboard" had grown "to such large scale and team". That is the result I am most happy with. I did not build it with my own hands, but I helped it grow.

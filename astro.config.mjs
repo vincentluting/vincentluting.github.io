@@ -50,6 +50,8 @@ export default defineConfig({
     '/projects': '/stories',
     '/experience': '/about',
     '/now': '/about',
+    '/stories/huawei-forecasting': '/stories',
+    '/stories/mailbox-migration': '/stories',
   },
   markdown: {
     shikiConfig: {
