@@ -52,6 +52,7 @@ export default defineConfig({
     '/now': '/about',
     '/stories/huawei-forecasting': '/stories',
     '/stories/mailbox-migration': '/stories',
+    '/stories/deep-dive': '/stories',
   },
   markdown: {
     shikiConfig: {

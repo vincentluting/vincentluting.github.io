@@ -1,53 +1,56 @@
 ---
-title: "Our Dutch tickets were slow, and another country had already solved it"
-shortTitle: "Slow tickets, and a solution next door"
-summary: "At Amazon our Dutch ticket process took more than 18 days against a goal of 14. Before inventing anything new, I looked at how other countries did it. The fix already existed. We brought it to the Netherlands, and within five weeks it took 7.9 days."
+title: "I taught myself to build web tools so my team could work faster"
+shortTitle: "Web tools I built for my team at Amazon"
+summary: "Our catalog team at Amazon had many new people, and everyone needed the same links and analysis tools again and again. I taught myself HTML, CSS and a little JavaScript and built two web tools for the team. Teams in other countries started using them too."
 company: Amazon
-role: Acting SME, catalog team
-period: "2020"
+role: Senior Catalog Associate, later Acting SME
+period: 2019 – 2021
 order: 1
 job: amazon
 tldr:
-  context: "From week 39 of 2020, the Dutch Andon Cord team needed 18.18 days to close 90% of its tickets (TP90). The goal was 14 days. Assigning tickets, bin checks and prior-pull checks were all done by hand."
-  myRole: "I did the benchmark, met the contacts in other countries, wrote the SQL query for the Dutch warehouses and set up the tool. An engineer implemented the automations."
-  team: "A software development engineer and the automation contacts, plus contacts in other marketplaces."
-  stakeholders: "The Dutch Andon Cord team and the worldwide contacts for these automations."
+  context: "The Dutch catalog team had many new joiners. They needed quick guidance on which systems to use and how to analyse a catalog problem."
+  myRole: "I taught myself basic web development and built two web tools myself. I also made smaller automations, such as a spell checker for Dutch catalog content."
+  team: "The Dutch catalog team in Retail Business Services."
+  stakeholders: "My colleagues in the catalog team, and later teams in other countries."
   numbers:
+    - value: "2"
+      label: web tools I built myself
     - value: "18.18 → 7.9"
-      label: days to close 90% of tickets (TP90), weeks 45 to 50 of 2020
+      label: days to close 90% of Andon Cord tickets, weeks 45 to 50 of 2020
       how: "From my promotion document."
-    - value: "9 min"
-      label: saved per ticket
-      how: "1 minute on prior pull, 8 minutes from fully automatic bin checks."
   skills:
-    - Benchmarking
+    - Self-taught web development
+    - Automation
     - SQL
-    - Working with engineers
-    - Process improvement
+    - Helping colleagues
 ---
 
 ## The situation
 
-In 2020 I worked in Amazon's catalog team in the Netherlands. One of the ticket queues we handled for the Dutch store was called Andon Cord. Every ticket had to be checked and closed by someone on the team.
+I joined Amazon in the Netherlands in July 2019, in the catalog team. Our work was to keep product information on the store correct.
 
-In the autumn the process got slow. From week 39, it took us 18.18 days to close 90% of the tickets. The goal was 14 days. Everything was done by hand: giving tickets to people, checking the warehouse bins, checking earlier cases.
+Many new people joined the team. Every newcomer had the same questions. Which system do I use for this? Where is that report? How do I find out what is wrong with this product? The answers were spread over many different tools and pages.
 
-## First, look around
+## What I built
 
-My first question was simple: is this only our problem, or everybody's?
+I thought this could be easier. So I taught myself the basics of web development: HTML, CSS and a little JavaScript. Then I built two simple web tools for the team.
 
-So I compared our numbers with the US, the big European stores and Turkey. Turkey was the most interesting one. Like the Netherlands, it was a new marketplace, and it had the same 14-day goal. Turkey closed 90% of its tickets in 8 days.
+**Deepdiver's toolbox.** One page with the important system links and short guides. A new colleague could open it and find their way quickly.
 
-The big difference: other countries already had automations for the steps we did by hand. We just did not use them yet.
+**ASIN deep diver.** Every product on Amazon has an ID called an ASIN. In this tool you enter one ASIN, and it takes you to the results of several analysis tools at once, instead of opening and searching each tool one by one.
 
-## Then, bring it home
-
-I collected what I could about these automations and met the contacts in other countries, so that the Dutch setup would work the same way as theirs. A software engineer and the automation contacts did the implementation with me.
-
-One part did not fit straight away. The Netherlands had a large local selection, and the automatic bin check did not cover all the warehouses we used. I wrote an SQL query to separate the Dutch retail warehouses from the third-party ones, so the automation could cover them. I also set up the skills, agents and profiles in our ticket tool, Zeus.
+I also made a few smaller things, such as a spell checker for Dutch catalog content, and I helped colleagues with Excel.
 
 ## What came out of it
 
-With the new workflow, people saved 9 minutes per ticket: 1 minute on the prior-pull check and 8 minutes because the bin checks were now fully automatic. Between week 45 and week 50, the time to close 90% of tickets went from 18.18 days to 7.9 days, well under the goal.
+Colleagues found the tools useful, and as far as I know, teams in Turkey, Sweden and Poland started using them too. The tools were part of the work behind my promotion to SME in 2021.
 
-That is five weeks of data, and I do not have the numbers from after that. But I still think about this story when a problem looks new. The best fix was not something I designed. It was something another team had already built, and my job was to notice it and bring it home.
+In my review that year my manager wrote that I "came up with multiple improvements and small scale automations" for my processes.
+
+## The same idea, at a bigger scale
+
+In late 2020 I also used the same way of thinking on a bigger problem. Our Dutch ticket process for Andon Cord took 18.18 days to close 90% of tickets, against a goal of 14. I compared our numbers with other countries and saw that they already had automations for the steps we did by hand. With a software engineer we brought those automations to the Netherlands. I wrote the SQL query and set up the tool myself.
+
+People saved 9 minutes per ticket, and within five weeks the time went from 18.18 days to 7.9 days.
+
+What I like about both stories is the same thing. I did not wait for someone else to remove the daily friction. I learned what I needed and made the work easier for the whole team.
