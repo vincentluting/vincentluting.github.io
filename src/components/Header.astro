@@ -7,8 +7,7 @@ import { site, cvUrl } from '../data';
 const nav = [
   { label: 'About', href: '/about/' },
   { label: 'Stories', href: '/stories/' },
-  { label: 'Writing', href: '/posts/' },
-  { label: 'Now', href: '/now/' },
+  { label: 'Blog', href: '/posts/' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => !href.includes('#') && path.startsWith(href);

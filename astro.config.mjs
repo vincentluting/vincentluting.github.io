@@ -49,6 +49,7 @@ export default defineConfig({
     '/tags/ai': '/posts',
     '/projects': '/stories',
     '/experience': '/about',
+    '/now': '/about',
   },
   markdown: {
     shikiConfig: {

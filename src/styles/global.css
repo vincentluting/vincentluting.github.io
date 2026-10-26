@@ -286,9 +286,6 @@ html[data-motion="off"] .animate-ping { animation: none; }
 }
 .site-header.is-tucked { translate: 0 -100%; }
 
-/* The ink cursor is a soft wash that trails the real pointer. The system
-   pointer always stays visible, so OS pointer-size settings keep working. */
-
 /* Paper page transitions (Chromium and Safari; Firefox loads normally). */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
@@ -423,7 +420,7 @@ html[data-motion="off"]::view-transition-new(root) {
    Hiring managers print or save a story or the CV page before an interview.
    Print shows everything in black on white, without the paper and the ink. */
 @media print {
-  .site-header, footer, [data-ink-cursor], fluid-ink, .read-progress,
+  .site-header, footer, fluid-ink, .read-progress,
   [data-motion-toggle], [data-theme-toggle], [data-nav-toggle], [data-copy-email] {
     display: none !important;
   }

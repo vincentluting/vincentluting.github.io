@@ -1,7 +1,7 @@
 /**
  * The cinematic layer: line-by-line text reveals (GSAP SplitText) and
- * scroll-linked scenes (GSAP ScrollTrigger), plus the ink cursor on fine
- * pointers. Scrolling itself is left to the browser: smooth-scroll libraries
+ * scroll-linked scenes (GSAP ScrollTrigger), plus small pointer effects on
+ * fine pointers. Scrolling itself is left to the browser: smooth-scroll libraries
  * make reading and keyboard scrolling harder, so there is none.
  *
  * motion.ts loads this module only while motion is on, so visitors who turn
@@ -12,7 +12,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import { startCursor } from './cursor';
+import { startPointerEffects } from './pointer';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -21,7 +21,7 @@ const EASE = 'expo.out';
 
 let running = false;
 let mm: gsap.MatchMedia | null = null;
-let stopCursor: (() => void) | null = null;
+let stopPointer: (() => void) | null = null;
 const splits: SplitText[] = [];
 
 const inView = (el: Element) => {
@@ -151,7 +151,7 @@ export function start() {
     return () => resetHeader?.();
   });
   mm.add('(min-width: 1024px)', () => heroScene());
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !readingPage()) stopCursor = startCursor();
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !readingPage()) stopPointer = startPointerEffects();
   // Fonts change line breaks; measure again once they are in.
   document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
@@ -160,8 +160,8 @@ export function stop() {
   if (!running) return;
   running = false;
   delete root.dataset.cinema;
-  stopCursor?.();
-  stopCursor = null;
+  stopPointer?.();
+  stopPointer = null;
   splits.splice(0).forEach((s) => s.revert());
   mm?.revert();
   mm = null;

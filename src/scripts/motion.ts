@@ -86,7 +86,7 @@ toggles.forEach((btn) =>
   }),
 );
 
-// ---- the cinematic layer (GSAP line reveals, scroll scenes, ink cursor) ----------
+// ---- the cinematic layer (GSAP line reveals, scroll scenes, pointer effects) ---
 // Loaded only while motion is on. If it cannot load, the cards it would have
 // placed are simply shown.
 type Cinema = typeof import('./cinema');

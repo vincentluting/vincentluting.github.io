@@ -5,7 +5,7 @@ import JsonLd from '../components/JsonLd.astro';
 import Hero from '../components/home/Hero.astro';
 import MyStory from '../components/home/MyStory.astro';
 import StoriesTeaser from '../components/home/StoriesTeaser.astro';
-import WritingAndNow from '../components/home/WritingAndNow.astro';
+import Blog from '../components/home/Blog.astro';
 import Contact from '../components/home/Contact.astro';
 import { resolveImage } from '../lib/images';
 import { site } from '../data';
@@ -48,7 +48,7 @@ const graph = {
   <JsonLd slot="head" data={graph} />
   <Hero />
   <MyStory />
-  <WritingAndNow />
+  <Blog />
   <StoriesTeaser />
   <Contact />
 </BaseLayout>

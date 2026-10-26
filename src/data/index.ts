@@ -11,9 +11,8 @@ import { join } from 'node:path';
 import type { z } from 'astro/zod';
 import siteRaw from './site.yaml?raw';
 import aboutRaw from './about.yaml?raw';
-import nowRaw from './now.yaml?raw';
 import testimonialsRaw from './testimonials.yaml?raw';
-import { AboutSchema, NowSchema, TestimonialsFileSchema, SiteSchema } from './types';
+import { AboutSchema, TestimonialsFileSchema, SiteSchema } from './types';
 
 function load<T extends z.ZodTypeAny>(file: string, schema: T, raw: string): z.infer<T> {
   let data: unknown;
@@ -44,9 +43,6 @@ export const cvUrl: string | undefined = (() => {
   return encodeURI(path);
 })();
 export const about = load('about.yaml', AboutSchema, aboutRaw);
-
-
-export const now = load('now.yaml', NowSchema, nowRaw);
 export const testimonials = load('testimonials.yaml', TestimonialsFileSchema, testimonialsRaw).items;
 
 export type * from './types';
