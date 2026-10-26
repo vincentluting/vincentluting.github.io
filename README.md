@@ -1,6 +1,6 @@
 # vincentluting.github.io
 
-Personal site of Ting (Vincent) Lu in Utrecht: a few stories from work and from moving countries, notes, and what I am doing now. It is a personal website, not a CV: work history and job-search details are deliberately left out.
+Personal site of Ting (Vincent) Lu in Utrecht: a few stories from work and from moving countries, and some notes. It is a personal website, not a CV: work history and job-search details are deliberately left out.
 Live at **https://vincentluting.github.io**.
 
 Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Newsreader +
@@ -15,7 +15,7 @@ fetched afterwards, and only while motion is on:
 | Ink-bleed title reveal, brush strokes under headings, signature, seal stamp, scroll reveal | All pages | `src/scripts/motion.ts`, `src/styles/global.css` |
 | Page transitions: the new page spreads out like ink on wet paper | All pages | CSS `@view-transition` (Chrome, Edge, Safari) |
 | Headings revealed line by line, cards dropped onto the page, hero parallax, signature written as you scroll, header that tucks away | All pages | `src/scripts/cinema.ts` ([GSAP](https://gsap.com) SplitText + ScrollTrigger) |
-| A soft ink wash that trails the (always visible) system pointer, magnetic buttons (mouse only, not on reading pages) | Home, About, Now | `src/scripts/cursor.ts`, `src/components/InkCursor.astro` |
+| Magnetic buttons and cards that tip towards the pointer (mouse only, not on reading pages) | Home, About, Stories | `src/scripts/pointer.ts` |
 | Hero portrait unrolled like a hanging scroll, drop cap drying into ink, reading progress thread | Home, stories, posts | `src/styles/global.css` (CSS only) |
 
 Everything is decoration on top of a complete page. Scrolling is native (no smooth-scroll
@@ -49,7 +49,7 @@ All text on the site lives in plain YAML and Markdown files, and the repo has a
 1. Go to https://app.pagescms.org and sign in with GitHub.
 2. Install the Pages CMS GitHub App for this repository (one-time).
 3. Open the repo. You get sections for Profile & contact, About,
-   Stories, How I work, Now, Testimonials and Writing, plus image uploads.
+   Stories, How I work, Testimonials and Blog, plus image uploads.
 4. Save. Each save is a commit to `main`, and the site rebuilds in about a minute.
 
 You can also edit the same files directly on github.com (pencil icon on a file).
@@ -61,7 +61,6 @@ You can also edit the same files directly on github.com (pencil icon on a file).
 | Name, the short intro on the home page, contact links, portrait, Search Console code | `src/data/site.yaml` |
 | Work stories (case studies), including Deep Dive | `src/content/stories/<slug>.md` — `order` sets the order; the home page lists them all as a quiet list |
 | About page story and hobbies | `src/data/about.yaml` — paragraphs 1 and 4 and the hobbies also appear on the home page |
-| Now page | `src/data/now.yaml` — update the date when you change it |
 | How I run a project page | `src/content/pages/how-i-work.md` (URL stays `/how-i-work/`) |
 | Testimonials | `src/data/testimonials.yaml` — the home page section is hidden while it is empty |
 | Blog posts | `src/content/posts/<slug>.md` |

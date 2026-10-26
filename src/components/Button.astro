@@ -7,7 +7,7 @@ interface Props {
   class?: string;
 }
 const { href, variant = 'primary', external = false, download = false, class: className = '' } = Astro.props;
-// Filled and outlined buttons lean towards the ink cursor (src/scripts/cursor.ts).
+// Filled and outlined buttons lean towards the pointer (src/scripts/pointer.ts).
 const magnetic = variant !== 'ghost';
 
 const base =

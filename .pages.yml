@@ -131,29 +131,6 @@ content:
         type: rich-text
         options: { format: markdown }
 
-  - name: now
-    label: Now page
-    type: file
-    path: src/data/now.yaml
-    format: yaml
-    fields:
-      - name: updated
-        label: Last updated
-        type: date
-        options: { format: "yyyy-MM-dd" }
-        description: 每次修改时更新日期
-      - { name: intro, label: Intro, type: text }
-      - name: sections
-        label: Sections
-        type: object
-        list:
-          collapsible:
-            summary: "{fields.title}"
-        description: 前 3 个分区的第一条会显示在首页的 Now 卡片里
-        fields:
-          - { name: title, label: Section title, type: string }
-          - { name: items, label: Items, type: text, list: true }
-
   - name: testimonials
     label: Testimonials
     type: file
@@ -176,7 +153,7 @@ content:
           - { name: link, label: LinkedIn URL, type: string }
 
   - name: posts
-    label: Writing
+    label: Blog
     type: collection
     path: src/content/posts
     filename: "{primary}.md"

@@ -27,12 +27,6 @@ export const AboutSchema = z.object({
   hobbies: z.array(str).default([]),
 });
 
-export const NowSchema = z.object({
-  updated: z.coerce.date(),
-  intro: z.string().default(''),
-  sections: z.array(z.object({ title: str, items: z.array(str).default([]) })).default([]),
-});
-
 export const TestimonialSchema = z.object({
   quote: str,
   name: str,
@@ -45,5 +39,4 @@ export const TestimonialsFileSchema = z.object({ items: z.array(TestimonialSchem
 
 export type Site = z.infer<typeof SiteSchema>;
 export type About = z.infer<typeof AboutSchema>;
-export type Now = z.infer<typeof NowSchema>;
 export type Testimonial = z.infer<typeof TestimonialSchema>;
