@@ -35,18 +35,38 @@ if (!motionOn() || !('IntersectionObserver' in window)) {
     const watch = el.matches('.brush, .signature') && el.parentElement ? el.parentElement : el;
     targets.set(watch, [...(targets.get(watch) ?? []), el]);
   });
+  const show = (watch: Element) => {
+    targets.get(watch)?.forEach((el) => el.classList.add('is-visible'));
+    targets.delete(watch);
+    io.unobserve(watch);
+  };
   const io = new IntersectionObserver(
     (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          targets.get(entry.target)?.forEach((el) => el.classList.add('is-visible'));
-          io.unobserve(entry.target);
-        }
-      }
+      for (const entry of entries) if (entry.isIntersecting) show(entry.target);
     },
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+    { rootMargin: '0px 0px 0px 0px', threshold: 0.05 },
   );
   targets.forEach((_, watch) => io.observe(watch));
+  // A fast fling can carry a short element from below the fold to above it
+  // between two frames, so the observer never sees it intersect. After each
+  // scroll, anything already above the viewport is marked visible as well, so
+  // it is readable the moment the visitor scrolls back up.
+  let sweeping = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (sweeping || !targets.size) return;
+      sweeping = true;
+      requestAnimationFrame(() => {
+        sweeping = false;
+        for (const watch of [...targets.keys()]) {
+          const r = watch.getBoundingClientRect();
+          if (r.bottom < 0 || (r.top < innerHeight && r.bottom > 0)) show(watch);
+        }
+      });
+    },
+    { passive: true },
+  );
 }
 
 // ---- ink-bleed title --------------------------------------------------------

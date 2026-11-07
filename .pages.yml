@@ -63,6 +63,14 @@ content:
     fields:
       - { name: intro, label: Story paragraphs, type: text, list: true, description: 每一项是一段 }
       - { name: hobbies, label: Outside work, type: string, list: true }
+      - name: made
+        label: Things I made (About page sidebar)
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string, required: true }
+          - { name: what, label: What it is, type: string, required: true, description: 一句话 }
+          - { name: href, label: Link, type: string, required: true, description: 网址，或站内链接如 /stories/amazon-vendor-tickets/ }
 
   - name: stories
     label: Stories (work case studies)
@@ -171,6 +179,7 @@ content:
         options: { format: "yyyy-MM-dd" }
       - { name: tags, label: Tags, type: string, list: true }
       - { name: draft, label: Draft (hide from site), type: boolean, default: false }
+      - { name: archive, label: Earlier note (list at the end of the blog page, not on the home page), type: boolean, default: false }
       - { name: note, label: Note at the top, type: string, description: '例如 "Written in 2024, in the first months of my MBA."' }
       - name: cover
         label: Cover image

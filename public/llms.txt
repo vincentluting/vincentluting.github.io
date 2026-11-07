@@ -1,14 +1,26 @@
 # Ting (Vincent) Lu
 
-> Personal website of Ting (Vincent) Lu, who grew up in China and has lived in the Netherlands since 2015. Stories from work and from moving countries, and some notes.
+> Personal website of Ting (Vincent) Lu, a project manager in Utrecht who grew up in China and has lived in the Netherlands since 2015. Stories from work and from moving countries, and some notes.
 
 ## Pages
 
-- [About](https://vincentluting.github.io/about/): where I come from and what I like doing
+- [About](https://vincentluting.github.io/about/): where I come from, what I like doing, and things I made
 - [Stories](https://vincentluting.github.io/stories/): a few stories from work
-- [Blog](https://vincentluting.github.io/posts/): notes
+- [Blog](https://vincentluting.github.io/posts/): notes on AI, work and living between China and the Netherlands
+- [How I run a project](https://vincentluting.github.io/how-i-work/): what a new manager or teammate can expect from me
+
+## Stories from work
+
+- [I taught myself to build web tools so my team could work faster](https://vincentluting.github.io/stories/amazon-vendor-tickets/): Amazon, 2019 – 2021
+- [Being the IT partner for three game studios](https://vincentluting.github.io/stories/tencent-studios/): Tencent, 2023 – 2024
+- [From one small dashboard idea to four dashboards for Philips](https://vincentluting.github.io/stories/philips-amazon-marketing-cloud/): Philips via OMD, 2021 – 2023
+
+## Things I made
+
+- [Deep Dive](https://www.deepdivecareer.com): an AI career assessment platform, built for my MBA thesis
 
 ## Contact
 
 - Email: vincentluting@gmail.com
 - LinkedIn: https://www.linkedin.com/in/vincentluting
+- GitHub: https://github.com/vincentluting

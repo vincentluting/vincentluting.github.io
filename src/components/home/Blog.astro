@@ -4,7 +4,7 @@ import Section from '../Section.astro';
 import Brush from '../ink/Brush.astro';
 import FormattedDate from '../FormattedDate.astro';
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft))
+const posts = (await getCollection('posts', ({ data }) => !data.draft && !data.archive))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 ---

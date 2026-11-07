@@ -36,7 +36,7 @@ const graph = {
       url: `${site.url}/`,
       image: new URL(portrait.src, site.url).toString(),
       email: `mailto:${site.email}`,
-      sameAs: [site.linkedin, 'https://github.com/vincentluting', site.deepDive],
+      sameAs: [site.linkedin, site.github, site.deepDive].filter(Boolean),
       knowsLanguage: ['zh', 'en', 'nl'],
       address: { '@type': 'PostalAddress', addressLocality: 'Utrecht', addressCountry: 'NL' },
     },

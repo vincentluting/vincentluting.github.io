@@ -33,6 +33,7 @@ const links = [
     <ul class="flex flex-col gap-2 font-mono text-[0.8rem] md:col-span-4 md:items-end">
       <li><a class="text-muted transition-colors hover:text-ink" href={`mailto:${site.email}`}>{site.email}</a></li>
       <li><a class="text-muted transition-colors hover:text-ink" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      {site.github && <li><a class="text-muted transition-colors hover:text-ink" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>}
       {cvUrl && <li><a class="text-muted transition-colors hover:text-ink" href={cvUrl} download>CV (PDF)</a></li>}
       <li><a class="text-muted transition-colors hover:text-ink" href="/rss.xml">RSS</a></li>
     </ul>

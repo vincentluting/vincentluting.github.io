@@ -3,7 +3,19 @@ intro:
   - "Since then I have worked at four very different companies. The jobs looked different on paper, but the work I liked most was always the same kind: sitting between two groups of people who need each other, and making sure the thing they agreed on actually happens."
   - What I have learned is that I do my best work close to something real. A customer who needs to be up and running. A supplier who has to deliver on time. A product that has to work on Monday morning. Being Chinese, speaking Dutch and working in English every day helps there, because trust between people from different cultures is built in person, one problem at a time.
   - I also like building things myself. In 2024 I started an MBA in AI, Data and Analytics at the University of Amsterdam, and for my thesis I built Deep Dive, a career assessment platform, from the questionnaire to the code. I use AI every day as a tool to test ideas quickly, check my analysis and build things like Deep Dive. The decisions and the work with people stay with me.
-  - I have changed jobs more often than I would like. Next I want to go deep, stay for years, and get better at one thing instead of starting over.
+  - Four companies in eight years taught me how to start somewhere new and be useful quickly. What I want now is the opposite. A place to stay for years, and to get really good at one thing.
+# Things I made, shown in the About page sidebar. Links can be a URL or a
+# page on this site.
+made:
+  - name: Deep Dive
+    what: An AI career assessment platform, built for my MBA thesis, from the questionnaire to the code.
+    href: https://www.deepdivecareer.com
+  - name: Two web tools for my team at Amazon
+    what: A toolbox page and an ASIN deep diver, taught myself HTML, CSS and JavaScript to build them.
+    href: /stories/amazon-vendor-tickets/
+  - name: This website
+    what: Astro and Tailwind, ink on handmade paper. The source is on GitHub.
+    href: https://github.com/vincentluting/vincentluting.github.io
 hobbies:
   - Hiking
   - Swimming

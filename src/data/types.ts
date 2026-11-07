@@ -13,6 +13,7 @@ export const SiteSchema = z.object({
   location: str,
   email: str,
   linkedin: z.url(),
+  github: z.url().optional().or(z.literal('').transform(() => undefined)),
   deepDive: z.url(),
   cvPath: z.string().default(''),
   portrait: str,
@@ -22,9 +23,13 @@ export const SiteSchema = z.object({
   googleSiteVerification: z.string().default(''),
 });
 
+/** Something I made, with a link to it or to the story about it. */
+export const MadeSchema = z.object({ name: str, what: str, href: str });
+
 export const AboutSchema = z.object({
   intro: z.array(str).default([]),
   hobbies: z.array(str).default([]),
+  made: z.array(MadeSchema).nullish().transform((v) => v ?? []),
 });
 
 export const TestimonialSchema = z.object({

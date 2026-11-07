@@ -60,10 +60,10 @@ You can also edit the same files directly on github.com (pencil icon on a file).
 |---|---|
 | Name, the short intro on the home page, contact links, portrait, Search Console code | `src/data/site.yaml` |
 | Work stories (case studies), including Deep Dive | `src/content/stories/<slug>.md` — `order` sets the order; the home page lists them all as a quiet list |
-| About page story and hobbies | `src/data/about.yaml` — paragraphs 1 and 4 and the hobbies also appear on the home page |
+| About page story, hobbies and "Things I made" | `src/data/about.yaml` — paragraphs 1 and 4 and the hobbies also appear on the home page |
 | How I run a project page | `src/content/pages/how-i-work.md` (URL stays `/how-i-work/`) |
 | Testimonials | `src/data/testimonials.yaml` — the home page section is hidden while it is empty |
-| Blog posts | `src/content/posts/<slug>.md` |
+| Blog posts | `src/content/posts/<slug>.md` — `archive: true` lists a post under "Earlier notes" at the end of the blog page and keeps it off the home page (same URL, still in RSS) |
 | Uploaded images (portrait, post covers) | `src/assets/uploads/` — referenced as `/src/assets/uploads/<file>` |
 | CV PDF (optional) | `public/cv/`, referenced as `/cv/<file>.pdf` in `cvPath`. It is empty now, so the site has no CV download; the buttons come back when you set it |
 | Default social share image | `public/og-default.png` (1200×630) |

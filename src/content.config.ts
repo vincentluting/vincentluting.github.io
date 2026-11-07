@@ -14,6 +14,12 @@ const posts = defineCollection({
     coverAlt: z.string().optional(),
     /** Shown at the top of the post, e.g. "Written in 2024, in the first months of my MBA." */
     note: z.string().nullish(),
+    /**
+     * Earlier notes: kept online at the same URL and in the RSS feed, but
+     * listed under "Earlier notes" at the end of the blog page and left off
+     * the home page, so the first thing a visitor reads is the recent voice.
+     */
+    archive: z.boolean().default(false),
   }),
 });
 

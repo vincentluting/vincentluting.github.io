@@ -4,10 +4,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Section from '../../components/Section.astro';
 import Brush from '../../components/ink/Brush.astro';
 import PostCard from '../../components/blog/PostCard.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+const all = (await getCollection('posts', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+// Recent notes get cards; earlier ones (archive: true) stay online at the same
+// URL, listed quietly at the end.
+const posts = all.filter((p) => !p.data.archive);
+const earlier = all.filter((p) => p.data.archive);
 ---
 
 <BaseLayout title="Blog" description="Notes by Ting (Vincent) Lu on AI, on work, and on living between China and the Netherlands.">
@@ -17,11 +22,30 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
       <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>Some things I have written.</h1>
       <Brush variant={2} />
       <p class="mt-6 text-xl leading-relaxed text-muted">
-        Notes on AI, on work, and on living between China and the Netherlands. The oldest ones are from 2024, the first months of my MBA, and are about how the technology works underneath.
+        Notes on AI, on work, and on living between China and the Netherlands. I write when something has stayed with me for a while.
       </p>
     </div>
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+    <div class:list={["grid gap-10 md:grid-cols-2", posts.length >= 3 && "lg:grid-cols-3"]}>
       {posts.map((post, i) => <PostCard post={post} index={i} headingLevel={2} />)}
     </div>
+
+    {earlier.length > 0 && (
+      <div class="mt-20 max-w-3xl border-t border-line pt-10" data-reveal>
+        <p class="eyebrow mb-3">Earlier notes</p>
+        <p class="text-muted">
+          From 2024, the first months of my MBA, when I was working out how the technology works underneath. They are more textbook than the rest, and I keep them here because that is where I started.
+        </p>
+        <ol class="mt-6 divide-y divide-line border-y border-line">
+          {earlier.map((post) => (
+            <li>
+              <a href={`/posts/${post.id}/`} class="group grid gap-1 py-4 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
+                <span class="font-mono text-[0.75rem] text-muted sm:pt-1"><FormattedDate date={post.data.date} /></span>
+                <span class="font-display text-lg font-medium leading-snug transition-colors group-hover:text-accent">{post.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    )}
   </Section>
 </BaseLayout>

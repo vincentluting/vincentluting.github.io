@@ -72,6 +72,24 @@ const portrait = resolveImage(site.portrait);
             ))}
           </ul>
         </div>
+        {about.made.length > 0 && (
+          <div data-reveal style="--d: 200ms">
+            <h2 class="font-mono text-[0.8rem] uppercase tracking-wider text-accent-ink">Things I made</h2>
+            <ul class="mt-3 divide-y divide-line border-y border-line">
+              {about.made.map((m) => (
+                <li class="py-3">
+                  <a
+                    href={m.href}
+                    class="ink-link font-display text-lg font-medium"
+                    target={m.href.startsWith('http') ? '_blank' : undefined}
+                    rel={m.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >{m.name}</a>
+                  <p class="mt-1 text-[0.95rem] leading-relaxed text-muted">{m.what}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div data-reveal style="--d: 220ms">
           <h2 class="font-mono text-[0.8rem] uppercase tracking-wider text-accent-ink">Outside work</h2>
           <div class="mt-3 flex flex-wrap gap-2">
