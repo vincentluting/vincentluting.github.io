@@ -1,7 +1,8 @@
 /**
  * Small pointer effects (fine pointers only). Buttons marked [data-magnetic]
- * lean towards the pointer, and cards marked [data-tilt] tip slightly like a
- * sheet lifted by one corner.
+ * lean towards the pointer, cards marked [data-tilt] tip slightly like a
+ * sheet lifted by one corner, and under cards marked [data-ink-spread] a
+ * lighter wash soaks out from the point where the pointer came in.
  */
 import { gsap } from 'gsap';
 
@@ -59,8 +60,28 @@ export function startPointerEffects(): () => void {
     card.addEventListener('pointerleave', () => (rx(0), ry(0)), on);
   });
 
+  // ---- ink spreads from where the pointer came in --------------------------------
+  document.querySelectorAll<HTMLElement>('[data-ink-spread]').forEach((card) => {
+    card.addEventListener(
+      'pointerenter',
+      (e) => {
+        const r = card.getBoundingClientRect();
+        const x = Math.min(r.width, Math.max(0, e.clientX - r.left));
+        const y = Math.min(r.height, Math.max(0, e.clientY - r.top));
+        const far = Math.hypot(Math.max(x, r.width - x), Math.max(y, r.height - y));
+        card.style.setProperty('--sx', `${x}px`);
+        card.style.setProperty('--sy', `${y}px`);
+        card.style.setProperty('--spread-to', `${Math.ceil(far + 40)}px`);
+        card.classList.add('is-spread');
+      },
+      on,
+    );
+    card.addEventListener('pointerleave', () => card.classList.remove('is-spread'), on);
+  });
+
   return () => {
     ac.abort();
+    document.querySelectorAll<HTMLElement>('[data-ink-spread]').forEach((c) => c.classList.remove('is-spread'));
     document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((b) => (b.style.translate = ''));
     document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((c) => delete c.dataset.tilting);
     gsap.set('[data-magnetic-inner], [data-tilt]', { clearProps: 'transform,translate,rotate,scale' });

@@ -21,7 +21,7 @@ const stories = await getStories();
       <ol class="divide-y divide-line border-y border-line lg:col-span-8">
         {stories.map((s, i) => (
           <li data-reveal style={`--d: ${i * 60}ms`}>
-            <a href={`/stories/${s.id}/`} class="group grid gap-1 py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
+            <a href={`/stories/${s.id}/`} data-ink-spread class="group -mx-3 grid gap-1 rounded-sm px-3 py-5 sm:-mx-4 sm:grid-cols-[10rem_1fr] sm:gap-6 sm:px-4">
               <span class="font-mono text-[0.8rem] text-muted sm:pt-1.5">{s.data.company} · {s.data.period}</span>
               <span class="block font-display text-xl font-medium leading-snug transition-colors group-hover:text-accent">{s.data.title}</span>
             </a>

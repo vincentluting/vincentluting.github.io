@@ -15,6 +15,12 @@
  *     strokes, and now and then a small drop of vermilion. A click drops ink.
  *   • The canvas is transparent, so the static mountains and the paper under
  *     it stay visible; only the ink is drawn.
+ *   • A hidden painting. Moving the cursor works like a wet brush: its trail
+ *     uncovers a painting that lies under the paper (Huang Gongwang, "Dwelling
+ *     in the Fuchun Mountains", 1350, public domain), with a ragged, fibrous
+ *     edge and a faint tide line of wash. The trail is carried by the water
+ *     and closes again after a few seconds. Now and then the water uncovers a
+ *     glimpse of it on its own. The dye's B channel holds this reveal.
  *
  * It follows the site's motion toggle (html[data-motion]) and the OS
  * reduced-motion setting, and does not start on small screens or without
@@ -28,8 +34,8 @@ float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h
 float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+vec2(17.3,9.1);a*=.5;}return v;}`;
 
 const FRAGMENT = {
-  splat: `precision highp float;varying vec2 vUv;uniform sampler2D uTarget;uniform float uAspect,uRadius;uniform vec2 uPoint;uniform vec3 uColor;void main(){vec2 p=vUv-uPoint;p.x*=uAspect;float s=exp(-dot(p,p)/uRadius);gl_FragColor=vec4(texture2D(uTarget,vUv).xyz+s*uColor,1.);}`,
-  advect: `precision highp float;varying vec2 vUv;uniform sampler2D uVel,uSrc;uniform vec2 uTexel;uniform float uDt,uDiss;void main(){vec2 c=vUv-uDt*texture2D(uVel,vUv).xy*uTexel;gl_FragColor=uDiss*texture2D(uSrc,c);}`,
+  splat: `precision highp float;varying vec2 vUv;uniform sampler2D uTarget;uniform float uAspect,uRadius;uniform vec2 uPoint;uniform vec3 uColor;void main(){vec2 p=vUv-uPoint;p.x*=uAspect;float s=exp(-dot(p,p)/uRadius);vec3 v=texture2D(uTarget,vUv).xyz+s*uColor;v.z=min(v.z,1.2);gl_FragColor=vec4(v,1.);}`,
+  advect: `precision highp float;varying vec2 vUv;uniform sampler2D uVel,uSrc;uniform vec2 uTexel;uniform float uDt,uDiss,uDissB;void main(){vec2 c=vUv-uDt*texture2D(uVel,vUv).xy*uTexel;vec4 v=texture2D(uSrc,c);gl_FragColor=vec4(v.xy*uDiss,v.z*uDissB,v.w*uDiss);}`,
   divergence: `precision highp float;varying vec2 vUv;uniform sampler2D uVel;uniform vec2 uTexel;void main(){float L=texture2D(uVel,vUv-vec2(uTexel.x,0.)).x;float R=texture2D(uVel,vUv+vec2(uTexel.x,0.)).x;float B=texture2D(uVel,vUv-vec2(0.,uTexel.y)).y;float T=texture2D(uVel,vUv+vec2(0.,uTexel.y)).y;gl_FragColor=vec4(.5*(R-L+T-B),0.,0.,1.);}`,
   curl: `precision highp float;varying vec2 vUv;uniform sampler2D uVel;uniform vec2 uTexel;void main(){float L=texture2D(uVel,vUv-vec2(uTexel.x,0.)).y;float R=texture2D(uVel,vUv+vec2(uTexel.x,0.)).y;float B=texture2D(uVel,vUv-vec2(0.,uTexel.y)).x;float T=texture2D(uVel,vUv+vec2(0.,uTexel.y)).x;gl_FragColor=vec4(.5*(R-L-T+B),0.,0.,1.);}`,
   vorticity: `precision highp float;varying vec2 vUv;uniform sampler2D uVel,uCurl;uniform vec2 uTexel;uniform float uDt,uEps;void main(){float L=texture2D(uCurl,vUv-vec2(uTexel.x,0.)).x;float R=texture2D(uCurl,vUv+vec2(uTexel.x,0.)).x;float B=texture2D(uCurl,vUv-vec2(0.,uTexel.y)).x;float T=texture2D(uCurl,vUv+vec2(0.,uTexel.y)).x;float C=texture2D(uCurl,vUv).x;vec2 f=vec2(abs(T)-abs(B),abs(L)-abs(R));f/=length(f)+1e-4;f*=uEps*C;vec2 v=texture2D(uVel,vUv).xy+f*uDt;gl_FragColor=vec4(v,0.,1.);}`,
@@ -38,8 +44,8 @@ const FRAGMENT = {
   /* Rendered once per canvas size: R = long fibres, G = fine tooth, BA = wicking offset. */
   paper: `precision highp float;varying vec2 vUv;uniform float uAspect;${NOISE}void main(){vec2 p=vUv*vec2(uAspect,1.);float fib=fbm(p*vec2(7.,80.));float tooth=fbm(p*240.);vec2 w=vec2(fbm(p*vec2(3.,26.)+3.),fbm(p*vec2(3.,26.)+11.))-.5;gl_FragColor=vec4(fib,tooth,w);}`,
   /* The painting. Output is premultiplied alpha: only ink is drawn. */
-  display: `precision highp float;varying vec2 vUv;uniform sampler2D uDye,uPaper;uniform vec3 uInk,uWash,uRed;uniform vec2 uTexel;uniform float uDither,uFade,uOpacity;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+  display: `precision highp float;varying vec2 vUv;uniform sampler2D uDye,uPaper,uPainting;uniform vec3 uInk,uWash,uRed,uSilk;uniform vec2 uTexel,uCrop;uniform float uDither,uFade,uOpacity,uAspect,uTime,uHasPainting,uPaintOpacity;
+${NOISE}
 void main(){
   vec4 pa=texture2D(uPaper,vUv);
   vec2 uv=vUv+pa.ba*uTexel*5.;
@@ -63,6 +69,32 @@ void main(){
   column*=smoothstep(.06,.14,vUv.y+jitter)*(1.-smoothstep(.86,.93,vUv.y+jitter));
   float keep=1.-column*.68;
   col*=keep*uOpacity;alpha*=keep*uOpacity;
+
+  // The hidden painting, uncovered where the brush (dye B) has passed. The
+  // edge is pushed around by moving brush grain so it reads as a wet brush
+  // on fibrous paper, never as a soft circle.
+  if(uHasPainting>.5){
+    vec2 q=vUv*vec2(uAspect,1.);
+    float g1=n(q*21.+vec2(uTime*.05,-uTime*.03))*.6+n(q*47.+7.2)*.4;
+    float g2=n(q*21.+31.7+vec2(uTime*.05,-uTime*.03))*.6+n(q*47.+19.4)*.4;
+    float rv=texture2D(uDye,uv+(vec2(g1,g2)-.5)*uTexel*16.).b;
+    if(rv>.01){
+      float th=.11+g1*.1;
+      float open=smoothstep(th*.78,th*1.18,rv);
+      // Pigment pools just outside the opening, like the tide line of a wash.
+      float rim=max(0.,smoothstep(th*.42,th*.8,rv)-open);
+      float L=texture2D(uPainting,(vUv-.5)*uCrop+.5).r;
+      float pig=(1.-smoothstep(.3,.84,L))*open;
+      float silkA=open*.13;
+      vec3 pc=uSilk*silkA;float pa2=silkA;
+      pc=uInk*pig*.94+pc*(1.-pig*.94);pa2=pig*.94+pa2*(1.-pig*.94);
+      float rimA=rim*.3*gran;
+      pc=uWash*rimA+pc*(1.-rimA);pa2=rimA+pa2*(1.-rimA);
+      // Behind the text the painting stays a little softer, but never hidden.
+      float k=(1.-column*.45)*uPaintOpacity;
+      col+=pc*k*(1.-alpha);alpha+=pa2*k*(1.-alpha);
+    }
+  }
   alpha=clamp(alpha+(h(vUv*vec2(1441.,911.))-.5)*uDither*step(.004,alpha),0.,1.);
   gl_FragColor=vec4(col,alpha);
 }`,
@@ -104,6 +136,8 @@ interface Splat {
   ink: number;
   /** vermilion added */
   red: number;
+  /** how far the hidden painting is uncovered */
+  reveal: number;
   /** size, 1 = default */
   size: number;
 }
@@ -230,8 +264,12 @@ class FluidInk extends HTMLElement {
     let ink: Rgb = [0.11, 0.1, 0.08];
     let wash: Rgb = [0.36, 0.42, 0.49];
     let red: Rgb = [0.72, 0.27, 0.18];
+    let silk: Rgb = [0.83, 0.76, 0.62];
     let opacity = 1;
+    let paintOpacity = 1;
     const readPalette = () => {
+      silk = readColor("--ink-silk", silk);
+      paintOpacity = Number(getComputedStyle(this).getPropertyValue("--ink-reveal-opacity")) || 1;
       ink = readColor("--ink-pigment", ink);
       wash = readColor("--ink-wash", wash);
       red = readColor("--ink-red", red);
@@ -279,6 +317,37 @@ class FluidInk extends HTMLElement {
 
     const programs = {} as Record<ProgramName, Program>;
     for (const name of Object.keys(FRAGMENT) as ProgramName[]) programs[name] = link(FRAGMENT[name]);
+
+    // ---- the hidden painting --------------------------------------------
+    // Loaded after the simulation has started, at low priority; until it has
+    // decoded, the brush simply does not uncover anything.
+    let painting: WebGLTexture | null = null;
+    let paintingAspect = 1;
+    const paintingSrc = this.dataset.painting;
+    if (paintingSrc) {
+      const image = new Image();
+      image.decoding = "async";
+      (image as HTMLImageElement & { fetchPriority?: string }).fetchPriority = "low";
+      image.src = paintingSrc;
+      image
+        .decode()
+        .then(() => {
+          if (!this.isConnected) return;
+          const texture = gl.createTexture()!;
+          gl.bindTexture(gl.TEXTURE_2D, texture);
+          gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+          gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+          gl.generateMipmap(gl.TEXTURE_2D);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          paintingAspect = image.naturalWidth / image.naturalHeight;
+          painting = texture;
+        })
+        .catch(() => {});
+    }
 
     // Where supported, the driver compiles in the background and we poll.
     const parallel = gl.getExtension("KHR_parallel_shader_compile");
@@ -382,7 +451,7 @@ class FluidInk extends HTMLElement {
     let elapsed = 0;
 
     const splat = (s: Partial<Splat> & { x: number; y: number }, delay = 0) => {
-      const full: Splat = { dx: 0, dy: 0, ink: 0, red: 0, size: 1, ...s };
+      const full: Splat = { dx: 0, dy: 0, ink: 0, red: 0, reveal: 0, size: 1, ...s };
       if (delay <= 0) queue.push(full);
       else pending.push({ at: elapsed + delay, splat: full });
     };
@@ -392,16 +461,19 @@ class FluidInk extends HTMLElement {
       program.use();
       gl.uniform1f(program.uniform("uAspect"), aspect);
       gl.uniform2f(program.uniform("uPoint"), s.x, s.y);
-      gl.uniform1i(program.uniform("uTarget"), velocity.read.attach(0));
-      gl.uniform1f(program.uniform("uRadius"), 0.002 * s.size);
-      gl.uniform3f(program.uniform("uColor"), s.dx, s.dy, 0);
-      blit(velocity.write);
-      velocity.swap();
+      // The brush trail adds no motion of its own; skip the velocity pass.
+      if (s.dx || s.dy) {
+        gl.uniform1i(program.uniform("uTarget"), velocity.read.attach(0));
+        gl.uniform1f(program.uniform("uRadius"), 0.002 * s.size);
+        gl.uniform3f(program.uniform("uColor"), s.dx, s.dy, 0);
+        blit(velocity.write);
+        velocity.swap();
+      }
 
-      if (s.ink > 0 || s.red > 0) {
+      if (s.ink > 0 || s.red > 0 || s.reveal > 0) {
         gl.uniform1i(program.uniform("uTarget"), dye.read.attach(0));
         gl.uniform1f(program.uniform("uRadius"), 0.0012 * s.size);
-        gl.uniform3f(program.uniform("uColor"), s.ink * strength, s.red * strength, 0);
+        gl.uniform3f(program.uniform("uColor"), s.ink * strength, s.red * strength, s.reveal);
         blit(dye.write);
         dye.swap();
       }
@@ -449,6 +521,26 @@ class FluidInk extends HTMLElement {
       }
     };
 
+    /**
+     * The water uncovers a short glimpse of the painting on its own, like a
+     * brush passing over the paper, so visitors see there is something under it.
+     */
+    const glimpse = (x: number, y: number, angle: number, length: number, delay = 0) => {
+      const steps = 30;
+      let a = angle;
+      const bend = random(-0.6, 0.6) / steps;
+      let px = x;
+      let py = y;
+      for (let i = 0; i < steps; i++) {
+        const t = i / (steps - 1);
+        const pressure = Math.sin(Math.PI * Math.min(1, t * 1.1));
+        a += bend;
+        px += (Math.cos(a) * length) / steps / aspect;
+        py += (Math.sin(a) * length) / steps;
+        splat({ x: px, y: py, dx: Math.cos(a) * 40, dy: Math.sin(a) * 40, reveal: 0.22 * pressure + 0.04, size: 2.4 + pressure * 2.2 }, delay + i * 30);
+      }
+    };
+
     // Opening composition: a long vertical stroke down the right margin,
     // like the edge of a hanging scroll, a bloom in the gap beside the text,
     // a lighter one below the photo, and one vermilion drop, like a seal.
@@ -463,6 +555,9 @@ class FluidInk extends HTMLElement {
     // ---- input ---------------------------------------------------------
     if (window.matchMedia("(pointer: fine)").matches) {
       let last: { x: number; y: number } | null = null;
+      // The brush, in canvas pixels, so the trail is resampled evenly however
+      // fast the pointer moves and never breaks into dots.
+      let brush: { x: number; y: number } | null = null;
       const toUv = (event: PointerEvent) => {
         const rect = this.getBoundingClientRect();
         return { x: (event.clientX - rect.left) / rect.width, y: 1 - (event.clientY - rect.top) / rect.height };
@@ -476,12 +571,34 @@ class FluidInk extends HTMLElement {
           const dy = (y - last.y) * 900;
           const speed = Math.min(1, Math.hypot(dx, dy) / 60);
           // Moving the cursor stirs the water and leaves only a faint trail.
-          if (speed > 0.01) splat({ x, y, dx, dy, ink: speed * 0.06, size: 0.7 });
+          if (speed > 0.01) splat({ x, y, dx, dy, ink: speed * 0.03, size: 0.7 });
         }
         last = { x, y };
+
+        const rect = this.getBoundingClientRect();
+        const px = x * rect.width;
+        const py = y * rect.height;
+        if (brush) {
+          const length = Math.hypot(px - brush.x, py - brush.y);
+          // A quick stroke spreads a little wider, like a loaded brush pressed harder.
+          const width = 26 + Math.min(1, length / 60) * 10;
+          const size = Math.pow(width / rect.height, 2) / 0.0012;
+          const steps = Math.max(1, Math.ceil(length / 7));
+          for (let i = 1; i <= steps; i++) {
+            const t = i / steps;
+            splat({
+              x: (brush.x + (px - brush.x) * t) / rect.width,
+              y: (brush.y + (py - brush.y) * t) / rect.height,
+              reveal: 0.12,
+              size,
+            });
+          }
+        }
+        brush = { x: px, y: py };
       };
       const onPointerLeave = () => {
         last = null;
+        brush = null;
       };
       let clicks = 0;
       const onPointerDown = (event: PointerEvent) => {
@@ -544,6 +661,7 @@ class FluidInk extends HTMLElement {
     let openingDone = false;
     let nextDrop = 2600;
     let nextStroke = 5200;
+    let nextGlimpse = 3200;
     let lastFrame = performance.now();
     let started = lastFrame;
 
@@ -598,6 +716,14 @@ class FluidInk extends HTMLElement {
         }
       }
 
+      if (autoFlow && elapsed > nextGlimpse) {
+        nextGlimpse = elapsed + random(7000, 11000);
+        // Around the portrait, where the painting is not under the text.
+        const x = random(0.5, 0.9);
+        const y = random(0.15, 0.85);
+        glimpse(x, y, random(-0.4, 0.4) + (Math.random() < 0.5 ? 0 : Math.PI), random(0.25, 0.4));
+      }
+
       for (let i = pending.length - 1; i >= 0; i--) {
         if (pending[i].at <= elapsed) {
           queue.push(pending[i].splat);
@@ -648,6 +774,7 @@ class FluidInk extends HTMLElement {
       // Water slows down quickly, so ink settles instead of swirling forever.
       // Dissipation is per 1/60 s, so the look does not depend on frame rate.
       gl.uniform1f(programs.advect.uniform("uDiss"), Math.pow(0.985, dt * 60));
+      gl.uniform1f(programs.advect.uniform("uDissB"), Math.pow(0.985, dt * 60));
       gl.uniform1i(programs.advect.uniform("uVel"), velocity.read.attach(0));
       gl.uniform1i(programs.advect.uniform("uSrc"), velocity.read.attach(0));
       blit(velocity.write);
@@ -655,6 +782,8 @@ class FluidInk extends HTMLElement {
 
       // Ink fades slowly, like a wash drying into the paper.
       gl.uniform1f(programs.advect.uniform("uDiss"), Math.pow(0.997, dt * 60));
+      // The brush trail closes again after a few seconds.
+      gl.uniform1f(programs.advect.uniform("uDissB"), Math.pow(0.986, dt * 60));
       gl.uniform1i(programs.advect.uniform("uVel"), velocity.read.attach(0));
       gl.uniform1i(programs.advect.uniform("uSrc"), dye.read.attach(1));
       blit(dye.write);
@@ -670,6 +799,18 @@ class FluidInk extends HTMLElement {
       gl.uniform1f(programs.display.uniform("uDither"), 1 / 255);
       gl.uniform1f(programs.display.uniform("uFade"), fadeLeft);
       gl.uniform1f(programs.display.uniform("uOpacity"), opacity);
+      gl.uniform1f(programs.display.uniform("uAspect"), aspect);
+      gl.uniform1f(programs.display.uniform("uTime"), now / 1000);
+      gl.uniform3f(programs.display.uniform("uSilk"), silk[0], silk[1], silk[2]);
+      gl.uniform1f(programs.display.uniform("uPaintOpacity"), paintOpacity);
+      gl.uniform1f(programs.display.uniform("uHasPainting"), painting ? 1 : 0);
+      // Cover the canvas with the painting, cropping whichever side is too long.
+      gl.uniform2f(programs.display.uniform("uCrop"), Math.min(aspect / paintingAspect, 1), Math.min(paintingAspect / aspect, 1));
+      if (painting) {
+        gl.activeTexture(gl.TEXTURE2);
+        gl.bindTexture(gl.TEXTURE_2D, painting);
+      }
+      gl.uniform1i(programs.display.uniform("uPainting"), 2);
       gl.clearColor(0, 0, 0, 0);
       blit(null);
     };

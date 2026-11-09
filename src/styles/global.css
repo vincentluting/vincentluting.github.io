@@ -19,6 +19,8 @@
   --ink-red: #b23a26; /* vermilion */
   --ink-mountain: #3d4650;
   --ink-opacity: 1;
+  --ink-silk: #c9b48c; /* old silk, under the hidden painting */
+  --ink-reveal-opacity: 1;
   color-scheme: light;
 }
 .dark {
@@ -34,6 +36,8 @@
   --ink-pigment: #d8cfbd;
   --ink-wash: #6c7888;
   --ink-opacity: 0.5;
+  --ink-silk: #4a4132;
+  --ink-reveal-opacity: 0.72;
   --ink-red: #e0694f;
   --ink-mountain: #9aa4b0;
   color-scheme: dark;
@@ -316,6 +320,51 @@ html[data-motion="off"]::view-transition-new(root) {
 @keyframes page-in {
   from { --ink-r: 0%; opacity: 0.4; filter: blur(2px); }
   to { --ink-r: 150%; opacity: 1; filter: blur(0); }
+}
+
+/* ---------- Ink spreading under a card ---------- */
+/* When the pointer enters a card, a lighter wash soaks out from the point
+   where it came in, with a faint tide line of ink at its edge; on leaving it
+   draws back. pointer.ts sets --sx/--sy (entry point) and --spread-to (the
+   distance to the farthest corner). #ink-spread (BaseLayout) roughens the
+   edge with paper-fibre noise. Without motion it simply never starts. */
+@property --spread {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+[data-ink-spread] {
+  --spread-wash: color-mix(in oklab, var(--paper) 45%, #fffdf7);
+  --spread-rim: color-mix(in oklab, var(--ink-wash) 22%, transparent);
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.dark [data-ink-spread] {
+  --spread-wash: color-mix(in oklab, var(--surface) 82%, #fff3dc);
+  --spread-rim: color-mix(in oklab, var(--ink) 16%, transparent);
+}
+[data-ink-spread]::before {
+  content: "";
+  position: absolute;
+  /* Larger than the card, so the roughened edge never frays along the
+     card's own border; the card clips it. */
+  inset: -24px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at calc(var(--sx, 50%) + 24px) calc(var(--sy, 50%) + 24px),
+    var(--spread-wash) 0,
+    var(--spread-wash) max(0px, calc(var(--spread) - 16px)),
+    var(--spread-rim) max(0px, calc(var(--spread) - 4px)),
+    transparent var(--spread)
+  );
+  filter: url(#ink-spread);
+  transition: --spread 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-ink-spread].is-spread::before {
+  --spread: var(--spread-to, 640px);
+  transition: --spread 0.75s var(--ease-ink);
 }
 
 /* ---------- Utilities ---------- */

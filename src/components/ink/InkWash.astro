@@ -6,6 +6,10 @@
  * motion off, and while the simulation starts up.
  */
 import InkMountains from './InkMountains.astro';
+// The painting the cursor uncovers: Huang Gongwang, "Dwelling in the Fuchun
+// Mountains" (1350), a section of the Wuyong scroll. Public domain, via
+// Wikimedia Commons (File:富春山居圖(無用師卷).jpg).
+import painting from '../../assets/ink/fuchun-mountains.webp';
 interface Props {
   class?: string;
 }
@@ -15,7 +19,7 @@ const { class: className = '' } = Astro.props;
 <div class:list={['ink', className]}>
   <div class="ink__fallback" aria-hidden="true"></div>
   <InkMountains />
-  <fluid-ink class="ink__sim" data-strength="1" data-auto="1" data-clear="0.42" aria-hidden="true"></fluid-ink>
+  <fluid-ink class="ink__sim" data-strength="1" data-auto="1" data-clear="0.42" data-painting={painting.src} aria-hidden="true"></fluid-ink>
   <div class="ink__content">
     <slot />
   </div>
