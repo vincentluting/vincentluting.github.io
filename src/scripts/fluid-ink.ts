@@ -44,7 +44,7 @@ const FRAGMENT = {
   /* Rendered once per canvas size: R = long fibres, G = fine tooth, BA = wicking offset. */
   paper: `precision highp float;varying vec2 vUv;uniform float uAspect;${NOISE}void main(){vec2 p=vUv*vec2(uAspect,1.);float fib=fbm(p*vec2(7.,80.));float tooth=fbm(p*240.);vec2 w=vec2(fbm(p*vec2(3.,26.)+3.),fbm(p*vec2(3.,26.)+11.))-.5;gl_FragColor=vec4(fib,tooth,w);}`,
   /* The painting. Output is premultiplied alpha: only ink is drawn. */
-  display: `precision highp float;varying vec2 vUv;uniform sampler2D uDye,uPaper,uPainting;uniform vec3 uInk,uWash,uRed,uSilk;uniform vec2 uTexel,uCrop;uniform float uDither,uFade,uOpacity,uAspect,uTime,uHasPainting,uPaintOpacity;
+  display: `precision highp float;varying vec2 vUv;uniform sampler2D uDye,uPaper,uPainting;uniform vec3 uInk,uWash,uRed,uSilk;uniform vec2 uTexel,uCrop;uniform float uDither,uFade,uOpacity,uAspect,uTime,uHasPainting,uPaintOpacity,uPan;
 ${NOISE}
 void main(){
   vec4 pa=texture2D(uPaper,vUv);
@@ -65,7 +65,7 @@ void main(){
   // Keep the text column readable: ink behind the text shows as a faint
   // wash, while the left margin and the space above and below it get full ink.
   float jitter=(pa.r-.5)*.08;
-  float column=smoothstep(.07,.12,vUv.x+jitter)*(1.-smoothstep(uFade,uFade+.2,vUv.x+jitter));
+  float column=smoothstep(.07,.12,vUv.x+jitter)*(1.-smoothstep(uFade,uFade+.2,vUv.x+jitter))*step(.001,uFade);
   column*=smoothstep(.06,.14,vUv.y+jitter)*(1.-smoothstep(.86,.93,vUv.y+jitter));
   float keep=1.-column*.68;
   col*=keep*uOpacity;alpha*=keep*uOpacity;
@@ -83,9 +83,10 @@ void main(){
       float open=smoothstep(th*.78,th*1.18,rv);
       // Pigment pools just outside the opening, like the tide line of a wash.
       float rim=max(0.,smoothstep(th*.42,th*.8,rv)-open);
-      float L=texture2D(uPainting,(vUv-.5)*uCrop+.5).r;
+      // uPan slides a long handscroll sideways (0 = its right end, 1 = its left).
+      float L=texture2D(uPainting,vec2(vUv.x*uCrop.x+uPan*(1.-uCrop.x),(vUv.y-.5)*uCrop.y+.5)).r;
       float pig=(1.-smoothstep(.3,.84,L))*open;
-      float silkA=open*.13;
+      float silkA=open*.06;
       vec3 pc=uSilk*silkA;float pa2=silkA;
       pc=uInk*pig*.94+pc*(1.-pig*.94);pa2=pig*.94+pa2*(1.-pig*.94);
       float rimA=rim*.3*gran;
@@ -445,6 +446,10 @@ class FluidInk extends HTMLElement {
     // Where the text column ends, as a fraction of the width. Ink behind
     // the text is kept to a faint wash so it stays easy to read.
     const fadeLeft = Number(this.dataset.clear ?? "0.4");
+    // "page": a fixed layer behind the whole page that only holds the hidden
+    // painting. It listens to the pointer everywhere, paints no ink of its
+    // own, and slides the handscroll along as the page scrolls.
+    const pageMode = this.dataset.mode === "page";
     const queue: Splat[] = [];
     // Splats scheduled for later, so a brush stroke is laid down over time.
     const pending: { at: number; splat: Splat }[] = [];
@@ -571,9 +576,10 @@ class FluidInk extends HTMLElement {
           const dy = (y - last.y) * 900;
           const speed = Math.min(1, Math.hypot(dx, dy) / 60);
           // Moving the cursor stirs the water and leaves only a faint trail.
-          if (speed > 0.01) splat({ x, y, dx, dy, ink: speed * 0.03, size: 0.7 });
+          if (speed > 0.01) splat({ x, y, dx, dy, ink: pageMode ? 0 : speed * 0.03, size: 0.7 });
         }
         last = { x, y };
+        if (!paintingSrc) return;
 
         const rect = this.getBoundingClientRect();
         const px = x * rect.width;
@@ -581,7 +587,7 @@ class FluidInk extends HTMLElement {
         if (brush) {
           const length = Math.hypot(px - brush.x, py - brush.y);
           // A quick stroke spreads a little wider, like a loaded brush pressed harder.
-          const width = 26 + Math.min(1, length / 60) * 10;
+          const width = (26 + Math.min(1, length / 60) * 10) * (pageMode ? 0.8 : 1);
           const size = Math.pow(width / rect.height, 2) / 0.0012;
           const steps = Math.max(1, Math.ceil(length / 7));
           for (let i = 1; i <= steps; i++) {
@@ -589,7 +595,7 @@ class FluidInk extends HTMLElement {
             splat({
               x: (brush.x + (px - brush.x) * t) / rect.width,
               y: (brush.y + (py - brush.y) * t) / rect.height,
-              reveal: 0.12,
+              reveal: pageMode ? 0.09 : 0.12,
               size,
             });
           }
@@ -610,15 +616,26 @@ class FluidInk extends HTMLElement {
         clicks += 1;
         drop(x, y, 0.9, clicks % 4 === 0);
       };
-      const host = this.parentElement ?? this;
-      host.addEventListener("pointermove", onPointerMove);
-      host.addEventListener("pointerleave", onPointerLeave);
-      host.addEventListener("pointerdown", onPointerDown);
-      this.cleanups.push(() => {
-        host.removeEventListener("pointermove", onPointerMove);
-        host.removeEventListener("pointerleave", onPointerLeave);
-        host.removeEventListener("pointerdown", onPointerDown);
-      });
+      if (pageMode) {
+        const ac = new AbortController();
+        const opts = { passive: true, signal: ac.signal } as const;
+        window.addEventListener("pointermove", (e) => e.pointerType === "mouse" && onPointerMove(e), opts);
+        document.documentElement.addEventListener("pointerleave", onPointerLeave, opts);
+        window.addEventListener("blur", onPointerLeave, opts);
+        // While the brush is open, scrolling slides the scroll underneath it.
+        window.addEventListener("scroll", () => this.wake(), opts);
+        this.cleanups.push(() => ac.abort());
+      } else {
+        const host = this.parentElement ?? this;
+        host.addEventListener("pointermove", onPointerMove);
+        host.addEventListener("pointerleave", onPointerLeave);
+        host.addEventListener("pointerdown", onPointerDown);
+        this.cleanups.push(() => {
+          host.removeEventListener("pointermove", onPointerMove);
+          host.removeEventListener("pointerleave", onPointerLeave);
+          host.removeEventListener("pointerdown", onPointerDown);
+        });
+      }
     }
 
     // ---- frame loop ----------------------------------------------------
@@ -691,7 +708,7 @@ class FluidInk extends HTMLElement {
 
       if (!openingDone) {
         openingDone = true;
-        opening();
+        if (autoFlow) opening();
       }
 
       if (autoFlow) {
@@ -716,12 +733,12 @@ class FluidInk extends HTMLElement {
         }
       }
 
-      if (autoFlow && elapsed > nextGlimpse) {
+      if (paintingSrc && elapsed > nextGlimpse) {
         nextGlimpse = elapsed + random(7000, 11000);
-        // Around the portrait, where the painting is not under the text.
-        const x = random(0.5, 0.9);
+        // Away from the middle of the screen, where the text usually is.
+        const x = Math.random() < 0.5 ? random(0.04, 0.2) : random(0.8, 0.96);
         const y = random(0.15, 0.85);
-        glimpse(x, y, random(-0.4, 0.4) + (Math.random() < 0.5 ? 0 : Math.PI), random(0.25, 0.4));
+        glimpse(x, y, random(-0.4, 0.4) + (x < 0.5 ? 0 : Math.PI), random(0.2, 0.32));
       }
 
       for (let i = pending.length - 1; i >= 0; i--) {
@@ -804,6 +821,8 @@ class FluidInk extends HTMLElement {
       gl.uniform3f(programs.display.uniform("uSilk"), silk[0], silk[1], silk[2]);
       gl.uniform1f(programs.display.uniform("uPaintOpacity"), paintOpacity);
       gl.uniform1f(programs.display.uniform("uHasPainting"), painting ? 1 : 0);
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      gl.uniform1f(programs.display.uniform("uPan"), pageMode && scrollable > 0 ? 1 - Math.min(1, window.scrollY / scrollable) : 0.5);
       // Cover the canvas with the painting, cropping whichever side is too long.
       gl.uniform2f(programs.display.uniform("uCrop"), Math.min(aspect / paintingAspect, 1), Math.min(paintingAspect / aspect, 1));
       if (painting) {
