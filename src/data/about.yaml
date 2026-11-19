@@ -1,15 +1,16 @@
+homeIntro: I came from China to Leiden in 2015 to study Dutch. Two years became a life in the Netherlands. These days I live in Utrecht and work across Mandarin, English and Dutch.
 intro:
   - I grew up in China and came to the Netherlands in 2015 to do a master’s in Dutch linguistics at Leiden. The plan was to stay for two years. I have worked here since 2018, and this is home now.
-  - "Since then I have worked at four very different companies. The jobs looked different on paper, but the work I liked most was always the same kind: sitting between two groups of people who need each other, and making sure the thing they agreed on actually happens."
+  - "Since then I have worked at four very different companies. The jobs looked different on paper, but the work I liked most was always the same kind: sitting between two groups of people who need each other, and making sure the thing they agreed on actually happens. A colleague once called me “the gateway” between two teams. I like that description."
   - What I have learned is that I do my best work close to something real. A customer who needs to be up and running. A supplier who has to deliver on time. A product that has to work on Monday morning. Being Chinese, speaking Dutch and working in English every day helps there, because trust between people from different cultures is built in person, one problem at a time.
-  - I also like building things myself. In 2024 I started an MBA in AI, Data and Analytics at the University of Amsterdam, and for my thesis I built Deep Dive, a career assessment platform, from the questionnaire to the code. I use AI every day as a tool to test ideas quickly, check my analysis and build things like Deep Dive. The decisions and the work with people stay with me.
-  - Four companies in eight years taught me how to start somewhere new and be useful quickly. What I want now is the opposite. A place to stay for years, and to get really good at one thing.
+  - I completed an MBA focused on AI, data and analytics at the University of Amsterdam. For my thesis I designed Deep Dive, a career assessment platform. I defined the questionnaire and the experience, and used AI-assisted development to turn the design into a working product.
+  - Working across industries taught me how to get up to speed and earn trust. I want to spend the next few years going deeper into digital delivery, especially the part after launch, when a team has to make a new tool part of how it works.
 # Things I made, shown in the About page sidebar. Links can be a URL or a
 # page on this site.
 made:
   - name: Deep Dive
-    what: An AI career assessment platform, built for my MBA thesis, from the questionnaire to the code.
-    href: https://www.deepdivecareer.com
+    what: A career assessment platform I designed for my MBA thesis and built with AI-assisted development.
+    href: /#deep-dive
   - name: Two web tools for my team at Amazon
     what: A toolbox page and an ASIN deep diver, taught myself HTML, CSS and JavaScript to build them.
     href: /stories/amazon-vendor-tickets/

@@ -9,11 +9,10 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft && !data.a
   .slice(0, 3);
 ---
 
-<Section id="blog" class="border-t border-line">
+<Section id="blog" tight class="border-t border-line">
   <div class="max-w-4xl">
     <div data-reveal>
-      <p class="eyebrow mb-3">Blog</p>
-      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>Notes on AI, work and moving countries.</h2>
+      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]">Notes on AI, work and moving countries</h2>
       <Brush variant={2} />
     </div>
     <ol class="mt-8 divide-y divide-line border-y border-line">

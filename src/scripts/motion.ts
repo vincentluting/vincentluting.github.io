@@ -129,18 +129,3 @@ const skipIfOff = (event: Event) => {
 };
 window.addEventListener('pageswap', skipIfOff);
 window.addEventListener('pagereveal', skipIfOff);
-
-// ---- clock in the footer -------------------------------------------------
-const clocks = document.querySelectorAll<HTMLElement>('[data-clock]');
-if (clocks.length) {
-  const tick = () =>
-    clocks.forEach((el) => {
-      el.textContent = new Intl.DateTimeFormat('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: el.dataset.clock,
-      }).format(new Date());
-    });
-  tick();
-  window.setInterval(tick, 30_000);
-}

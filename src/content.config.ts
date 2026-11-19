@@ -23,10 +23,7 @@ const posts = defineCollection({
   }),
 });
 
-/**
- * Work stories: the long version of what a CV line can only hint at.
- * The title states the outcome; the TL;DR box is what a recruiter reads first.
- */
+/** Work stories: the long version of what a CV line can only hint at. */
 const stories = defineCollection({
   loader: glob({ base: './src/content/stories', pattern: '**/*.md' }),
   schema: z.object({
@@ -42,6 +39,12 @@ const stories = defineCollection({
     draft: z.boolean().default(false),
     /** id of the matching job in src/data/experience.yaml, if any */
     job: z.string().nullish(),
+    /** Public text drawn from the case study. */
+    highlights: z.object({
+      contribution: z.string(),
+      outcome: z.string(),
+    }).nullish(),
+    // Drafting notes retained for the author.
     tldr: z.object({
       context: z.string(),
       myRole: z.string(),

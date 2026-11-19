@@ -5,9 +5,10 @@ import Seal from './ink/Seal.astro';
 import { site, cvUrl } from '../data';
 
 const nav = [
+  { label: 'Work', href: '/stories/' },
   { label: 'About', href: '/about/' },
-  { label: 'Stories', href: '/stories/' },
   { label: 'Blog', href: '/posts/' },
+  { label: 'Contact', href: '/#contact' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
@@ -50,7 +51,7 @@ const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
       <button
         type="button"
         data-nav-toggle
-        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink md:hidden"
+        class="hidden size-10 items-center justify-center rounded-full border border-line text-ink"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-nav"
@@ -60,10 +61,10 @@ const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
     </div>
   </div>
 
-  <div id="mobile-nav" class="hidden border-t border-line bg-paper md:hidden" data-nav-panel>
+  <div id="mobile-nav" class="border-t border-line bg-paper md:hidden" data-nav-panel>
     <nav class="container-page flex flex-col py-3" aria-label="Mobile">
       {nav.map((item) => (
-        <a href={item.href} class:list={['py-2.5 text-base', isActive(item.href) ? 'text-ink' : 'text-muted']}>
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} class:list={['py-2.5 text-base', isActive(item.href) ? 'text-ink' : 'text-muted']}>
           {item.label}
         </a>
       ))}
@@ -72,12 +73,32 @@ const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
   </div>
 </header>
 
+<style>
+  @media (width < 48rem) {
+    header[data-nav-ready] [data-nav-toggle] { display: inline-flex; }
+    header[data-nav-ready]:not(:has([data-nav-toggle][aria-expanded='true'])) [data-nav-panel] { display: none; }
+  }
+</style>
+
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
   const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
-  toggle?.addEventListener('click', () => {
-    const open = panel?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  });
+  const header = toggle?.closest('header');
+  if (toggle && panel && header) {
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(!isOpen()));
+    panel.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) setOpen(false);
+    });
+    header.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !isOpen()) return;
+      setOpen(false);
+      toggle.focus();
+    });
+    header.dataset.navReady = '';
+  }
 </script>

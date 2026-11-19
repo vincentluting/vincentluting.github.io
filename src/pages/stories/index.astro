@@ -6,25 +6,20 @@ import StoryCard from '../../components/stories/StoryCard.astro';
 import { getStories } from '../../lib/stories';
 
 const stories = await getStories();
+const description = 'Projects across studio IT, advertising analytics and catalog operations.';
 ---
 
-<BaseLayout
-  title="Stories"
-  description="Some things that happened at work over the years, what I tried, and what I learned from them."
->
-  <Section class="pb-10 md:pb-14">
+<BaseLayout title="Selected work" description={description}>
+  <Section tight>
     <div class="max-w-3xl">
-      <p class="eyebrow mb-4">Stories</p>
-      <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>Stories from work.</h1>
+      <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>Selected work</h1>
       <Brush variant={1} />
-      <p class="mt-6 text-xl leading-relaxed text-muted">
-        Some things that happened at work over the years, what I tried, and what I learned from them.
-      </p>
+      <p class="mt-5 text-xl leading-relaxed text-muted">{description}</p>
     </div>
-  </Section>
-  <Section tight class="pt-0 pb-24">
-    <div class="grid gap-8 md:grid-cols-2">
-      {stories.map((s, i) => <StoryCard story={s} index={i} headingLevel={2} />)}
-    </div>
+    <ul class="mt-8 grid gap-6 md:mt-10 md:grid-cols-2 lg:grid-cols-3" role="list">
+      {stories.map((story, index) => (
+        <li><StoryCard story={story} index={index} headingLevel={2} /></li>
+      ))}
+    </ul>
   </Section>
 </BaseLayout>

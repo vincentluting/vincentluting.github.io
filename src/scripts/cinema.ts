@@ -71,18 +71,16 @@ function dropCards() {
   });
 }
 
-// ---- the hero: text lifts away, the portrait sheet drifts the other way -------
+// ---- the hero: the portrait and ink drift behind stable content --------------
 function heroScene() {
   const hero = document.querySelector<HTMLElement>('[data-hero]');
   if (!hero) return;
-  const text = hero.querySelector('[data-hero-text]');
   const sheet = hero.querySelector('[data-hero-sheet]');
   const ink = hero.closest('.ink')?.querySelectorAll('.ink__sim, .ink-mountains, .ink__fallback');
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
     scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.6 },
   });
-  if (text) tl.to(text, { yPercent: -14, opacity: 0.25 }, 0);
   if (sheet) tl.to(sheet, { yPercent: 10, rotation: -1.2 }, 0); // undoes the sheet's 1.2° rest angle
   if (ink?.length) tl.to(ink, { yPercent: 16 }, 0);
 }
@@ -114,23 +112,18 @@ function closingScene() {
   });
 }
 
-// ---- header: tucks away going down, returns going up ------------------------
+// ---- header: keep navigation available while scrolling -----------------------
 function headerScene() {
   const header = document.querySelector<HTMLElement>('[data-header]');
   if (!header) return;
-  const panel = header.querySelector<HTMLElement>('[data-nav-panel]');
   ScrollTrigger.create({
     start: 0,
     end: 'max',
     onUpdate(self) {
-      const y = self.scroll();
-      header.classList.toggle('is-scrolled', y > 40);
-      const menuOpen = panel && !panel.classList.contains('hidden');
-      const hide = self.direction === 1 && y > 240 && !menuOpen && !header.contains(document.activeElement);
-      header.classList.toggle('is-tucked', hide);
+      header.classList.toggle('is-scrolled', self.scroll() > 40);
     },
   });
-  return () => header.classList.remove('is-scrolled', 'is-tucked');
+  return () => header.classList.remove('is-scrolled');
 }
 
 // Reading pages keep a plain pointer: no trail over the text people read.

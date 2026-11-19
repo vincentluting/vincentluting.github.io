@@ -10,6 +10,7 @@ export const SiteSchema = z.object({
   role: str,
   tagline: str,
   headline: str,
+  heroIntro: str.default(''),
   location: str,
   email: str,
   linkedin: z.url(),
@@ -28,6 +29,7 @@ export const MadeSchema = z.object({ name: str, what: str, href: str });
 
 export const AboutSchema = z.object({
   intro: z.array(str).default([]),
+  homeIntro: str.default(''),
   hobbies: z.array(str).default([]),
   made: z.array(MadeSchema).nullish().transform((v) => v ?? []),
 });

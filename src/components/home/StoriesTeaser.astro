@@ -3,27 +3,27 @@ import Section from '../Section.astro';
 import Brush from '../ink/Brush.astro';
 import { getStories } from '../../lib/stories';
 
-// A quiet list, not a showcase: the stories are there for whoever is curious.
 const stories = await getStories();
 ---
 
 {stories.length > 0 && (
-  <Section id="stories" class="border-t border-line">
-    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-      <div class="lg:col-span-4" data-reveal>
-        <p class="eyebrow mb-3">From work</p>
-        <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>A few stories from work.</h2>
+  <Section id="stories" tight class="scroll-mt-16">
+    <div class="grid gap-7 lg:grid-cols-12 lg:gap-14">
+      <div class="lg:col-span-4">
+        <h2 class="text-4xl font-medium leading-tight md:text-[2.6rem]">Selected work</h2>
         <Brush variant={1} />
-        <p class="mt-5 text-lg leading-relaxed text-muted">
-          Some things that happened at work, and what I learned from them.
-        </p>
+        <a href="/stories/" class="mt-4 inline-block py-2 font-mono text-[0.82rem] ink-link">All work stories <span aria-hidden="true">→</span></a>
       </div>
       <ol class="divide-y divide-line border-y border-line lg:col-span-8">
-        {stories.map((s, i) => (
-          <li data-reveal style={`--d: ${i * 60}ms`}>
-            <a href={`/stories/${s.id}/`} data-ink-spread class="group -mx-3 grid gap-1 rounded-sm px-3 py-5 sm:-mx-4 sm:grid-cols-[10rem_1fr] sm:gap-6 sm:px-4">
-              <span class="font-mono text-[0.8rem] text-muted sm:pt-1.5">{s.data.company} · {s.data.period}</span>
-              <span class="block font-display text-xl font-medium leading-snug transition-colors group-hover:text-accent">{s.data.title}</span>
+        {stories.slice(0, 3).map((story) => (
+          <li>
+            <a href={`/stories/${story.id}/`} data-ink-spread class="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-sm py-4 sm:gap-6 sm:py-5">
+              <span>
+                <span class="font-mono text-[0.75rem] text-muted">{story.data.company}</span>
+                <span class="mt-1 block text-xl font-medium leading-snug transition-colors group-hover:text-accent sm:text-[1.35rem]">{story.data.shortTitle || story.data.title}</span>
+                {story.data.highlights?.outcome && <span class="mt-1 block text-base leading-snug text-muted">{story.data.highlights.outcome}</span>}
+              </span>
+              <span class="text-accent transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
             </a>
           </li>
         ))}

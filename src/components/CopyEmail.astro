@@ -16,7 +16,8 @@ const { class: className = '' } = Astro.props;
   <a class="ink-link" href={`mailto:${site.email}`}>{site.email}</a>
   <button
     type="button"
-    class="hidden rounded-full border border-line px-2.5 py-0.5 text-[0.75rem] text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    class="hidden min-h-8 rounded-full border border-line px-3 text-[0.75rem] text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    aria-label="Copy email address"
     data-copy={site.email}
   >
     Copy

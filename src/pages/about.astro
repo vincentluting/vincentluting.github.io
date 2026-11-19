@@ -9,8 +9,7 @@ import Signature from '../components/ink/Signature.astro';
 import Seal from '../components/ink/Seal.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { resolveImage } from '../lib/images';
-import { about } from '../data';
-import { site } from '../data';
+import { about, site } from '../data';
 
 const portrait = resolveImage(site.portrait);
 ---
@@ -28,38 +27,40 @@ const portrait = resolveImage(site.portrait);
       mainEntity: { '@id': `${site.url}/#person` },
     }}
   />
-  <Section>
-    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
-      <div class="lg:col-span-7">
-        <p class="eyebrow mb-4">About</p>
+  <Section tight>
+    <div class="grid gap-10 md:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
+      <div class="min-w-0">
+        <p class="eyebrow mb-4">{site.role} · {site.tagline}</p>
         <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>
           Hi, I’m <em class="font-normal text-accent">{site.preferredName}</em>.
         </h1>
         <Brush variant={0} />
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <Button href="/stories/">See my work</Button>
+          <Button href={site.linkedin} variant="secondary" external>LinkedIn</Button>
+          <Button href={`mailto:${site.email}`} variant="ghost">Email me</Button>
+        </div>
         <div class="mt-8 space-y-6 text-xl leading-[1.7]">
           {about.intro.map((p, i) => (
             <p data-reveal style={`--d: ${i * 60}ms`} class:list={[i === 0 && 'first-letter:float-left first-letter:mr-2 first-letter:font-display first-letter:text-[3.6em] first-letter:leading-[0.85] first-letter:text-accent']}>{p}</p>
           ))}
         </div>
-        <Signature class="mt-8 h-20 w-auto md:h-24" />
-        <div class="mt-8 flex flex-wrap gap-3" data-reveal>
-          <Button href={`mailto:${site.email}`}>Say hello</Button>
-          <Button href="/stories/" variant="secondary">Stories from work</Button>
-        </div>
+        <Signature class="mt-8 h-20 w-auto max-w-full md:h-24" />
       </div>
 
-      <aside class="space-y-10 lg:col-span-5">
-        <figure class="relative -rotate-1" data-reveal style="--d: 100ms">
+      <aside class="min-w-0 space-y-9">
+        <figure class="relative mx-auto max-w-xs sm:-rotate-1 md:mx-0" data-reveal style="--d: 100ms">
           <div class="deckle bg-paper p-3 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.45)]">
             <Image
               src={portrait}
               alt={site.fullName}
-              width={800}
-              densities={[1, 2]}
+              widths={[256, 320, 512, 640]}
+              sizes="(max-width: 23rem) calc(100vw - 3.5rem), (min-width: 48rem) and (max-width: 60rem) 30vw, 18.5rem"
+              loading="eager"
               class="deckle aspect-[4/5] w-full object-cover"
             />
           </div>
-          <Seal size={56} stamp class="absolute -right-4 -bottom-4" />
+          <Seal size={56} stamp class="absolute right-2 -bottom-4" />
         </figure>
         <div data-reveal style="--d: 160ms">
           <h2 class="font-mono text-[0.8rem] uppercase tracking-wider text-accent-ink">Languages</h2>

@@ -1,4 +1,5 @@
 ---
+import { site } from '../../data';
 import { signature, signatureBox } from '../../lib/shapes';
 
 interface Props {
@@ -7,6 +8,6 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<svg class:list={['signature text-ink', className]} viewBox={signatureBox} role="img" aria-label="Signed, Ting">
+<svg class:list={['signature text-ink', className]} viewBox={signatureBox} role="img" aria-label={`Signed, ${site.preferredName}`}>
   <path d={signature} fill="currentColor"></path>
 </svg>

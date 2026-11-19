@@ -5,6 +5,7 @@ import JsonLd from '../components/JsonLd.astro';
 import Hero from '../components/home/Hero.astro';
 import MyStory from '../components/home/MyStory.astro';
 import StoriesTeaser from '../components/home/StoriesTeaser.astro';
+import DeepDive from '../components/home/DeepDive.astro';
 import Blog from '../components/home/Blog.astro';
 import Contact from '../components/home/Contact.astro';
 import PageInk from '../components/ink/PageInk.astro';
@@ -21,7 +22,6 @@ const graph = {
       '@type': 'WebSite',
       '@id': `${site.url}/#website`,
       name: site.fullName,
-      alternateName: ['Ting Lu', 'Vincent Lu'],
       url: `${site.url}/`,
       publisher: { '@id': personId },
     },
@@ -29,15 +29,14 @@ const graph = {
       '@type': 'Person',
       '@id': personId,
       name: site.fullName,
-      givenName: 'Ting',
+      givenName: site.preferredName,
       familyName: 'Lu',
-      alternateName: ['Ting Lu', 'Vincent Lu'],
       jobTitle: site.role,
       description: site.description,
       url: `${site.url}/`,
       image: new URL(portrait.src, site.url).toString(),
       email: `mailto:${site.email}`,
-      sameAs: [site.linkedin, site.github, site.deepDive].filter(Boolean),
+      sameAs: [site.linkedin, site.github].filter(Boolean),
       knowsLanguage: ['zh', 'en', 'nl'],
       address: { '@type': 'PostalAddress', addressLocality: 'Utrecht', addressCountry: 'NL' },
     },
@@ -45,12 +44,13 @@ const graph = {
 };
 ---
 
-<BaseLayout title={`${site.fullName} · Utrecht`} description={site.description}>
+<BaseLayout title={`${site.fullName} · ${site.role} in Utrecht`} description={site.description}>
   <JsonLd slot="head" data={graph} />
   <PageInk />
   <Hero />
-  <MyStory />
-  <Blog />
   <StoriesTeaser />
+  <DeepDive />
+  <Blog />
+  <MyStory />
   <Contact />
 </BaseLayout>

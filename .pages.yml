@@ -26,10 +26,11 @@ content:
     fields:
       - { name: name, label: Name, type: string, required: true }
       - { name: preferredName, label: Preferred name, type: string }
-      - { name: fullName, label: Full display name, type: string, description: 用于浏览器标题和页脚，例如 "Ting (Vincent) Lu" }
-      - { name: role, label: Job title, type: string, description: 只用于搜索引擎（结构化数据），页面上不显示 }
+      - { name: fullName, label: Full display name, type: string, description: 用于浏览器标题和页脚，例如 "Vincent Lu" }
+      - { name: role, label: Job title, type: string, description: 显示在首页和搜索结果中 }
       - { name: tagline, label: Hero eyebrow line, type: string, description: 首页标题上方的小字，例如 "Utrecht, the Netherlands" }
-      - { name: headline, label: Hero text, type: text, description: 首页 "Hi, I'm Ting." 下面的一段自我介绍 }
+      - { name: headline, label: Hero headline, type: text, description: 一句话介绍你的工作 }
+      - { name: heroIntro, label: Hero introduction, type: text, description: 用一两句话具体说明你如何开展这项工作 }
       - { name: location, label: Location, type: string }
       - { name: email, label: Email, type: string }
       - { name: linkedin, label: LinkedIn URL, type: string }
@@ -62,6 +63,7 @@ content:
     format: yaml
     fields:
       - { name: intro, label: Story paragraphs, type: text, list: true, description: 每一项是一段 }
+      - { name: homeIntro, label: Short introduction for the home page, type: text }
       - { name: hobbies, label: Outside work, type: string, list: true }
       - name: made
         label: Things I made (About page sidebar)
@@ -91,6 +93,13 @@ content:
       - { name: period, label: Period, type: string, description: 例如 "2019 – 2021" }
       - { name: order, label: Order, type: number, description: 数字越小越靠前 }
       - { name: draft, label: Draft (hide from site), type: boolean, default: false }
+      - name: highlights
+        label: Public highlights
+        type: object
+        description: 用案例正文已有、可以公开的事实，各写一两句。
+        fields:
+          - { name: contribution, label: What I did, type: text, required: true }
+          - { name: outcome, label: What changed, type: text, required: true }
       - name: tldr
         label: In short (not shown on the site now)
         type: object

@@ -10,39 +10,38 @@ const portrait = resolveImage(site.portrait);
 ---
 
 <InkWash class="border-b border-line">
-  <section class="container-page pt-12 pb-16 md:pt-20 md:pb-24" data-hero>
-    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
-      <div class="lg:col-span-7" data-hero-text>
-        <p class="eyebrow mb-6">{site.tagline}</p>
-        <h1 class="text-5xl font-medium leading-[0.98] sm:text-7xl md:text-[5.6rem]" data-ink-title>
+  <section class="container-page py-10 sm:py-14 lg:py-20" data-hero>
+    <div class="grid items-center gap-8 sm:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] md:gap-12 lg:gap-16">
+      <div>
+        <p class="eyebrow mb-5">{site.role} <span aria-hidden="true">·</span> {site.tagline}</p>
+        <h1 class="text-5xl font-medium leading-[0.98] md:text-7xl lg:text-[5.6rem]">
           Hi, I’m <em class="font-normal text-accent">{site.preferredName}</em>.
         </h1>
-        <p class="mt-5 max-w-xl text-xl leading-relaxed text-muted md:mt-7 md:text-2xl md:leading-snug">{site.headline}</p>
+        <p class="mt-5 max-w-xl text-[1.65rem] font-medium leading-[1.15] md:mt-7 md:text-[2rem]">{site.headline}</p>
+        {site.heroIntro && <p class="mt-3 max-w-lg text-lg leading-relaxed text-muted md:text-xl">{site.heroIntro}</p>}
 
-        <div class="mt-8 flex flex-wrap items-center gap-3">
-          <Button href="/about/">
-            My story
+        <div class="mt-6 flex flex-wrap items-center gap-3 md:mt-8">
+          <Button href="#stories">
+            Explore my work
             <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
           </Button>
-          <Button href="/#contact" variant="secondary">Say hello</Button>
+          <Button href="#contact" variant="secondary">Get in touch</Button>
         </div>
       </div>
 
-      <div class="lg:col-span-5">
-        <figure class="relative mx-auto max-w-sm rotate-[1.2deg] lg:max-w-none" data-hero-sheet>
-          <div class="scroll-unroll deckle bg-paper p-3 shadow-[0_18px_40px_-22px_rgb(0_0_0/0.45)]">
+      <div class="px-3 sm:px-0">
+        <figure class="relative w-full max-w-44 rotate-[1.2deg] sm:ml-auto sm:max-w-[22rem]" data-hero-sheet>
+          <div class="deckle bg-paper p-2 sm:p-3">
             <Image
               src={portrait}
               alt={site.fullName}
-              width={880}
-              densities={[1, 2]}
+              widths={[192, 352, 512, 704]}
+              sizes="(min-width: 64rem) 352px, (min-width: 40rem) 35vw, 176px"
               loading="eager"
-              fetchpriority="high"
-              class="deckle aspect-[4/5] w-full object-cover object-top"
+              class="deckle aspect-square w-full object-cover object-[center_30%] sm:aspect-[4/5] sm:object-top"
             />
           </div>
-          <Seal size={64} stamp class="absolute -bottom-5 -left-2 sm:-left-5" label="Seal with the initials TL" />
-          <figcaption class="mt-4 text-right font-mono text-[0.75rem] text-muted">Utrecht, 2026</figcaption>
+          <Seal size={48} class="absolute -right-2 -bottom-2 -rotate-4 sm:right-auto sm:-bottom-3 sm:-left-3" />
         </figure>
       </div>
     </div>

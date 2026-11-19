@@ -1,12 +1,15 @@
 ---
-title: "Being the IT partner for three game studios"
-shortTitle: "IT partner for three game studios"
-summary: "At Tencent I was the contact in central IT for three game studios in Europe. I helped them take up the tools and deals central IT offered, carried their needs to the product teams, and built trust with their leaders along the way."
+title: "Helping three game studios adopt central IT services"
+shortTitle: "Helping three game studios use central IT"
+summary: "Tencent offered group deals and shared services. Three European game studios needed a point of contact to help them use those services and bring their needs back to central IT."
 company: Tencent
 role: Project Manager, Europe IT Center
 period: 2023 – 2024
-order: 2
+order: 1
 job: tencent-it
+highlights:
+  contribution: "I ran studio check-ins, tracked adoption, brought studio requirements to product teams and managed LightSpeed UK’s local IT setup with infrastructure engineers."
+  outcome: "Yager and Tequila Works adopted 245 Perforce licences and five security services in 2023."
 tldr:
   context: "Tencent's central IT offered group deals and services to game studios, such as Perforce and security services. The deals were negotiated centrally."
   myRole: "Customer relationship project manager for Yager and Tequila Works, two studios Tencent invested in, and project manager for LightSpeed UK, an internal studio."
@@ -50,6 +53,6 @@ LightSpeed UK needed its own local IT environment for game development, based on
 
 ## Carrying the studios' voice
 
-The product teams were mostly in the US. In 2024 I collected more than 11 requirements from the studios and passed them on. The security team improved more than six of their products with that input. Across the wider security adoption programme, a colleague on that team wrote that adoption grew about 40% in a year, "a success to which Lu Ting has significantly contributed".
+The product teams were mostly in the US. In 2024 I collected more than 11 requirements from the studios and passed them on. The security team improved more than six of their products with that input. A colleague on that team wrote that adoption across the wider security programme grew about 40% in a year and credited me with making a significant contribution.
 
 One colleague described me as "the gateway between studio PM and product owner". I like that description. My work was to keep both sides talking, keep track of everything, and check the details before they went out.

@@ -43,6 +43,8 @@
   color-scheme: dark;
 }
 
+html[data-motion="off"] { scroll-behavior: auto; }
+
 @theme inline {
   --font-display: "Newsreader Variable", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-sans: "Newsreader Variable", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
@@ -152,7 +154,9 @@
 .js[data-motion="on"][data-reveal-armed] [data-reveal].is-visible {
   opacity: 1;
   translate: 0 0;
-  filter: blur(0);
+  /* none, not blur(0): a leftover filter layer paints the deckle-masked
+     portrait on /about/ black in Chromium. */
+  filter: none;
 }
 
 /* Ink-bleed title: an SVG blur + threshold filter that settles to crisp text. */
@@ -229,34 +233,6 @@ html[data-motion="off"] .animate-ping { animation: none; }
   text-shadow: 0 0 0 transparent;
 }
 
-/* Hero portrait: unrolled from the top like a hanging scroll. Pure CSS, so it
-   starts with the first paint and never waits for JavaScript. */
-.scroll-unroll { position: relative; }
-/* A sheet of paper rolls up off the portrait. The image itself is painted
-   from the first frame, so it never delays Largest Contentful Paint. */
-.js[data-motion="on"] .scroll-unroll::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--paper);
-  transform-origin: 50% 100%;
-  pointer-events: none;
-  animation: unroll-cover 1.5s var(--ease-ink) 0.25s both;
-}
-.js[data-motion="on"] .scroll-unroll img {
-  animation: unroll-img 2s var(--ease-ink) 0.25s both;
-}
-.js[data-motion="on"] .scroll-unroll ~ .seal-stamp {
-  transition-delay: 1.35s;
-}
-@keyframes unroll-cover {
-  from { scale: 1 1; }
-  to { scale: 1 0; }
-}
-@keyframes unroll-img {
-  from { scale: 1.14; filter: grayscale(0.6); }
-}
-
 /* Reading progress: a thin vermilion thread down the right edge. Driven by
    the scroll position itself, no JavaScript. */
 .read-progress { display: none; }
@@ -280,17 +256,14 @@ html[data-motion="off"] .animate-ping { animation: none; }
   to { scale: 1 1; }
 }
 
-/* Header: paper darkens once the page moves, and it tucks away while
-   reading downwards (classes set in cinema.ts). */
+/* Darken the header paper when content scrolls behind it. */
 .site-header {
-  transition: translate 0.5s var(--ease-ink), background-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 .site-header.is-scrolled {
   background-color: color-mix(in oklab, var(--paper) 94%, transparent);
   box-shadow: 0 10px 30px -24px color-mix(in oklab, var(--ink) 60%, transparent);
 }
-.site-header.is-tucked { translate: 0 -100%; }
-
 /* Paper page transitions (Chromium and Safari; Firefox loads normally). */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
@@ -485,7 +458,6 @@ html[data-motion="off"]::view-transition-new(root) {
     opacity: 1 !important; translate: none !important; transform: none !important;
     filter: none !important; clip-path: none !important; color: inherit;
   }
-  .scroll-unroll::after { display: none; }
   .sheet { box-shadow: none; background: #fff; }
   .sheet, li[id], figure { break-inside: avoid; }
   h1, h2, h3 { break-after: avoid; }

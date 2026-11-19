@@ -1,27 +1,19 @@
 ---
 import Button from '../Button.astro';
 import CopyEmail from '../CopyEmail.astro';
-import Seal from '../ink/Seal.astro';
 import { site } from '../../data';
 ---
 
-<section id="contact" class="scroll-mt-20 border-t border-line">
-  <div class="container-page py-20 md:py-28">
-    <div class="relative max-w-3xl" data-reveal>
-      <p class="eyebrow mb-4">Say hello</p>
-      <h2 class="text-4xl font-medium leading-tight md:text-6xl" data-settle>
-        If something here made you think of something,
-        <em class="font-normal text-accent">I would be glad to hear it.</em>
-      </h2>
-      <p class="mt-6 max-w-xl text-lg text-muted">
-        You can write to me in English, Dutch or Chinese. I live in Utrecht, so a coffee there is also an option.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center gap-3">
+<section id="contact" class="scroll-mt-16 border-t border-line">
+  <div class="container-page grid gap-4 py-12 md:grid-cols-12 md:gap-10 md:py-16">
+    <h2 class="text-4xl font-medium leading-tight md:col-span-4 md:text-[2.6rem]">Get in touch</h2>
+    <div class="max-w-2xl md:col-span-8">
+      <p class="text-xl leading-relaxed">Have a project in mind or something you’d like to talk about? You can write in English, Dutch or Mandarin. I’m also up for a coffee in Utrecht.</p>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
         <Button href={`mailto:${site.email}`}>Email me</Button>
         <Button href={site.linkedin} variant="secondary" external>LinkedIn</Button>
-        <Seal size={56} stamp class="ml-2" />
       </div>
-      <CopyEmail class="mt-5" />
+      <CopyEmail class="mt-3" />
     </div>
   </div>
 </section>

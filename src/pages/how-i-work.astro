@@ -14,6 +14,8 @@ const { Content } = await render(page);
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description}>
+  {/* Keep this draft unlisted while Vincent reviews it. */}
+  <meta slot="head" name="robots" content="noindex" />
   <Section class="pb-24">
     <div class="mx-auto max-w-3xl">
       <p class="eyebrow mb-4">

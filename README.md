@@ -1,11 +1,11 @@
 # vincentluting.github.io
 
-Personal site of Ting (Vincent) Lu in Utrecht: a few stories from work and from moving countries, and some notes. It is a personal website, not a CV: work history and job-search details are deliberately left out.
+Personal site of Vincent Lu, a project manager in Utrecht focused on digital delivery and adoption. It brings together selected work, the Deep Dive thesis project, and writing about AI, work and life between China and the Netherlands.
 Live at **https://vincentluting.github.io**.
 
 Built with [Astro 7](https://astro.build), Tailwind CSS 4 and self-hosted fonts (Newsreader +
 IBM Plex Mono). The design is "ink on handmade paper": a static paper grain, deckled photo edges,
-a vermilion TL seal, and motion that feels like ink and paper. There is no client-side framework.
+a vermilion VL seal, and motion that feels like ink and paper. There is no client-side framework.
 About 7 KB of JavaScript (gzipped) runs on first load; a further cinematic layer (GSAP) is
 fetched afterwards, and only while motion is on:
 
@@ -14,9 +14,9 @@ fetched afterwards, and only while motion is on:
 | Ink drifting through water behind the hero (WebGL, desktop only; skipped on low-power devices, and it sleeps when off-screen or idle) | Home | `src/scripts/fluid-ink.ts`, adapted from [astro-sumi](https://github.com/kpab/astro-sumi) (MIT, © 2026 kpab) |
 | Ink-bleed title reveal, brush strokes under headings, signature, seal stamp, scroll reveal | All pages | `src/scripts/motion.ts`, `src/styles/global.css` |
 | Page transitions: the new page spreads out like ink on wet paper | All pages | CSS `@view-transition` (Chrome, Edge, Safari) |
-| Headings revealed line by line, cards dropped onto the page, hero parallax, signature written as you scroll, header that tucks away | All pages | `src/scripts/cinema.ts` ([GSAP](https://gsap.com) SplitText + ScrollTrigger) |
+| Headings revealed line by line, cards dropped onto the page, background parallax behind the hero, signature written as you scroll | All pages | `src/scripts/cinema.ts` ([GSAP](https://gsap.com) SplitText + ScrollTrigger) |
 | Magnetic buttons and cards that tip towards the pointer (mouse only, not on reading pages) | Home, About, Stories | `src/scripts/pointer.ts` |
-| Hero portrait unrolled like a hanging scroll, drop cap drying into ink, reading progress thread | Home, stories, posts | `src/styles/global.css` (CSS only) |
+| Drop cap drying into ink, reading progress thread | About, stories, posts | `src/styles/global.css` (CSS only) |
 
 Everything is decoration on top of a complete page. Scrolling is native (no smooth-scroll
 library), and reveal animations only hide text that is still off-screen when the script runs, so
@@ -59,9 +59,10 @@ You can also edit the same files directly on github.com (pencil icon on a file).
 | What | Where |
 |---|---|
 | Name, the short intro on the home page, contact links, portrait, Search Console code | `src/data/site.yaml` |
-| Work stories (case studies), including Deep Dive | `src/content/stories/<slug>.md` — `order` sets the order; the home page lists them all as a quiet list |
-| About page story, hobbies and "Things I made" | `src/data/about.yaml` — paragraphs 1 and 4 and the hobbies also appear on the home page |
-| How I run a project page | `src/content/pages/how-i-work.md` (URL stays `/how-i-work/`) |
+| Work stories (case studies) | `src/content/stories/<slug>.md`. `order` sets the order and the first three appear on the home page |
+| Deep Dive thesis project | `src/components/home/DeepDive.astro`, with the demo URL in `src/data/site.yaml` |
+| About page story, hobbies and projects | `src/data/about.yaml`. `homeIntro` is the short introduction on the home page |
+| Working methods draft | `src/content/pages/how-i-work.md` (unlisted at `/how-i-work/`) |
 | Testimonials | `src/data/testimonials.yaml` — the home page section is hidden while it is empty |
 | Blog posts | `src/content/posts/<slug>.md` — `archive: true` lists a post under "Earlier notes" at the end of the blog page and keeps it off the home page (same URL, still in RSS) |
 | Uploaded images (portrait, post covers) | `src/assets/uploads/` — referenced as `/src/assets/uploads/<file>` |
@@ -77,7 +78,7 @@ naming the file and field.
 
 In Pages CMS: Stories → Add. Give it a title like the start of a story ("Why vendors on Amazon waited so long for an answer"),
 add a short title (about 45 characters) for the browser tab and Google, and write the body with these headings: The situation, The hard part, What I did, What came out of it, and,
-only in your own words, What I would do differently. Notes like `<!-- TODO(Vincent): ... -->` are HTML comments: they never show on the site.
+only in your own words, What I would do differently. Use the public highlight fields for your specific contribution and an attributable outcome. Notes like `<!-- TODO(Vincent): ... -->` are HTML comments removed from the built site.
 
 ## Adding a post
 

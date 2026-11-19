@@ -38,8 +38,10 @@ export default defineConfig({
   site: 'https://vincentluting.github.io',
   trailingSlash: 'always',
   compressHTML: true,
+  devToolbar: { enabled: false },
   prefetch: true,
-  integrations: [sitemap(), stripHtmlComments()],
+  // /how-i-work/ remains unlisted while Vincent reviews the draft.
+  integrations: [sitemap({ filter: (page) => !page.includes('/how-i-work/') }), stripHtmlComments()],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,12 +1,15 @@
 ---
-title: "From one small dashboard idea to four dashboards for Philips"
-shortTitle: "From one idea to four dashboards"
-summary: "At Philips, through OMD, I was the product owner for the Amazon advertising dashboards. I turned what the media teams needed into clear requirements, found the right data source, and guided the engineers who built them. One small idea grew into four dashboards and a team."
+title: "From one reporting request to four dashboards for Philips"
+shortTitle: "Choosing the right data for Philips’ ad dashboards"
+summary: "Philips’ global Amazon media team needed timely reporting on its advertising. The first decision was which data source could support the dashboards."
 company: Philips (via OMD)
 role: Analyst (contract via OMD), functional product owner for Amazon Ads dashboards
 period: 2021 – 2023
-order: 3
+order: 2
 job: philips
+highlights:
+  contribution: "As functional product owner, I turned the media team’s needs into requirements, planned the roadmap with the analytics lead and worked out the data flow with engineers."
+  outcome: "The engineering team delivered four Amazon Ads dashboards."
 tldr:
   context: "Employed by OMD and placed in Philips' global Amazon media team. The team wanted better data on its Amazon advertising."
   myRole: "Functional product owner: requirements, roadmap and data flow. Engineers in India built the dashboards. I also wrote SQL on Amazon Marketing Cloud for ad-hoc analyses."

@@ -1,41 +1,16 @@
 ---
 import Section from '../Section.astro';
-import Brush from '../ink/Brush.astro';
-import Signature from '../ink/Signature.astro';
-import Tag from '../Tag.astro';
 import { about } from '../../data';
-
-// The personal parts of the About story: where I come from and what I like.
-const picks = [0, 3].map((i) => about.intro[i]).filter(Boolean);
 ---
 
-<Section id="story">
-  <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-    <div class="lg:col-span-4" data-reveal>
-      <p class="eyebrow mb-3">My story, short</p>
-      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]" data-split>From Leiden to here.</h2>
-      <Brush variant={0} />
-    </div>
-    <div class="lg:col-span-8">
-      <div class="space-y-6 text-xl leading-[1.7] md:text-[1.35rem]">
-        {picks.map((p, i) => (
-          <p data-reveal style={`--d: ${i * 80}ms`} class:list={[i === 0 && 'dropcap']} data-split={i === 0 ? undefined : 'body'}>{p}</p>
-        ))}
-      </div>
-      {about.hobbies.length > 0 && (
-        <div class="mt-10" data-reveal>
-          <p class="eyebrow mb-3">Outside work</p>
-          <div class="flex flex-wrap gap-2">
-            {about.hobbies.map((h) => <Tag>{h}</Tag>)}
-          </div>
-        </div>
-      )}
-      <div class="mt-8 flex flex-wrap items-end justify-between gap-6">
-        <Signature class="h-20 w-auto md:h-24" />
-        <a href="/about/" class="group font-mono text-[0.82rem] ink-link">
-          Read the whole story <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
-        </a>
+{(about.homeIntro || about.intro[0]) && (
+  <Section id="story" tight class="border-t border-line">
+    <div class="grid gap-4 md:grid-cols-12 md:gap-10">
+      <h2 class="text-3xl font-medium leading-tight md:col-span-4 md:text-[2.6rem]">From Leiden to here</h2>
+      <div class="max-w-2xl md:col-span-8">
+        <p class="text-xl leading-relaxed">{about.homeIntro || about.intro[0]}</p>
+        <a href="/about/" class="mt-4 inline-block py-2 font-mono text-[0.82rem] ink-link">More about me <span aria-hidden="true">→</span></a>
       </div>
     </div>
-  </div>
-</Section>
+  </Section>
+)}
