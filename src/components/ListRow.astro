@@ -1,0 +1,51 @@
+---
+/**
+ * One row of any list on the site: case studies, things I made, posts. Every
+ * list uses it, so a row always reads the same way: a small meta line, the
+ * title, an optional description, and an arrow that says where the link goes
+ * (→ stays on this site, ↗ opens another site).
+ */
+interface Props {
+  href: string;
+  title: string;
+  /** Small mono line above the title. Pass a `meta` slot instead for markup such as a date. */
+  meta?: string;
+  description?: string;
+  /** The outcome of a case study, in ink under the description. */
+  outcome?: string;
+  /** "title" (24px) for case studies and posts, "lead" (20px) for smaller items. */
+  size?: 'title' | 'lead';
+  headingLevel?: 2 | 3 | 4;
+  /** view-transition-name, so a case study title can grow into its page title. */
+  transitionName?: string;
+}
+const { href, title, meta, description, outcome, size = 'title', headingLevel = 3, transitionName } = Astro.props;
+const H = (`h${headingLevel}`) as 'h2' | 'h3' | 'h4';
+const external = /^https?:\/\//.test(href);
+const hasMeta = Boolean(meta) || Astro.slots.has('meta');
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  data-ink-spread
+  class="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-5 sm:gap-6"
+>
+  <span class="min-w-0">
+    {hasMeta && <span class="block font-mono text-meta text-muted"><slot name="meta">{meta}</slot></span>}
+    <H
+      class:list={[
+        'font-medium transition-colors group-hover:text-accent',
+        hasMeta && 'mt-1',
+        size === 'title' ? 'text-lead md:text-title' : 'text-lead',
+      ]}
+      style={transitionName ? `view-transition-name: ${transitionName}` : undefined}
+    >
+      {title}
+    </H>
+    {description && <span class="mt-1.5 block text-muted">{description}</span>}
+    {outcome && <span class="mt-1.5 block">{outcome}</span>}
+  </span>
+  <span class="text-accent transition-transform group-hover:translate-x-1" aria-hidden="true">{external ? '↗' : '→'}</span>
+</a>

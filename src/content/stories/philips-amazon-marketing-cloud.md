@@ -1,6 +1,6 @@
 ---
 title: "From one reporting request to four dashboards for Philips"
-shortTitle: "Choosing the right data for Philips’ ad dashboards"
+shortTitle: "From one request to four Philips dashboards"
 summary: "Philips’ global Amazon media team needed timely reporting on its advertising. The first decision was which data source could support the dashboards."
 company: Philips (via OMD)
 role: Analyst (contract via OMD), functional product owner for Amazon Ads dashboards

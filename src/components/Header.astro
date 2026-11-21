@@ -8,25 +8,26 @@ const nav = [
   { label: 'Work', href: '/stories/' },
   { label: 'About', href: '/about/' },
   { label: 'Blog', href: '/posts/' },
-  { label: 'Contact', href: '/#contact' },
+  // The footer on every page is the contact section.
+  { label: 'Contact', href: '#contact' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
 ---
 
 <header class="site-header sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md" data-header>
-  <div class="container-page flex h-16 items-center justify-between gap-4">
-    <a href="/" class="group flex items-center gap-2.5 text-ink" aria-label={`${site.fullName}, home`}>
+  <div class="container-page flex h-16 items-center justify-between gap-4 lg:grid lg:grid-cols-12 lg:gap-x-12">
+    <a href="/" class="group flex items-center gap-2.5 text-ink lg:col-span-4" aria-label={`${site.fullName}, home`}>
       <Seal size={30} class="transition-transform duration-500 ease-stamp group-hover:rotate-[-12deg]" />
-      <span class="font-display text-lg font-medium tracking-tight"><span class="sm:hidden">{site.name}</span><span class="hidden sm:inline">{site.fullName}</span></span>
+      <span class="font-display text-body font-medium tracking-tight"><span class="sm:hidden">{site.name}</span><span class="hidden sm:inline">{site.fullName}</span></span>
     </a>
 
-    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+    <nav class="hidden items-center gap-7 md:flex lg:col-span-6" aria-label="Primary">
       {nav.map((item) => (
         <a
           href={item.href}
           class:list={[
-            'font-mono text-[0.8rem] tracking-wide transition-colors hover:text-ink',
+            'font-mono text-label tracking-wide transition-colors hover:text-ink',
             isActive(item.href) ? 'text-ink underline decoration-accent decoration-2 underline-offset-8' : 'text-muted',
           ]}
           aria-current={isActive(item.href) ? 'page' : undefined}
@@ -36,11 +37,11 @@ const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
       ))}
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 lg:col-span-2 lg:justify-end">
       {cvUrl && <a
         href={cvUrl}
         download
-        class="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[0.8rem] text-ink transition-colors hover:border-ink sm:px-3.5"
+        class="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-label text-ink transition-colors hover:border-ink sm:px-3.5"
         aria-label="Download my CV (PDF)"
       >
         <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg>
@@ -64,11 +65,11 @@ const isActive = (href: string) => !href.includes('#') && path.startsWith(href);
   <div id="mobile-nav" class="border-t border-line bg-paper md:hidden" data-nav-panel>
     <nav class="container-page flex flex-col py-3" aria-label="Mobile">
       {nav.map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} class:list={['py-2.5 text-base', isActive(item.href) ? 'text-ink' : 'text-muted']}>
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} class:list={['py-2.5 text-body', isActive(item.href) ? 'text-ink' : 'text-muted']}>
           {item.label}
         </a>
       ))}
-      {cvUrl && <a href={cvUrl} download class="py-2.5 text-base text-accent">Download CV</a>}
+      {cvUrl && <a href={cvUrl} download class="py-2.5 text-body text-accent">Download CV</a>}
     </nav>
   </div>
 </header>

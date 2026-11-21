@@ -4,11 +4,11 @@
 
 ## Pages
 
-- [About](https://vincentluting.github.io/about/): where I come from, what I like doing, and things I made
-- [Work](https://vincentluting.github.io/stories/): case studies from digital delivery, data products and process improvement
+- [Work](https://vincentluting.github.io/stories/): case studies from digital delivery, data products and process improvement, and things I made
+- [About](https://vincentluting.github.io/about/): where I come from and what I like doing
 - [Blog](https://vincentluting.github.io/posts/): notes on AI, work and living between China and the Netherlands
 
-## Stories from work
+## Case studies
 
 - [Helping three game studios adopt central IT services](https://vincentluting.github.io/stories/tencent-studios/): Tencent, 2023 – 2024
 - [From one reporting request to four dashboards for Philips](https://vincentluting.github.io/stories/philips-amazon-marketing-cloud/): Philips via OMD, 2021 – 2023
@@ -16,7 +16,7 @@
 
 ## Things I made
 
-- [Deep Dive](https://vincentluting.github.io/#deep-dive): a career exploration product designed for my MBA thesis, with a demo and research notes
+- [Deep Dive](https://vincentluting.github.io/stories/#deep-dive): a career exploration product designed for my MBA thesis, with a demo and research notes
 
 ## Contact
 

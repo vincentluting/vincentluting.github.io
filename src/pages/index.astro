@@ -3,11 +3,9 @@ import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Hero from '../components/home/Hero.astro';
-import MyStory from '../components/home/MyStory.astro';
-import StoriesTeaser from '../components/home/StoriesTeaser.astro';
-import DeepDive from '../components/home/DeepDive.astro';
+import Work from '../components/home/Work.astro';
+import About from '../components/home/About.astro';
 import Blog from '../components/home/Blog.astro';
-import Contact from '../components/home/Contact.astro';
 import PageInk from '../components/ink/PageInk.astro';
 import { resolveImage } from '../lib/images';
 import { site } from '../data';
@@ -48,9 +46,8 @@ const graph = {
   <JsonLd slot="head" data={graph} />
   <PageInk />
   <Hero />
-  <StoriesTeaser />
-  <DeepDive />
+  {/* Same order as the navigation: Work, About, Blog, then Contact in the footer. */}
+  <Work />
+  <About />
   <Blog />
-  <MyStory />
-  <Contact />
 </BaseLayout>

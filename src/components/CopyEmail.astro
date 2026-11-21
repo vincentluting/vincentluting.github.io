@@ -12,17 +12,17 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<p class:list={['flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.84rem]', className]} data-copy-email>
+<p class:list={['flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-label', className]} data-copy-email>
   <a class="ink-link" href={`mailto:${site.email}`}>{site.email}</a>
   <button
     type="button"
-    class="hidden min-h-8 rounded-full border border-line px-3 text-[0.75rem] text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    class="hidden min-h-8 rounded-full border border-line px-3 text-meta text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     aria-label="Copy email address"
     data-copy={site.email}
   >
     Copy
   </button>
-  <span class="text-[0.75rem] text-muted" aria-live="polite" data-copy-status></span>
+  <span class="text-meta text-muted" aria-live="polite" data-copy-status></span>
 </p>
 
 <script>

@@ -1,0 +1,38 @@
+---
+import GridSection from '../GridSection.astro';
+import ListRow from '../ListRow.astro';
+import { getStories, storyTransition } from '../../lib/stories';
+import { about } from '../../data';
+
+// The first three case studies (by `order`), then the things I made.
+const stories = (await getStories()).slice(0, 3);
+---
+
+{stories.length > 0 && (
+  <GridSection id="work" eyebrow="Work" title="Selected work">
+    <ol class="divide-y divide-line border-y border-line">
+      {stories.map((story) => (
+        <li>
+          <ListRow
+            href={`/stories/${story.id}/`}
+            meta={`${story.data.company} · ${story.data.period}`}
+            title={story.data.title}
+            outcome={story.data.highlights?.outcome}
+            transitionName={storyTransition(story.id)}
+          />
+        </li>
+      ))}
+    </ol>
+    {about.made.length > 0 && (
+      <>
+        <h3 class="eyebrow mt-10 mb-3">Things I made</h3>
+        <ul class="divide-y divide-line border-y border-line">
+          {about.made.map((m) => (
+            <li><ListRow href={m.href} title={m.name} description={m.what} size="lead" headingLevel={4} /></li>
+          ))}
+        </ul>
+      </>
+    )}
+    <a href="/stories/" class="mt-6 inline-block py-2 font-mono text-label ink-link">All work <span aria-hidden="true">→</span></a>
+  </GridSection>
+)}

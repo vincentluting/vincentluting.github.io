@@ -1,6 +1,5 @@
 ---
 title: "Building web tools for Amazon’s catalog team"
-shortTitle: "Two web tools for Amazon’s catalog team"
 summary: "New colleagues on Amazon’s Dutch catalog team needed a simpler way to find the right systems and diagnose product listing issues."
 company: Amazon
 role: Senior Catalog Associate, later Acting SME
@@ -44,16 +43,16 @@ I thought this could be easier. So I taught myself the basics of web development
 
 I also made a few smaller things, such as a spell checker for Dutch catalog content, and I helped colleagues with Excel.
 
+## Applying the same approach to ticket automation
+
+In late 2020 I worked on a separate project to improve our Dutch Andon Cord ticket process. It took 18.18 days to close 90% of tickets, against a goal of 14. I compared our numbers with other countries and saw that they already had automations for the steps we did by hand. With a software engineer we brought those automations to the Netherlands. I wrote the SQL query and set up the tool myself.
+
 ## What came out of it
 
 Colleagues found the tools useful, and as far as I know, teams in Turkey, Sweden and Poland started using them too. The tools were part of the work behind my promotion to SME in 2021.
 
 In my review that year my manager wrote that I "came up with multiple improvements and small scale automations" for my processes.
 
-## Applying the same approach to ticket automation
-
-In late 2020 I worked on a separate project to improve our Dutch Andon Cord ticket process. It took 18.18 days to close 90% of tickets, against a goal of 14. I compared our numbers with other countries and saw that they already had automations for the steps we did by hand. With a software engineer we brought those automations to the Netherlands. I wrote the SQL query and set up the tool myself.
-
-People saved 9 minutes per ticket, and within five weeks the time went from 18.18 days to 7.9 days.
+With the ticket automation, people saved 9 minutes per ticket, and within five weeks the time to close 90% of tickets went from 18.18 days to 7.9 days.
 
 What I like about both stories is the same thing. I did not wait for someone else to remove the daily friction. I learned what I needed and made the work easier for the whole team.

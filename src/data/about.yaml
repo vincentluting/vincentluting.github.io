@@ -5,15 +5,14 @@ intro:
   - What I have learned is that I do my best work close to something real. A customer who needs to be up and running. A supplier who has to deliver on time. A product that has to work on Monday morning. Being Chinese, speaking Dutch and working in English every day helps there, because trust between people from different cultures is built in person, one problem at a time.
   - I completed an MBA focused on AI, data and analytics at the University of Amsterdam. For my thesis I designed Deep Dive, a career assessment platform. I defined the questionnaire and the experience, and used AI-assisted development to turn the design into a working product.
   - Working across industries taught me how to get up to speed and earn trust. I want to spend the next few years going deeper into digital delivery, especially the part after launch, when a team has to make a new tool part of how it works.
-# Things I made, shown in the About page sidebar. Links can be a URL or a
-# page on this site.
+# Things I made, shown under Work: in the Work section of the home page and
+# on the Work page (/stories/). Links can be a URL or a page on this site.
+# The item that links to /stories/#deep-dive is shown on the Work page as a
+# larger block with the demo and a screenshot.
 made:
   - name: Deep Dive
     what: A career assessment platform I designed for my MBA thesis and built with AI-assisted development.
-    href: /#deep-dive
-  - name: Two web tools for my team at Amazon
-    what: A toolbox page and an ASIN deep diver, taught myself HTML, CSS and JavaScript to build them.
-    href: /stories/amazon-vendor-tickets/
+    href: /stories/#deep-dive
   - name: This website
     what: Astro and Tailwind, ink on handmade paper. The source is on GitHub.
     href: https://github.com/vincentluting/vincentluting.github.io

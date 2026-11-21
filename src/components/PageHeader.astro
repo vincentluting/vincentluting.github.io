@@ -1,0 +1,35 @@
+---
+/**
+ * The top of an inner page, on the same grid as everything else: the eyebrow
+ * (the navigation word) and any meta lines on the left, the title, its brush
+ * stroke and an optional lead on the right. Page titles get the brush stroke;
+ * section headings never do.
+ */
+import Section from './Section.astro';
+import Brush from './ink/Brush.astro';
+
+interface Props {
+  eyebrow: string;
+  /** Links the eyebrow back to a list page, e.g. "Work" → /stories/. */
+  eyebrowHref?: string;
+  title: string;
+  lead?: string;
+  brush?: number;
+}
+const { eyebrow, eyebrowHref, title, lead, brush = 0 } = Astro.props;
+---
+
+<Section>
+  <div class="page-grid">
+    <div class="lg:col-span-4 lg:pt-[1.3rem]">
+      <p class="eyebrow">{eyebrowHref ? <a href={eyebrowHref} class="ink-link">{eyebrow}</a> : eyebrow}</p>
+      <slot name="meta" />
+    </div>
+    <div class="min-w-0 lg:col-span-8">
+      <h1 class="text-h2 font-medium md:text-h1" data-ink-title>{title}</h1>
+      <Brush variant={brush} />
+      {lead && <p class="mt-5 max-w-[38rem] text-lead text-muted">{lead}</p>}
+      <slot />
+    </div>
+  </div>
+</Section>

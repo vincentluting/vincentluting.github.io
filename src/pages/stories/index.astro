@@ -1,25 +1,52 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Section from '../../components/Section.astro';
-import Brush from '../../components/ink/Brush.astro';
-import StoryCard from '../../components/stories/StoryCard.astro';
-import { getStories } from '../../lib/stories';
+import PageHeader from '../../components/PageHeader.astro';
+import GridSection from '../../components/GridSection.astro';
+import ListRow from '../../components/ListRow.astro';
+import DeepDive from '../../components/work/DeepDive.astro';
+import { getStories, storyTransition } from '../../lib/stories';
+import { about } from '../../data';
 
 const stories = await getStories();
-const description = 'Projects across studio IT, advertising analytics and catalog operations.';
+const description = 'Case studies from studio IT, advertising analytics and catalog operations, and a few things I made.';
+
+// The thing I made that links to #deep-dive is shown here as a larger block
+// with the demo and a screenshot; the others are ordinary rows.
+const isDeepDive = (href: string) => href.endsWith('#deep-dive');
+const showDeepDive = about.made.some((m) => isDeepDive(m.href));
+const made = about.made.filter((m) => !isDeepDive(m.href));
 ---
 
 <BaseLayout title="Selected work" description={description}>
-  <Section tight>
-    <div class="max-w-3xl">
-      <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>Selected work</h1>
-      <Brush variant={1} />
-      <p class="mt-5 text-xl leading-relaxed text-muted">{description}</p>
-    </div>
-    <ul class="mt-8 grid gap-6 md:mt-10 md:grid-cols-2 lg:grid-cols-3" role="list">
-      {stories.map((story, index) => (
-        <li><StoryCard story={story} index={index} headingLevel={2} /></li>
-      ))}
-    </ul>
-  </Section>
+  <PageHeader eyebrow="Work" title="Selected work" lead={description} brush={1} />
+
+  {stories.length > 0 && (
+    <GridSection title="Case studies" size="group" rule>
+      <ol class="divide-y divide-line border-y border-line">
+        {stories.map((story) => (
+          <li>
+            <ListRow
+              href={`/stories/${story.id}/`}
+              meta={`${story.data.company} · ${story.data.period}`}
+              title={story.data.title}
+              description={story.data.summary}
+              outcome={story.data.highlights?.outcome}
+              transitionName={storyTransition(story.id)}
+            />
+          </li>
+        ))}
+      </ol>
+    </GridSection>
+  )}
+
+  {(showDeepDive || made.length > 0) && (
+    <GridSection id="made" title="Things I made" size="group" rule>
+      <ul class="divide-y divide-line border-y border-line">
+        {showDeepDive && <li><DeepDive /></li>}
+        {made.map((m) => (
+          <li><ListRow href={m.href} title={m.name} description={m.what} size="lead" /></li>
+        ))}
+      </ul>
+    </GridSection>
+  )}
 </BaseLayout>

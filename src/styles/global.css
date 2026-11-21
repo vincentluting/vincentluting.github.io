@@ -63,6 +63,32 @@ html[data-motion="off"] { scroll-behavior: auto; }
   --ease-ink: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ---------- Type scale ----------
+   Every piece of text uses one of these sizes, so the same kind of thing is
+   always the same size. Newsreader: body 18, lead 20, title 24, h3 30,
+   h2 36, h1 48, display 72. IBM Plex Mono: meta 12 (dates, companies,
+   captions), label 13 (navigation, buttons, eyebrows, small links). */
+@theme {
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1.5;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.5;
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.65;
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.6;
+  --text-title: 1.5rem;
+  --text-title--line-height: 1.3;
+  --text-h3: 1.875rem;
+  --text-h3--line-height: 1.2;
+  --text-h2: 2.25rem;
+  --text-h2--line-height: 1.12;
+  --text-h1: 3rem;
+  --text-h1--line-height: 1.06;
+  --text-display: 4.5rem;
+  --text-display--line-height: 1;
+}
+
 /* ---------- Base ---------- */
 @layer base {
   html {
@@ -71,7 +97,8 @@ html[data-motion="off"] { scroll-behavior: auto; }
   }
   body {
     @apply bg-paper text-ink font-sans antialiased;
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
+    line-height: 1.65;
     font-optical-sizing: auto;
     font-feature-settings: "kern", "liga", "onum";
     /* Paper: fine grain plus long horizontal fibres. Both are static tiles,
@@ -349,6 +376,18 @@ html[data-motion="off"]::view-transition-new(root) {
   @media (width >= 40rem) { padding-inline: 1.5rem; }
   @media (width >= 64rem) { padding-inline: 2rem; }
 }
+/* The one layout. From 64rem up a section sits on 12 columns: its label in
+   the left four, its content in the right eight (see GridSection.astro and
+   PageHeader.astro). Below that everything stacks in one column. */
+@utility page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 3rem;
+  }
+}
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -400,13 +439,29 @@ html[data-motion="off"]::view-transition-new(root) {
   --tw-prose-counters: var(--muted);
   --tw-prose-bullets: var(--accent);
 }
+/* About 70 characters a line, the comfortable measure for reading, at 18px
+   on phones and 20px from tablets up. A heading sits close to the text it
+   introduces (0.5em) and well away from the text before it (2em). */
+.prose {
+  max-width: 38rem;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+@media (width >= 48rem) {
+  .prose { font-size: 1.25rem; }
+}
 .prose :where(h2, h3) {
   font-family: var(--font-display);
   font-weight: 500;
 }
 .prose :where(h2) {
-  position: relative;
-  padding-bottom: 0.35em;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+@media (width >= 48rem) {
+  .prose :where(h2) { font-size: 1.875rem; }
 }
 .prose :where(p, li) {
   text-wrap: pretty;
@@ -443,7 +498,9 @@ html[data-motion="off"]::view-transition-new(root) {
    Hiring managers print or save a story or the CV page before an interview.
    Print shows everything in black on white, without the paper and the ink. */
 @media print {
-  .site-header, footer, fluid-ink, .read-progress,
+  /* The site footer stays: it is the contact block (it prints the address as
+     text). The footers of stories and posts are navigation, so they go. */
+  .site-header, article footer, fluid-ink, .read-progress,
   [data-motion-toggle], [data-theme-toggle], [data-nav-toggle], [data-copy-email] {
     display: none !important;
   }
@@ -459,7 +516,7 @@ html[data-motion="off"]::view-transition-new(root) {
     filter: none !important; clip-path: none !important; color: inherit;
   }
   .sheet { box-shadow: none; background: #fff; }
-  .sheet, li[id], figure { break-inside: avoid; }
+  .sheet, li[id], figure, #contact { break-inside: avoid; }
   h1, h2, h3 { break-after: avoid; }
   a[href^="mailto:"]::after, a[href*="linkedin.com"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
   @page { margin: 18mm; }

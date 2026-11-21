@@ -1,0 +1,35 @@
+---
+/**
+ * The site's one layout. From 64rem up a section sits on the 12-column page
+ * grid: its label (the eyebrow word and a heading) in the left four columns,
+ * its content in the right eight. Below that the label stacks on top. Home
+ * sections, the groups on the Work and Blog pages and the footer all follow
+ * it, so every heading, list and paragraph shares the same two edges.
+ */
+import Section from './Section.astro';
+
+interface Props {
+  id?: string;
+  /** The navigation word for this part of the site, e.g. "Work". */
+  eyebrow?: string;
+  title?: string;
+  /** "section" for home page sections (36px), "group" for groups inside a page (24px). */
+  size?: 'section' | 'group';
+  rule?: boolean;
+  class?: string;
+}
+const { id, eyebrow, title, size = 'section', rule = false, class: className = '' } = Astro.props;
+---
+
+<Section id={id} rule={rule} class={className}>
+  <div class="page-grid">
+    <div class="lg:col-span-4">
+      {eyebrow && <p class="eyebrow mb-3">{eyebrow}</p>}
+      {title && <h2 class:list={['font-medium', size === 'section' ? 'text-h2' : 'text-title']}>{title}</h2>}
+      <slot name="label" />
+    </div>
+    <div class="min-w-0 lg:col-span-8">
+      <slot />
+    </div>
+  </div>
+</Section>

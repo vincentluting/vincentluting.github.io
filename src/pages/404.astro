@@ -1,16 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
 import Button from '../components/Button.astro';
 ---
 
 <BaseLayout title="Page not found" description="That page does not exist.">
-  <section class="container-page py-32 text-center">
-    <p class="eyebrow mb-4">404</p>
-    <h1 class="text-4xl font-medium md:text-5xl" data-ink-title>This page does not exist.</h1>
-    <p class="mt-4 text-muted">The link might be old. Here are a couple of places to go instead.</p>
-    <div class="mt-8 flex justify-center gap-3">
+  <PageHeader eyebrow="404" title="This page does not exist." lead="The link might be old. Here are a couple of places to go instead.">
+    <div class="mt-8 flex flex-wrap gap-3">
       <Button href="/">Back home</Button>
-      <Button href="/stories/" variant="secondary">Stories</Button>
+      <Button href="/stories/" variant="secondary">Work</Button>
     </div>
-  </section>
+  </PageHeader>
 </BaseLayout>

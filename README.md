@@ -41,6 +41,37 @@ Requires Node 22.12+ (see `.nvmrc`).
 `scripts/check-dist.mjs`, which fails the build if a `TODO(Vincent)` note, a drafting remark or a
 phone number reaches `dist/`. The notes stay in the Markdown source; they are never published.
 
+## Design rules
+
+A few fixed rules keep the site orderly as it grows. Follow them when you add
+a page or a section.
+
+- **One grid.** From 64rem up, every section sits on 12 columns: its label on
+  the left (4 columns), its content on the right (8). Below that the label
+  stacks on top. Use `GridSection` for home sections and page groups and
+  `PageHeader` for page tops; the footer and the case study and post pages use
+  the same `page-grid` utility. The home hero uses the same 12 columns (text 8,
+  portrait 4).
+- **One type scale.** Sizes come only from the tokens in
+  `src/styles/global.css`: `text-meta` (12), `text-label` (13), `text-body`
+  (18), `text-lead` (20), `text-title` (24), `text-h3` (30), `text-h2` (36),
+  `text-h1` (48), `text-display` (72). IBM Plex Mono is for labels and meta,
+  Newsreader for everything else.
+- **Lines.** Dividers between sections are as wide as the content. Only the
+  page frame (the bottom of the hero band, the top of the footer) runs edge to
+  edge.
+- **Lists, not cards, for text.** Every list row is `ListRow`: a meta line,
+  the title, an optional description, and an arrow (→ on this site, ↗ to
+  another site).
+- **One word per thing.** The navigation word is the eyebrow of its section
+  and page (Work, About, Blog, Contact). A teaser on the home page and the page
+  it leads to share the same heading. Work items are called case studies. The
+  home page follows the order of the navigation.
+- **Ink.** The brush stroke marks page titles only, never section headings.
+  Vermilion means "you can click this" or "this is me" (the name, the seal,
+  the signature); labels that are not links are grey.
+- **Reading.** Long text (`.prose`) keeps about 70 characters a line (38rem).
+
 ## Editing content without code
 
 All text on the site lives in plain YAML and Markdown files, and the repo has a
@@ -48,8 +79,8 @@ All text on the site lives in plain YAML and Markdown files, and the repo has a
 
 1. Go to https://app.pagescms.org and sign in with GitHub.
 2. Install the Pages CMS GitHub App for this repository (one-time).
-3. Open the repo. You get sections for Profile & contact, About,
-   Stories, How I work, Testimonials and Blog, plus image uploads.
+3. Open the repo. You get sections for Profile & contact, About page,
+   Case studies, How I work, Testimonials and Blog, plus image uploads.
 4. Save. Each save is a commit to `main`, and the site rebuilds in about a minute.
 
 You can also edit the same files directly on github.com (pencil icon on a file).
@@ -59,11 +90,13 @@ You can also edit the same files directly on github.com (pencil icon on a file).
 | What | Where |
 |---|---|
 | Name, the short intro on the home page, contact links, portrait, Search Console code | `src/data/site.yaml` |
-| Work stories (case studies) | `src/content/stories/<slug>.md`. `order` sets the order and the first three appear on the home page |
-| Deep Dive thesis project | `src/components/home/DeepDive.astro`, with the demo URL in `src/data/site.yaml` |
-| About page story, hobbies and projects | `src/data/about.yaml`. `homeIntro` is the short introduction on the home page |
+| Case studies (the Work page) | `src/content/stories/<slug>.md`. `order` sets the order and the first three appear on the home page |
+| Things I made (Work page and the Work section of the home page) | `made` in `src/data/about.yaml` |
+| Deep Dive block on the Work page | `src/components/work/DeepDive.astro`, with the demo URL in `src/data/site.yaml` |
+| About page story and hobbies | `src/data/about.yaml`. `homeIntro` is the short introduction on the home page |
+| Contact block (the footer of every page) | `src/components/Footer.astro` |
 | Working methods draft | `src/content/pages/how-i-work.md` (unlisted at `/how-i-work/`) |
-| Testimonials | `src/data/testimonials.yaml` — the home page section is hidden while it is empty |
+| Testimonials | `src/data/testimonials.yaml` — not shown on any page at the moment |
 | Blog posts | `src/content/posts/<slug>.md` — `archive: true` lists a post under "Earlier notes" at the end of the blog page and keeps it off the home page (same URL, still in RSS) |
 | Uploaded images (portrait, post covers) | `src/assets/uploads/` — referenced as `/src/assets/uploads/<file>` |
 | CV PDF (optional) | `public/cv/`, referenced as `/cv/<file>.pdf` in `cvPath`. It is empty now, so the site has no CV download; the buttons come back when you set it |
@@ -76,13 +109,13 @@ naming the file and field.
 
 ## Adding a story
 
-In Pages CMS: Stories → Add. Give it a title like the start of a story ("Why vendors on Amazon waited so long for an answer"),
-add a short title (about 45 characters) for the browser tab and Google, and write the body with these headings: The situation, The hard part, What I did, What came out of it, and,
+In Pages CMS: Case studies → Add. Give it a title like the start of a story ("Why vendors on Amazon waited so long for an answer"),
+add a short title only if the title is longer than about 45 characters (a shorter version with the same meaning, used for the browser tab and Google), and write the body with these headings: The situation, The hard part, What I did, What came out of it, and,
 only in your own words, What I would do differently. Use the public highlight fields for your specific contribution and an attributable outcome. Notes like `<!-- TODO(Vincent): ... -->` are HTML comments removed from the built site.
 
 ## Adding a post
 
-In Pages CMS: Writing → Add. Or create `src/content/posts/my-slug.md`:
+In Pages CMS: Blog → Add. Or create `src/content/posts/my-slug.md`:
 
 ```md
 ---

@@ -1,41 +1,64 @@
 ---
+/**
+ * The footer is also the contact section, on every page: the navigation's
+ * "Contact" scrolls here (#contact) instead of jumping back to the home page,
+ * and the email and LinkedIn links appear once instead of twice.
+ */
+import Button from './Button.astro';
+import CopyEmail from './CopyEmail.astro';
 import Seal from './ink/Seal.astro';
 import { site, cvUrl } from '../data';
 const year = new Date().getFullYear();
+const linkedinShort = site.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 
 const links = [
   { label: 'Work', href: '/stories/' },
   { label: 'About', href: '/about/' },
   { label: 'Blog', href: '/posts/' },
-  { label: 'Contact', href: '/#contact' },
 ];
 ---
 
-<footer class="mt-8 border-t border-line">
-  <div class="container-page grid gap-10 py-12 md:grid-cols-12">
-    <div class="flex items-start gap-4 md:col-span-5">
-      <Seal size={44} stamp />
-      <div>
-        <p class="font-display text-lg">{site.fullName}</p>
-        <p class="mt-1 text-muted">{site.location}</p>
+<footer id="contact" class="scroll-mt-16 border-t border-line">
+  <div class="container-page">
+    <div class="page-grid py-12 md:py-16">
+      <div class="lg:col-span-4">
+        <p class="eyebrow mb-3">Contact</p>
+        <h2 class="text-h2 font-medium">Get in touch</h2>
+      </div>
+      <div class="min-w-0 lg:col-span-8">
+        <p class="max-w-[38rem] text-lead">
+          Have a project in mind or something you’d like to talk about? You can write in English, Dutch or Mandarin. I’m also up for a coffee in Utrecht.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-3 print:hidden">
+          <Button href={`mailto:${site.email}`}>Email me</Button>
+          <Button href={site.linkedin} variant="secondary" external>LinkedIn</Button>
+          {cvUrl && <Button href={cvUrl} variant="secondary" download>CV (PDF)</Button>}
+        </div>
+        <CopyEmail class="mt-4" />
+        <p class="mt-4 hidden font-mono text-label print:block">{site.email} · {linkedinShort}</p>
       </div>
     </div>
-    <nav class="md:col-span-3" aria-label="Footer">
-      <ul class="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-[0.8rem]">
-        {links.map((l) => (
-          <li><a class="text-muted transition-colors hover:text-ink" href={l.href}>{l.label}</a></li>
-        ))}
-      </ul>
-    </nav>
-    <ul class="flex flex-col gap-2 font-mono text-[0.8rem] md:col-span-4 md:items-end">
-      <li><a class="text-muted transition-colors hover:text-ink" href={`mailto:${site.email}`}>{site.email}</a></li>
-      <li><a class="text-muted transition-colors hover:text-ink" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      {site.github && <li><a class="text-muted transition-colors hover:text-ink" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>}
-      {cvUrl && <li><a class="text-muted transition-colors hover:text-ink" href={cvUrl} download>CV (PDF)</a></li>}
-      <li><a class="text-muted transition-colors hover:text-ink" href="/rss.xml">RSS</a></li>
-    </ul>
-  </div>
-  <div class="container-page pb-8 font-mono text-[0.7rem] text-muted">
-    © {year} {site.fullName}. Made in Utrecht, with Astro.
+
+    <div class="page-grid items-center border-t border-line py-8 print:hidden">
+      <div class="flex items-center gap-3 lg:col-span-4">
+        <Seal size={36} stamp />
+        <div>
+          <p class="font-display leading-tight">{site.fullName}</p>
+          <p class="text-muted">{site.location}</p>
+        </div>
+      </div>
+      <div class="lg:col-span-8">
+        <nav aria-label="Footer">
+          <ul class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-label">
+            {links.map((l) => (
+              <li><a class="text-muted transition-colors hover:text-ink" href={l.href}>{l.label}</a></li>
+            ))}
+            {site.github && <li><a class="text-muted transition-colors hover:text-ink" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>}
+            <li><a class="text-muted transition-colors hover:text-ink" href="/rss.xml">RSS</a></li>
+          </ul>
+        </nav>
+        <p class="mt-3 font-mono text-meta text-muted">© {year} {site.fullName}. Made in Utrecht, with Astro.</p>
+      </div>
+    </div>
   </div>
 </footer>

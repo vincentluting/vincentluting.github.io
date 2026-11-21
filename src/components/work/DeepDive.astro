@@ -1,0 +1,34 @@
+---
+/**
+ * Deep Dive, shown on the Work page as the first of the things I made, with
+ * the demo, the research and a screenshot. (On the home page it is one row
+ * of the "Things I made" list, linking here.)
+ */
+import { Image } from 'astro:assets';
+import report from '../../assets/uploads/deep-dive-report.webp';
+import { site } from '../../data';
+import Button from '../Button.astro';
+---
+
+<article id="deep-dive" class="grid scroll-mt-20 gap-6 py-6 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-8">
+  <div>
+    <p class="font-mono text-meta text-muted">MBA thesis project</p>
+    <h3 class="mt-1 text-lead font-medium">Deep Dive</h3>
+    <p class="mt-2">A career exploration tool for people thinking about their next move.</p>
+    <p class="mt-2 text-muted">I designed the assessment and the experience, then built and tested the product with AI-assisted development.</p>
+    <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+      <Button href={site.deepDive} external>Try Quick Dive <span aria-hidden="true">↗</span></Button>
+      <a href="https://github.com/vincentluting/DeepDive#readme" target="_blank" rel="noopener noreferrer" class="py-2 font-mono text-label ink-link">Project and research</a>
+    </div>
+  </div>
+  <figure>
+    <Image
+      src={report}
+      alt="Example Deep Dive report showing suggested career directions and why they may fit."
+      widths={[384, 640, 960]}
+      sizes="(min-width: 64rem) 390px, (min-width: 48rem) 55vw, 90vw"
+      class="h-auto w-full rounded border border-line"
+    />
+    <figcaption class="mt-2 font-mono text-meta text-muted">Example career report</figcaption>
+  </figure>
+</article>

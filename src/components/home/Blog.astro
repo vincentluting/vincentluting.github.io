@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import Section from '../Section.astro';
-import Brush from '../ink/Brush.astro';
+import GridSection from '../GridSection.astro';
+import ListRow from '../ListRow.astro';
 import FormattedDate from '../FormattedDate.astro';
 
 const posts = (await getCollection('posts', ({ data }) => !data.draft && !data.archive))
@@ -9,29 +9,17 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft && !data.a
   .slice(0, 3);
 ---
 
-<Section id="blog" tight class="border-t border-line">
-  <div class="max-w-4xl">
-    <div data-reveal>
-      <h2 class="text-3xl font-medium leading-tight md:text-[2.6rem]">Notes on AI, work and moving countries</h2>
-      <Brush variant={2} />
-    </div>
-    <ol class="mt-8 divide-y divide-line border-y border-line">
-      {posts.map((post, i) => (
-        <li data-reveal style={`--d: ${i * 70}ms`}>
-          <a href={`/posts/${post.id}/`} class="group grid gap-1 py-5 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
-            <span class="font-mono text-[0.75rem] text-muted sm:pt-1.5"><FormattedDate date={post.data.date} /></span>
-            <span>
-              <span class="block font-display text-xl font-medium leading-snug transition-colors group-hover:text-accent">{post.data.title}</span>
-              <span class="mt-1 line-clamp-2 block text-muted">{post.data.description}</span>
-            </span>
-          </a>
+{posts.length > 0 && (
+  <GridSection id="blog" eyebrow="Blog" title="Notes on AI, work and moving countries" rule>
+    <ol class="divide-y divide-line border-y border-line">
+      {posts.map((post) => (
+        <li>
+          <ListRow href={`/posts/${post.id}/`} title={post.data.title} description={post.data.description}>
+            <FormattedDate slot="meta" date={post.data.date} />
+          </ListRow>
         </li>
       ))}
     </ol>
-    <div class="mt-6" data-reveal>
-      <a href="/posts/" class="group font-mono text-[0.82rem] ink-link">
-        All posts <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
-      </a>
-    </div>
-  </div>
-</Section>
+    <a href="/posts/" class="mt-6 inline-block py-2 font-mono text-label ink-link">All posts <span aria-hidden="true">→</span></a>
+  </GridSection>
+)}

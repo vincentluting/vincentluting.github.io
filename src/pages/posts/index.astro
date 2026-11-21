@@ -1,53 +1,52 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Section from '../../components/Section.astro';
-import Brush from '../../components/ink/Brush.astro';
-import PostCard from '../../components/blog/PostCard.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import GridSection from '../../components/GridSection.astro';
+import ListRow from '../../components/ListRow.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { site } from '../../data';
 
 const all = (await getCollection('posts', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-// Recent notes get cards; earlier ones (archive: true) stay online at the same
-// URL, listed quietly at the end.
+// Recent notes first; earlier ones (archive: true) stay online at the same
+// URL, listed at the end.
 const posts = all.filter((p) => !p.data.archive);
 const earlier = all.filter((p) => p.data.archive);
 ---
 
 <BaseLayout title="Blog" description={`Notes by ${site.fullName} on AI, work, and living between China and the Netherlands.`}>
-  <Section tight>
-    <div class="mb-8 max-w-3xl md:mb-10">
-      <h1 class="text-5xl font-medium leading-[1.05] md:text-6xl" data-ink-title>Blog</h1>
-      <Brush variant={2} />
-      <p class="mt-4 text-xl leading-relaxed text-muted">
-        Notes on AI, work, and living between China and the Netherlands.
-      </p>
-    </div>
-    {posts.length > 0 && (
-      <div class:list={['grid gap-4 md:grid-cols-2 md:gap-6', posts.length >= 3 && 'lg:grid-cols-3']}>
-        {posts.map((post) => <PostCard post={post} />)}
-      </div>
-    )}
+  <PageHeader eyebrow="Blog" title="Notes on AI, work and moving countries" brush={2} />
 
-    {earlier.length > 0 && (
-      <section class="mt-12 max-w-3xl md:mt-16" aria-labelledby="earlier-notes">
-        <h2 id="earlier-notes" class="mb-3 text-2xl font-medium">Earlier notes</h2>
-        <p class="text-muted">
-          From the first months of my MBA in 2024, when I was working out how the technology works underneath.
-        </p>
-        <ol class="mt-4 divide-y divide-line border-y border-line">
-          {earlier.map((post) => (
-            <li>
-              <a href={`/posts/${post.id}/`} class="group grid gap-1 py-4 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
-                <span class="font-mono text-[0.75rem] text-muted sm:pt-1"><FormattedDate date={post.data.date} /></span>
-                <span class="font-display text-lg font-medium leading-snug transition-colors group-hover:text-accent">{post.data.title}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
-    )}
-  </Section>
+  {posts.length > 0 && (
+    <GridSection title="Recent notes" size="group" rule>
+      <ol class="divide-y divide-line border-y border-line">
+        {posts.map((post) => (
+          <li>
+            <ListRow href={`/posts/${post.id}/`} title={post.data.title} description={post.data.description}>
+              <FormattedDate slot="meta" date={post.data.date} />
+            </ListRow>
+          </li>
+        ))}
+      </ol>
+    </GridSection>
+  )}
+
+  {earlier.length > 0 && (
+    <GridSection title="Earlier notes" size="group" rule>
+      <p slot="label" class="mt-2 max-w-sm text-muted">
+        From the first months of my MBA in 2024, when I was working out how the technology works underneath.
+      </p>
+      <ol class="divide-y divide-line border-y border-line">
+        {earlier.map((post) => (
+          <li>
+            <ListRow href={`/posts/${post.id}/`} title={post.data.title} size="lead">
+              <FormattedDate slot="meta" date={post.data.date} />
+            </ListRow>
+          </li>
+        ))}
+      </ol>
+    </GridSection>
+  )}
 </BaseLayout>

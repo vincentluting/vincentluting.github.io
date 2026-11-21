@@ -1,0 +1,14 @@
+---
+import GridSection from '../GridSection.astro';
+import { about } from '../../data';
+
+// Same heading as the About page, so the teaser and the page it leads to match.
+const intro = about.homeIntro || about.intro[0];
+---
+
+{intro && (
+  <GridSection id="about" eyebrow="About" title="From Leiden to here" rule>
+    <p class="max-w-[38rem] text-lead">{intro}</p>
+    <a href="/about/" class="mt-4 inline-block py-2 font-mono text-label ink-link">More about me <span aria-hidden="true">→</span></a>
+  </GridSection>
+)}

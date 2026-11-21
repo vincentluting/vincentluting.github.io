@@ -28,7 +28,7 @@ content:
       - { name: preferredName, label: Preferred name, type: string }
       - { name: fullName, label: Full display name, type: string, description: 用于浏览器标题和页脚，例如 "Vincent Lu" }
       - { name: role, label: Job title, type: string, description: 显示在首页和搜索结果中 }
-      - { name: tagline, label: Hero eyebrow line, type: string, description: 首页标题上方的小字，例如 "Utrecht, the Netherlands" }
+      - { name: tagline, label: Hero eyebrow line, type: string, description: 首页名字上方的小字，放在职位后面，例如 "Utrecht"。保持简短，手机上才能一行放下 }
       - { name: headline, label: Hero headline, type: text, description: 一句话介绍你的工作 }
       - { name: heroIntro, label: Hero introduction, type: text, description: 用一两句话具体说明你如何开展这项工作 }
       - { name: location, label: Location, type: string }
@@ -66,16 +66,16 @@ content:
       - { name: homeIntro, label: Short introduction for the home page, type: text }
       - { name: hobbies, label: Outside work, type: string, list: true }
       - name: made
-        label: Things I made (About page sidebar)
+        label: Things I made (Work page and the Work section of the home page)
         type: object
         list: true
         fields:
           - { name: name, label: Name, type: string, required: true }
           - { name: what, label: What it is, type: string, required: true, description: 一句话 }
-          - { name: href, label: Link, type: string, required: true, description: 网址，或站内链接如 /stories/amazon-vendor-tickets/ }
+          - { name: href, label: Link, type: string, required: true, description: '网址，或站内链接。链接为 /stories/#deep-dive 的那一项会在 Work 页显示成带截图的大块' }
 
   - name: stories
-    label: Stories (work case studies)
+    label: Case studies (Work page)
     type: collection
     path: src/content/stories
     filename: "{primary}.md"
@@ -86,8 +86,8 @@ content:
       fields: [title, company, order, draft]
     fields:
       - { name: title, label: Title, type: string, required: true, description: 像讲故事一样的标题，例如 "Why vendors on Amazon waited so long for an answer" }
-      - { name: shortTitle, label: Short title for Google and the browser tab, type: string, description: '最多约 45 个字符，例如 "Amazon vendor tickets: 18 days to 8"' }
-      - { name: summary, label: Summary, type: text, required: true, description: 卡片和页面顶部的两三句话，忙的人只看这一段 }
+      - { name: shortTitle, label: Short title for Google and the browser tab, type: string, description: '标题的缩短版，意思要和标题一致，最多约 45 个字符。标题本身不超过 45 个字符时留空' }
+      - { name: summary, label: Summary, type: text, required: true, description: Work 页列表和案例顶部的两三句话，忙的人只看这一段 }
       - { name: company, label: Company, type: string, required: true }
       - { name: role, label: My role / title, type: string, required: true }
       - { name: period, label: Period, type: string, description: 例如 "2019 – 2021" }
@@ -160,7 +160,7 @@ content:
         list:
           collapsible:
             summary: "{fields.name}"
-        description: 同事或客户的一两句推荐（可以从 LinkedIn 推荐里摘）。至少有一条时首页才会显示这一块。
+        description: 同事或客户的一两句推荐（可以从 LinkedIn 推荐里摘）。目前网站上没有显示这一块。
         fields:
           - { name: quote, label: Quote, type: text, required: true }
           - { name: name, label: Name, type: string, required: true }
@@ -181,7 +181,7 @@ content:
       fields: [title, date, draft]
     fields:
       - { name: title, label: Title, type: string, required: true }
-      - { name: description, label: Description, type: text, description: 列表卡片和分享预览里显示的一两句话 }
+      - { name: description, label: Description, type: text, description: 文章列表和分享预览里显示的一两句话 }
       - name: date
         label: Date
         type: date
