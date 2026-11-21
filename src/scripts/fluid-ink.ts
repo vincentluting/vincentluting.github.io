@@ -21,6 +21,9 @@
  *     edge and a faint tide line of wash. The trail is carried by the water
  *     and closes again after a few seconds. Now and then the water uncovers a
  *     glimpse of it on its own. The dye's B channel holds this reveal.
+ *   • On the page layer (data-mode="page") the painting opens across the
+ *     hero band and in the margins beside the content, never under the
+ *     reading text further down (data-band names the hero).
  *
  * It follows the site's motion toggle (html[data-motion]) and the OS
  * reduced-motion setting, and does not start on small screens or without
@@ -44,7 +47,7 @@ const FRAGMENT = {
   /* Rendered once per canvas size: R = long fibres, G = fine tooth, BA = wicking offset. */
   paper: `precision highp float;varying vec2 vUv;uniform float uAspect;${NOISE}void main(){vec2 p=vUv*vec2(uAspect,1.);float fib=fbm(p*vec2(7.,80.));float tooth=fbm(p*240.);vec2 w=vec2(fbm(p*vec2(3.,26.)+3.),fbm(p*vec2(3.,26.)+11.))-.5;gl_FragColor=vec4(fib,tooth,w);}`,
   /* The painting. Output is premultiplied alpha: only ink is drawn. */
-  display: `precision highp float;varying vec2 vUv;uniform sampler2D uDye,uPaper,uPainting;uniform vec3 uInk,uWash,uRed,uSilk;uniform vec2 uTexel,uCrop;uniform float uDither,uFade,uOpacity,uAspect,uTime,uHasPainting,uPaintOpacity,uPan;
+  display: `precision highp float;varying vec2 vUv;uniform sampler2D uDye,uPaper,uPainting;uniform vec3 uInk,uWash,uRed,uSilk;uniform vec2 uTexel,uCrop;uniform float uDither,uFade,uOpacity,uAspect,uTime,uHasPainting,uPaintOpacity,uPan;uniform vec4 uKeep;uniform vec2 uEdge;
 ${NOISE}
 void main(){
   vec4 pa=texture2D(uPaper,vUv);
@@ -93,6 +96,16 @@ void main(){
       pc=uWash*rimA+pc*(1.-rimA);pa2=rimA+pa2*(1.-rimA);
       // Behind the text the painting stays a little softer, but never hidden.
       float k=(1.-column*.45)*uPaintOpacity;
+      // Page layer: the painting may open across the hero band (above uKeep.z)
+      // and in the margins outside the content column (uKeep.x to uKeep.y),
+      // never under the reading text below the hero. The edges are soft and
+      // follow the paper fibres, so the boundary reads as a wash, not a line.
+      if(uKeep.w>.5){
+        float jx=(pa.r-.5)*uEdge.x;
+        float inside=smoothstep(uKeep.x-uEdge.x,uKeep.x,vUv.x+jx)*(1.-smoothstep(uKeep.y,uKeep.y+uEdge.x,vUv.x+jx));
+        float band=smoothstep(uKeep.z-uEdge.y,uKeep.z+uEdge.y,vUv.y+(pa.r-.5)*uEdge.y);
+        k*=max(1.-inside,band);
+      }
       col+=pc*k*(1.-alpha);alpha+=pa2*k*(1.-alpha);
     }
   }
@@ -450,6 +463,11 @@ class FluidInk extends HTMLElement {
     // painting. It listens to the pointer everywhere, paints no ink of its
     // own, and slides the handscroll along as the page scrolls.
     const pageMode = this.dataset.mode === "page";
+    // On the page layer, data-band names the hero: the painting may open
+    // across that band and in the margins beside its content box (the content
+    // column of the whole site), and keeps clear of the column below it.
+    const band = pageMode && this.dataset.band ? document.querySelector<HTMLElement>(this.dataset.band) : null;
+    const bandEdge = band ? (band.closest<HTMLElement>(".ink") ?? band) : null;
     const queue: Splat[] = [];
     // Splats scheduled for later, so a brush stroke is laid down over time.
     const pending: { at: number; splat: Splat }[] = [];
@@ -825,6 +843,20 @@ class FluidInk extends HTMLElement {
       gl.uniform1f(programs.display.uniform("uPan"), pageMode && scrollable > 0 ? 1 - Math.min(1, window.scrollY / scrollable) : 0.5);
       // Cover the canvas with the painting, cropping whichever side is too long.
       gl.uniform2f(programs.display.uniform("uCrop"), Math.min(aspect / paintingAspect, 1), Math.min(paintingAspect / aspect, 1));
+      if (band && bandEdge) {
+        // All in canvas uv (y up). The column comes from the band's padding
+        // box, so it matches the page grid at every width.
+        const host = this.getBoundingClientRect();
+        const box = band.getBoundingClientRect();
+        const style = getComputedStyle(band);
+        const left = box.left + parseFloat(style.paddingLeft) - host.left;
+        const right = box.right - parseFloat(style.paddingRight) - host.left;
+        const bottom = bandEdge.getBoundingClientRect().bottom - host.top;
+        gl.uniform4f(programs.display.uniform("uKeep"), left / host.width, right / host.width, 1 - bottom / host.height, 1);
+        gl.uniform2f(programs.display.uniform("uEdge"), 56 / host.width, 40 / host.height);
+      } else {
+        gl.uniform4f(programs.display.uniform("uKeep"), 0, 1, 0, 0);
+      }
       if (painting) {
         gl.activeTexture(gl.TEXTURE2);
         gl.bindTexture(gl.TEXTURE_2D, painting);

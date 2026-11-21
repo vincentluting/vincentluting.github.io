@@ -1,11 +1,14 @@
 ---
 /**
- * A painting hidden under the paper of the whole page. Moving the cursor
+ * A painting hidden under the paper of the home page. Moving the cursor
  * works like a wet brush that uncovers it for a few seconds (WebGL, see
  * src/scripts/fluid-ink.ts, mode "page"). The layer is fixed behind the
  * content, and the long handscroll slides from its right end to its left as
- * the page scrolls, the way a handscroll is read. Sheets, the portrait and
- * the header sit on top of it, like paper laid over the painting.
+ * the page scrolls, the way a handscroll is read.
+ *
+ * It opens across the hero band and in the margins beside the content, and
+ * keeps clear of the content column below the hero, so the painting never
+ * sits under text people are reading. `data-band` names the hero.
  *
  * The painting: Huang Gongwang, "Dwelling in the Fuchun Mountains" (1350),
  * a section of the Wuyong scroll. Public domain, via Wikimedia Commons
@@ -14,7 +17,7 @@
 import painting from '../../assets/ink/fuchun-scroll.webp';
 ---
 
-<fluid-ink class="page-ink" data-mode="page" data-auto="0" data-clear="0" data-painting={painting.src} aria-hidden="true"></fluid-ink>
+<fluid-ink class="page-ink" data-mode="page" data-band="[data-hero]" data-auto="0" data-clear="0" data-painting={painting.src} aria-hidden="true"></fluid-ink>
 
 <script>
   import '../../scripts/fluid-ink';

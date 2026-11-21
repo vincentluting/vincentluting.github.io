@@ -12,7 +12,8 @@ fetched afterwards, and only while motion is on:
 | Effect | Where | Code |
 |---|---|---|
 | Ink drifting through water behind the hero (WebGL, desktop only; skipped on low-power devices, and it sleeps when off-screen or idle) | Home | `src/scripts/fluid-ink.ts`, adapted from [astro-sumi](https://github.com/kpab/astro-sumi) (MIT, © 2026 kpab) |
-| Ink-bleed title reveal, brush strokes under headings, signature, seal stamp, scroll reveal | All pages | `src/scripts/motion.ts`, `src/styles/global.css` |
+| A painting hidden under the paper (Huang Gongwang, public domain) that the cursor uncovers like a wet brush. It opens in the hero and in the margins beside the content, never under the text below the hero | Home | `src/components/ink/PageInk.astro`, `src/scripts/fluid-ink.ts` (mode `page`) |
+| Ink-bleed title reveal, brush strokes under page titles, signature, seal stamp, scroll reveal | All pages | `src/scripts/motion.ts`, `src/styles/global.css` |
 | Page transitions: the new page spreads out like ink on wet paper | All pages | CSS `@view-transition` (Chrome, Edge, Safari) |
 | Headings revealed line by line, cards dropped onto the page, background parallax behind the hero, signature written as you scroll | All pages | `src/scripts/cinema.ts` ([GSAP](https://gsap.com) SplitText + ScrollTrigger) |
 | Magnetic buttons and cards that tip towards the pointer (mouse only, not on reading pages) | Home, About, Stories | `src/scripts/pointer.ts` |
