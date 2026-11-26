@@ -1,27 +1,24 @@
-name: Vincent Lu
+name: Ting Lu
 preferredName: Vincent
-fullName: Vincent Lu
+fullName: Ting Lu
 role: Project Manager
 tagline: Utrecht
 headline: I help teams put new systems and data tools to work.
-heroIntro: I work with the people who use the tools and the teams who build them, from figuring out what’s needed to getting people up and running.
+heroIntro: I work with the people who use the tools and the teams who build
+  them, from figuring out what’s needed to getting people up and running.
 location: Utrecht, the Netherlands
 email: vincentluting@gmail.com
 linkedin: https://www.linkedin.com/in/vincentluting
-github: https://github.com/vincentluting
 deepDive: https://deepdive-pearl.vercel.app/en/quickdive
 portrait: /src/assets/uploads/portrait.webp
-cvPath: ""
 url: https://vincentluting.github.io
-description: Vincent Lu is a project manager in Utrecht focused on digital delivery and adoption. Read work stories, explore Deep Dive, and find writing on AI and work.
-googleSiteVerification: ""
+description: Ting is a project manager in Utrecht focused on digital delivery
+  and adoption. Read work stories, explore Deep Dive, and find writing on AI and
+  work.
 languages:
   - name: Mandarin
     level: Native
-    short: native
   - name: English
     level: Working language
-    short: working language
   - name: Dutch
     level: B2 · NT2 Staatsexamen II · MA Dutch Linguistics
-    short: B2, NT2 II
